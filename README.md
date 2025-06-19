@@ -1,6 +1,7 @@
 # Brain to Values
 
-![Open brain to values as clickable PDF](brain_values.png)](brain_values.pdf)
+![Brain to values](brain_values.png)
+[Open brain to values as clickable PDF](brain_values.pdf)
 
 Run with 
 
