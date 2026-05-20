@@ -27,10 +27,12 @@ python3 viz/senses/senses.py
 |-------|--------|-----|
 | Loop–hub–value model | [papers/loop-hub-value-model/loop-hub-value-model.tex](papers/loop-hub-value-model/loop-hub-value-model.tex) | [PDF](papers/loop-hub-value-model/loop-hub-value-model.pdf) |
 | Value bundle drift | [papers/value-bundle-drift/value-bundle-drift.tex](papers/value-bundle-drift/value-bundle-drift.tex) | [PDF](papers/value-bundle-drift/value-bundle-drift.pdf) |
+| Unit of caring | [papers/unit-of-caring/unit-of-caring.tex](papers/unit-of-caring/unit-of-caring.tex) | [PDF](papers/unit-of-caring/unit-of-caring.pdf) |
 
 Build a paper:
 
 ```bash
 papers/loop-hub-value-model/build.sh   # also generates the brain–value schematic
 papers/value-bundle-drift/build.sh
+papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 ```

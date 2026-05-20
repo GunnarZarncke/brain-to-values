@@ -19,7 +19,7 @@ brain-to-values/
 └── papers/                # One subdirectory per paper
     ├── loop-hub-value-model/
     ├── value-bundle-drift/
-    └── unit-of-caring/    # Draft; no build.sh yet
+    └── unit-of-caring/    
 ```
 
 Each paper directory should contain:
@@ -47,11 +47,12 @@ Use `MPLBACKEND=Agg` for headless runs. Prefer `.venv/bin/python` if the venv ex
 ```bash
 papers/loop-hub-value-model/build.sh   # generates schematic, then pdflatex ×2
 papers/value-bundle-drift/build.sh     # pdflatex ×2
+papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 ```
 
 **LHV paper dependency:** `loop-hub-value-model/build.sh` runs `brain.py --paper` and copies `viz/brain_values/output/brain_values.pdf` to `papers/loop-hub-value-model/figures/brain-values-schematic.pdf` before compiling.
 
-**Unit of caring:** draft only. Has `unit-of-caring.tex`, `unit-of-caring.bib`, and reference PDFs; no `build.sh` yet. Will need `bibtex` when bibliography is wired up.
+**Unit of caring:** uses `unit-of-caring.bib`; build with `bibtex` between pdflatex runs (see `build.sh`).
 
 ## Conventions
 
@@ -110,9 +111,7 @@ Update `README.md` when adding a new viz or paper (table row + build command). K
 
 ## Known issues
 
-- **`unit-of-caring.tex`** contains `:contentReference[oaicite:…]` placeholders from an export; remove or replace when editing.
-- **`unit-of-caring.tex`** cites `\cite{…}` but has no `\bibliography{…}` block yet; bibliography is incomplete.
-- **README** does not yet list the unit-of-caring paper; add when it has a working build.
+- **`unit-of-caring.tex`** title uses `\\` in `\title`; hyperref may warn about PDF bookmarks (harmless).
 - **`brain.py` docstring** and interactive title differ from `--paper` export; intentional.
 
 ## Thematic links between artifacts
