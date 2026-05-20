@@ -17,9 +17,12 @@ brain-to-values/
 │       ├── senses.py
 │       └── output/
 └── papers/                # One subdirectory per paper
+    ├── free-energy-loops/
+    ├── loop-hub-control-value/
     ├── loop-hub-value-model/
+    ├── status-regulation-loops/
     ├── value-bundle-drift/
-    └── unit-of-caring/    
+    └── unit-of-caring/
 ```
 
 Each paper directory should contain:
@@ -45,10 +48,15 @@ Use `MPLBACKEND=Agg` for headless runs. Prefer `.venv/bin/python` if the venv ex
 ### Papers
 
 ```bash
+papers/free-energy-loops/build.sh      # pdflatex + bibtex + pdflatex ×2
+papers/loop-hub-control-value/build.sh # pdflatex + bibtex + pdflatex ×2
 papers/loop-hub-value-model/build.sh   # generates schematic, then pdflatex ×2
+papers/status-regulation-loops/build.sh # pdflatex ×2
 papers/value-bundle-drift/build.sh     # pdflatex ×2
 papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 ```
+
+**Free-energy loops:** uses `refs.bib` (extracted from status-regulation ledger) plus `refs-supplement.bib` for alignment citations.
 
 **LHV paper dependency:** `loop-hub-value-model/build.sh` runs `brain.py --paper` and copies `viz/brain_values/output/brain_values.pdf` to `papers/loop-hub-value-model/figures/brain-values-schematic.pdf` before compiling.
 
@@ -69,7 +77,7 @@ papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 - Inline bibliographies (LHV) need only `pdflatex` twice.
 - External `.bib` files (unit-of-caring) will need `pdflatex → bibtex → pdflatex ×2`.
 - Add `\usepackage{graphicx}` when including images.
-- LaTeX build artifacts (`*.aux`, `*.log`, `*.out`, `*.bak`) are gitignored.
+- LaTeX build artifacts (`*.aux`, `*.bbl`, `*.blg`, `*.log`, `*.out`, `*.bak`) are gitignored.
 
 ### Build scripts
 
