@@ -17,9 +17,9 @@ Build from the repo root:
 papers/free-energy-loops/build.sh
 papers/loop-hub-control-value/build.sh
 papers/loop-hub-value-model/build.sh   # also regenerates the brain–value schematic
-papers/status-regulation-loops/build.sh
+papers/status-regulation-loops/build.sh         # pdflatex + bibtex + pdflatex ×2
 papers/value-bundle-drift/build.sh
-papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
+papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex x2
 ```
 
 LaTeX build artifacts (`*.aux`, `*.log`, etc.) are gitignored. Paper PDFs are tracked in git; regenerate after source changes.
