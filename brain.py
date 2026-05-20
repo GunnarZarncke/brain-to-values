@@ -407,6 +407,7 @@ def draw_brain_values():
     plt.tight_layout()
     plt.savefig("brain_values.svg", format='svg', bbox_inches='tight', dpi=300)
     plt.savefig("brain_values.png", format='png', bbox_inches='tight', dpi=300)
+    plt.savefig("brain_values.pdf", format='pdf', bbox_inches='tight', dpi=300)
     print("Saved brain_values.svg (with clickable links) and brain_values.png")
     print("Click on value labels in the interactive display to open research papers!")
     plt.show()
