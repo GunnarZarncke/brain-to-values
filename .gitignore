@@ -6,6 +6,8 @@ venv/
 
 # LaTeX build artifacts
 *.aux
+*.bbl
+*.blg
 *.log
 *.out
 *.bak

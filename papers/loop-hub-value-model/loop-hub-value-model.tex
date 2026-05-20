@@ -17,7 +17,7 @@
 \maketitle
 
 \begin{abstract}
-Zarncke (2025)  catalogued thirteen free--energy--minimising loops in the vertebrate brain. Each loop closes a prediction--error feedback and projects into one or more neuromodulatory or salience ``hubs'' that broadcast precision weights. Here we introduce the \emph{loop--hub--value} (LHV) model: an architectural proposal in which a small set of hubs transforms high--dimensional error vectors into low--bandwidth scalars that are then read out as human value tags. We (i) formalise the two transfer steps (\emph{loop~$\rightarrow$~hub} and \emph{hub~$\rightarrow$~value}); (ii) compile an empirical mapping between hubs and intrinsic values, drawing on Zarncke (2025); and (iii) outline falsifiable predictions. Details of agent implementation and learning dynamics will appear in Part~III.
+Zarncke \citeyearpar{zarncke2025stratification} catalogued fifteen free--energy--minimising loops in the vertebrate brain. Each loop closes a prediction--error feedback and projects into one or more neuromodulatory or salience ``hubs'' that broadcast precision weights. Here we introduce the \emph{loop--hub--value} (LHV) model: an architectural proposal in which a small set of hubs transforms high--dimensional error vectors into low--bandwidth scalars that are then read out as human value tags. We (i) formalise the two transfer steps (\emph{loop~$\rightarrow$~hub} and \emph{hub~$\rightarrow$~value}); (ii) compile an empirical mapping between hubs and intrinsic values, drawing on \citet{zarncke2025stratification}; and (iii) outline falsifiable predictions. Details of agent implementation and learning dynamics will appear in Part~III.
 \end{abstract}
 
 % --------------------------------------------------------------------
@@ -40,7 +40,7 @@ with $\alpha_{kh}$ contextually gated by attention and task set.
 
 % --------------------------------------------------------------------
 \section{Empirical Hub--Value Map}
-Table~\ref{tab:hv} lists the hubs, the principal loops that feed them, and representative intrinsic values from Zarncke (2025).
+Table~\ref{tab:hv} lists the hubs, the principal loops that feed them, and representative intrinsic values from \citet{zarncke2025stratification}.
 
 \begin{table}[h]
 \centering
@@ -71,7 +71,7 @@ Primary Visual Cortex & Scene novelty$^{\dagger}$ & Beauty \\
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{figures/brain-values-schematic.pdf}
-  \caption{Hub-centric brain--value mapping. Neuromodulatory and salience hubs (inner ring) project intrinsic value tags (outer ring), compiled from Zarncke (2025).}
+  \caption{Hub-centric brain--value mapping. Neuromodulatory and salience hubs (inner ring) project intrinsic value tags (outer ring), compiled from \citet{zarncke2025stratification}.}
   \label{fig:lhvchart}
 \end{figure}
 
@@ -133,6 +133,11 @@ Predictive coding expects iterative suppression of redundant errors at each leve
 % --------------------------------------------------------------------
 \bibliographystyle{plainnat}
 \begin{thebibliography}{99}
+
+\bibitem[Zarncke(2025)]{zarncke2025stratification}
+Gunnar~Zarncke.
+\newblock Stratification of free--energy--minimising loops in the vertebrate brain.
+\newblock Companion manuscript, brain-to-values research program, AE Studio, 2025.
 
 \bibitem[Weiller et~al.(2022)]{weiller2022}
 Cornelius Weiller, Jana~H. Hoffmann, Lennart~R. Baillet, and Arthur Johannes.
