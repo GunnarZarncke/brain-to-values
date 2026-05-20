@@ -1,6 +1,11 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import math
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+ROOT = Path(__file__).resolve().parent
+OUTPUT_DIR = ROOT / "output"
 
 # --- Data (illustrative)
 stages = ["Peripheral\nTransduction", "Primary Maps\n(V1, A1, S1...)", "Higher Processing\n(V2-4, A2, S2...)", "Cortical Integration\n(inputs to PPC, STS, IT)"]
@@ -170,6 +175,7 @@ ax.set_xlim(-0.2, x_shared[-1] + 0.2)
 ax.legend(loc="upper right", frameon=False, ncol=2)
 
 plt.tight_layout()
-plt.savefig("senses.png", dpi=120, bbox_inches="tight")
+OUTPUT_DIR.mkdir(exist_ok=True)
+plt.savefig(OUTPUT_DIR / "senses.png", dpi=120, bbox_inches="tight")
 plt.show()
 

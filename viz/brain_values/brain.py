@@ -3,12 +3,13 @@ Dynamic brain-value diagram (matplotlib version).
 
 Usage
 -----
-1. Drop a sagittal brain image somewhere (e.g. brain.png).
+1. Place a sagittal brain image in assets/brain.png.
 2. Adjust CONFIG block if you want different radii, fonts, or the mapping itself.
-3. run  python brain_values_plot.py
+3. Run: python brain.py
 """
 
 import math
+from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
@@ -22,8 +23,12 @@ mpl.rcParams['font.family'] = 'sans-serif'
 # Global variable for click detection
 value_positions = {}
 
+ROOT = Path(__file__).resolve().parent
+ASSETS_DIR = ROOT / "assets"
+OUTPUT_DIR = ROOT / "output"
+
 # ── CONFIG ────────────────────────────────────────────────────────────────────
-brain_img_path = "brain.png"            # local file or URL
+brain_img_path = ASSETS_DIR / "brain.png"  # local file or URL
 figsize         = (10, 10)              # inches
 brain_img_scale = 0.5                   # fraction of figure width
 region_radius   = 0.18                  # fraction of figure width
@@ -295,7 +300,7 @@ def on_click(event):
         print(f"Opening: {references[clicked_value]['title']}")
         webbrowser.open(references[clicked_value]['url'])
 
-def draw_brain_values():
+def draw_brain_values(*, paper: bool = False):
     global value_positions  # Store positions for click detection
     value_positions = {}
     
@@ -398,21 +403,35 @@ def draw_brain_values():
         ax.text(xv, yv, val, **text_kwargs)
 
     # Connect click handler for interactive display
-    fig.canvas.mpl_connect('button_press_event', on_click)
-    
-    # Add title with instruction
-    fig.suptitle("Brain-Value Mapping\nClick on value labels to open research papers", 
-                 fontsize=14, y=0.95)
+    if not paper:
+        fig.canvas.mpl_connect('button_press_event', on_click)
+
+    if paper:
+        fig.suptitle("Hub-centric brain–value mapping", fontsize=14, y=0.95)
+    else:
+        fig.suptitle("Brain-Value Mapping\nClick on value labels to open research papers",
+                     fontsize=14, y=0.95)
     
     plt.tight_layout()
-    plt.savefig("brain_values.svg", format='svg', bbox_inches='tight', dpi=300)
-    plt.savefig("brain_values.png", format='png', bbox_inches='tight', dpi=300)
-    plt.savefig("brain_values.pdf", format='pdf', bbox_inches='tight', dpi=300)
-    print("Saved brain_values.svg (with clickable links) and brain_values.png")
-    print("Click on value labels in the interactive display to open research papers!")
-    plt.show()
+    OUTPUT_DIR.mkdir(exist_ok=True)
+    plt.savefig(OUTPUT_DIR / "brain_values.svg", format='svg', bbox_inches='tight', dpi=300)
+    plt.savefig(OUTPUT_DIR / "brain_values.png", format='png', bbox_inches='tight', dpi=300)
+    plt.savefig(OUTPUT_DIR / "brain_values.pdf", format='pdf', bbox_inches='tight', dpi=300)
+    print(f"Saved outputs to {OUTPUT_DIR}/")
+    if not paper:
+        print("Click on value labels in the interactive display to open research papers!")
+        plt.show()
 
 
 if __name__ == "__main__":
-    draw_brain_values()
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Generate the brain–value mapping diagram.")
+    parser.add_argument(
+        "--paper",
+        action="store_true",
+        help="Export a print-friendly figure (no click handler or interactive display).",
+    )
+    args = parser.parse_args()
+    draw_brain_values(paper=args.paper)
 
