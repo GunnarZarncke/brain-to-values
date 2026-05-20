@@ -22,7 +22,5 @@ venv/
 *.lof
 *.lot
 
-# Generated PDFs (pdflatex, build.sh, viz)
-papers/**/*.pdf
-!papers/unit-of-caring/Literature*.pdf
+# Generated PDFs (viz)
 viz/**/output/*.pdf
