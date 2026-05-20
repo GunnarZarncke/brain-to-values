@@ -1,6 +1,6 @@
 # Brain to Values
 
-Research notes, visualizations, and papers on mapping brain regions, processing stages, and agent architectures to intrinsic values and caring functionals. The project builds a stratified inventory of free-energy-minimising loops in biological control, proposes hub-centric models that link those loops to human value readouts, and extends the framework toward cultural selection and cross-scale ethics.
+Interdisciplinary research notes, visualizations, and papers on mapping brain regions, cognitive processes, value formation, and utility. 
 
 **Author:** Gunnar Zarncke, aintelope
 
@@ -28,7 +28,7 @@ Integrates fragmented neuroscience into a single ledger of fifteen nested optimi
 
 Applies the free-energy ledger framework to social status dynamics—from reptilian dominance reflexes to language-mediated reputation markets. For each of six status loops, specifies the free-energy term, neuroanatomical registers and actuators, and a micro-mechanism yielding prediction-error signals with neuromodulatory precision-gating.
 
-### [From Free-Energy Loops to Human Values: A Hub-Centric Precision Model](papers/loop-hub-value-model/loop-hub-value-model.pdf)
+### [From Free-Energy Loops to Human Values: Hubs as Bottlenecks](papers/loop-hub-value-model/loop-hub-value-model.pdf)
 
 **July 2025** · [source](papers/loop-hub-value-model/loop-hub-value-model.tex)
 
