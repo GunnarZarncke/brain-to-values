@@ -28,7 +28,7 @@ brain-to-values/
 Each paper directory should contain:
 
 - `<name>.tex` — source
-- `<name>.pdf` — built output (commit when publishing)
+- `<name>.pdf` — built output (gitignored; run `build.sh`)
 - `figures/` — static or generated figures referenced by TeX
 - `build.sh` — reproducible build script (when ready)
 
@@ -77,7 +77,7 @@ papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 - Inline bibliographies (LHV) need only `pdflatex` twice.
 - External `.bib` files (unit-of-caring) will need `pdflatex → bibtex → pdflatex ×2`.
 - Add `\usepackage{graphicx}` when including images.
-- LaTeX build artifacts (`*.aux`, `*.bbl`, `*.blg`, `*.log`, `*.out`, `*.bak`) are gitignored.
+- LaTeX build artifacts (`*.aux`, `*.bbl`, `*.blg`, `*.log`, `*.out`, `*.bak`) and generated PDFs (`papers/**/*.pdf`, `viz/**/output/*.pdf`) are gitignored.
 
 ### Build scripts
 
@@ -115,7 +115,7 @@ Update `README.md` when adding a new viz or paper (table row + build command). K
 
 - **Do not commit unless the user asks.**
 - Do not commit venv directories, LaTeX aux/log files, or secrets.
-- Commit source `.tex`, `.py`, `build.sh`, and publishable PDFs/figures when requested.
+- Commit source `.tex`, `.py`, and `build.sh`; PDFs are build outputs (regenerate with `build.sh`).
 
 ## Known issues
 

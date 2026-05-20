@@ -4,6 +4,10 @@ __pycache__/
 .venv/
 venv/
 
+# macOS
+.DS_Store
+**/.DS_Store
+
 # LaTeX build artifacts
 *.aux
 *.bbl
@@ -11,4 +15,14 @@ venv/
 *.log
 *.out
 *.bak
+*.fdb_latexmk
+*.fls
 *.synctex.gz
+*.toc
+*.lof
+*.lot
+
+# Generated PDFs (pdflatex, build.sh, viz)
+papers/**/*.pdf
+!papers/unit-of-caring/Literature*.pdf
+viz/**/output/*.pdf
