@@ -16,6 +16,13 @@ See [`viz/README.md`](viz/README.md) for figure generation and [`papers/README.m
 
 ## Papers
 
+### Cross-reference graph
+
+![Paper cross-references](papers/paper-references.svg)
+
+Solid arrows are explicit citations; dashed arrows are conceptual dependencies.
+See [`papers/paper-references.dot`](papers/paper-references.dot) for the source.
+
 ### [Stratification of Free-Energy-Minimising Loops in the Vertebrate Brain](papers/free-energy-loops/free_energy_loops.pdf)
 
 **July 2025** · [source](papers/free-energy-loops/free_energy_loops.tex)

@@ -2,6 +2,13 @@
 
 LaTeX sources and built PDFs for each paper. Rebuild with the corresponding `build.sh` script.
 
+## How the papers relate
+
+![Paper cross-references](paper-references.svg)
+
+Solid arrows are explicit `\cite` references; dashed arrows are conceptual dependencies.
+The [DOT source](paper-references.dot) can be re-rendered with `dot -Tsvg papers/paper-references.dot -o papers/paper-references.svg`.
+
 | Paper | Source | PDF | Build |
 |-------|--------|-----|-------|
 | Stratification of free-energy loops | [free_energy_loops.tex](free-energy-loops/free_energy_loops.tex) | [PDF](free-energy-loops/free_energy_loops.pdf) | `free-energy-loops/build.sh` |
