@@ -18,7 +18,12 @@ fi
 MPLBACKEND=Agg "$python" "$brain_script" --paper
 cp "$repo_root/viz/brain_values/output/brain_values.pdf" "$figure"
 
-pdflatex -interaction=nonstopmode -halt-on-error "$paper.tex" >/dev/null
-pdflatex -interaction=nonstopmode -halt-on-error "$paper.tex" >/dev/null
+log=$(mktemp)
+trap 'rm -f "$log"' EXIT
+
+run() { "$@" >>"$log" 2>&1 || { cat "$log"; exit 1; }; }
+
+run pdflatex -interaction=nonstopmode -halt-on-error "$paper.tex"
+run pdflatex -interaction=nonstopmode -halt-on-error "$paper.tex"
 
 echo "Built $paper.pdf"
