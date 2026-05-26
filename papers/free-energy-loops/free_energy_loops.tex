@@ -1,16 +1,18 @@
-\documentclass[10pt]{article}
+\documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{amsmath}
-\usepackage{amssymb}
 \usepackage{textcomp}
 \usepackage{microtype}
-\geometry{margin=1in}
+\usepackage[numbers]{natbib}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
 
 % ==== Active‑Inference notation (shared across papers) ====
 \newcommand{\hstate}{\mathbf x}        % hidden state
@@ -258,7 +260,7 @@ $H(C_{ij})$ & Coalition entropy & Uncertainty in alliances \\
 
 This lexicon unifies existing active-inference formulations \cite{ramstead2022bayesian} and explicitly connects each free-energy loop with biological functions.
 
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 \bibliography{refs,refs-supplement}
 
 \end{document}
