@@ -22,6 +22,7 @@ brain-to-values/
     ├── loop-hub-value-model/
     ├── status-regulation-loops/
     ├── value-bundle-drift/
+    ├── embedded-value-formation/
     └── unit-of-caring/
 ```
 
@@ -53,6 +54,7 @@ papers/loop-hub-control-value/build.sh # pdflatex + bibtex + pdflatex ×2
 papers/loop-hub-value-model/build.sh   # generates schematic, then pdflatex ×2
 papers/status-regulation-loops/build.sh # pdflatex ×2
 papers/value-bundle-drift/build.sh     # pdflatex ×2
+papers/embedded-value-formation/build.sh # pdflatex + bibtex + pdflatex ×2
 papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 ```
 
@@ -129,6 +131,8 @@ Update `README.md` when adding a new viz or paper (table row + build command). K
 | `viz/brain_values/` | Empirical hub→value map; feeds LHV paper Figure 1 |
 | `viz/senses/` | Illustrative bandwidth compression across processing stages |
 | `papers/loop-hub-value-model/` | Loop–hub–value (LHV) formal model |
+| `papers/loop-hub-control-value/` | Loop–hub–control–value (LHCV) developmental readout |
+| `papers/embedded-value-formation/` | Viability constraints on learned value architectures |
 | `papers/value-bundle-drift/` | Cultural selection vs value alignment |
 | `papers/unit-of-caring/` | Integrity pressure, suffering, aggregation scaffold |
 

@@ -26,11 +26,17 @@ digraph paper_references {
     LHCV [label="Loop–Hub–Control–\nValue (LHCV)\n(May 2026)"];
     VBD  [label="Value Bundle\nDrift\n(May 2026)"];
     UoC  [label="Unit of Caring\n(May 2026)"];
+    EVC  [label="Viability-Constrained\nValue Formation\n(Jul 2026)"];
 
     // Explicit citations (solid)
     LHV  -> FEL  [label="cites", penwidth=2, color="#2a6099"];
     LHCV -> FEL  [label="cites", penwidth=2, color="#2a6099"];
     UoC  -> CSR  [label="cites", penwidth=2, color="#2a6099"];
+    EVC  -> FEL  [label="cites", penwidth=2, color="#2a6099"];
+    EVC  -> LHV  [label="cites", penwidth=2, color="#2a6099"];
+    EVC  -> LHCV [label="cites", penwidth=2, color="#2a6099"];
+    EVC  -> VBD  [label="cites", penwidth=2, color="#2a6099"];
+    EVC  -> UoC  [label="cites", penwidth=2, color="#2a6099"];
 
     // Conceptual / extends (dashed)
     LHCV -> LHV  [style=dashed, label="extends"];

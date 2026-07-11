@@ -59,6 +59,12 @@ Argues that selection strength alone is insufficient for value alignment. Introd
 
 Proposes a formal scaffold for “how much is at stake” in harm, pain, and suffering. Defines integrity pressure, distinguishes it from perceived pressure and gain-modulated suffering, and introduces a global caring functional with architecture-dependent weights. Intended as a theory-neutral bridge between control-theoretic agent descriptions and cross-species ethical aggregation.
 
+### [Viability-Constrained Value Formation in Embedded Agents](papers/embedded-value-formation/embedded-value-formation.pdf)
+
+**July 2026** · [source](papers/embedded-value-formation/embedded-value-formation.tex)
+
+Develops the hypothesis that fully embedded agents face constraints not only on instrumental behavior but on learned value formation. Formalizes actual versus represented continuation, value bundles, bearer maps, and update rules; derives elementary selection and plasticity results; and proposes an Entropic Ecology Transfer Test comparing protected optimizers, embedded task learners, viability-shaped agents, and evolved value-update architectures.
+
 ## Quickstart
 
 ```bash
@@ -69,5 +75,5 @@ python3 viz/brain_values/brain.py
 python3 viz/senses/senses.py
 
 # Rebuild a paper
-papers/loop-hub-value-model/build.sh
+papers/embedded-value-formation/build.sh
 ```
