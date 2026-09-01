@@ -73,23 +73,24 @@ For a matched counterfactual pair, the recurrent state is swapped immediately be
 ## Run
 
 ```bash
-pip install torch
-pytest -q
-python train.py --experiment orient_only --steps 2000
-python train.py --experiment all --steps 2000
-python run_ablation.py --steps 1200
+pip install -r requirements.txt
+PYTHONPATH=. pytest -q
+PYTHONPATH=. python train.py --experiment orient_only --steps 2000
+PYTHONPATH=. python train.py --experiment all --steps 2000
+PYTHONPATH=. python run_ablation.py --steps 1200
+PYTHONPATH=. python plot_learning_curves.py --steps 300 --eval-every 10 --n-seeds 10
 ```
 
-Use CUDA if available; otherwise the defaults work on CPU, just more slowly.
+Outputs land in `results/` (JSON checkpoints, `results/figures/ablation_learning_curves.{png,svg,pdf,json}`). Use CUDA if available; CPU works but is slower.
 
 ## Expected qualitative pattern
 
 The intended falsifiable pattern is approximately:
 
 - vision-only ≈ chance (50% on matched pairs);
-- orient-only > chance;
-- efference-only and proprio-only > chance given sufficient temporal integration;
-- combined cues > each individually, especially under cue noise;
+- orient-only > chance after a delayed phase transition;
+- efference-only and proprio-only > chance given sufficient training (weak at 300 rounds in current runs);
+- combined cues ≥ orient-only at convergence, with clearer advantage early in training (report means over multiple seeds);
 - explicit-self gives the upper bound;
 - self information appears first in `z`, and with recirculation becomes more decodable from candidate-object tokens;
 - swapping `z` changes the inferred self and hence the final action.

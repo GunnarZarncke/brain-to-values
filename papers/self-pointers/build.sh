@@ -3,11 +3,20 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 paper="self-pointers"
+repo_root="$(cd ../.. && pwd)"
 
 log=$(mktemp)
 trap 'rm -f "$log"' EXIT
 
 run() { "$@" >>"$log" 2>&1 || { cat "$log"; exit 1; }; }
+
+if [[ -x "$repo_root/.venv/bin/python" ]]; then
+  python="$repo_root/.venv/bin/python"
+else
+  python="python3"
+fi
+
+run env MPLBACKEND=Agg "$python" figures/self_pointer_diagram.py
 
 run pdflatex -interaction=nonstopmode -halt-on-error "$paper.tex"
 run bibtex "$paper"

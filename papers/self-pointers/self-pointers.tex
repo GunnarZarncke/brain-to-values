@@ -37,11 +37,7 @@
 \maketitle
 
 \begin{abstract}
-A cognitive system acting in a world containing multiple agent-like entities faces a nontrivial binding problem: which represented entity is the source of its privileged internal signals and the locus of consequences relevant to its control objective? We propose that a minimal \emph{self-pointer} can emerge as a learned latent variable solving this problem. The motivating biological hypothesis is that low-bandwidth signals reporting organism-level orienting reactions may be relayed through intralaminar thalamic circuits and recurrently incorporated into cortical representations. This is compatible with anatomical and physiological work linking superior-collicular and brainstem signals to intralaminar thalamus, with evidence that intralaminar and medial thalamic nuclei precede and drive transient thalamofrontal coupling during conscious visual perception, and with older proposals that action-control circuitry supplies an implicit first-person pivot. Independently, recent work on \emph{recirculation} in transformers shows that feeding a later, more resolved state back into earlier processing can transform a feedforward architecture into a dynamical belief-state tracker.
-
-We combine these ideas into a minimal artificial experiment. Two visually identical candidate bodies obey the same dynamics and behavioral statistics. Each physical world is duplicated into matched counterfactual episodes differing only in which body is designated self. Visual histories are identical, while privileged cues---an orienting-response bit, efference copy, proprioception, or explicit self identity---depend on the hidden designation. A target introduced only after the identification phase makes the two counterfactual episodes require opposite actions. Thus vision alone is information-theoretically insufficient, while an internal self-binding variable is instrumentally useful. A small recurrent object-centric network maintains a bottleneck state and optionally recirculates it multiplicatively into object representations. We specify cue and architectural ablations, linear probes, and a causal state-swap test intended to distinguish mere decodability from a causally operative self-pointer.
-
-In a corrected single-seed 100-update pilot, explicit self identity reaches 99.4% held-out accuracy, vision remains exactly at 50%, and heterogeneous internal cues begin to rise above chance (all internal cues 64.8%; orienting+proprioception 59.3%; orienting+efference 57.9%; orienting alone 53.9%). These values are not yet inferential results; rather, they establish the tractability and diagnostic structure of the paradigm. The experiment does not test consciousness. It tests a narrower mechanistic claim that is relevant to self-referential theories of consciousness: privileged organism-centered signals can, under recurrence, become bound to one entity in a world model and thereby ground a reusable indexical variable equivalent to ``which one is me?''
+When several agent-like entities appear in a world model, a system must infer which one is the source of privileged internal signals and the locus of control-relevant consequences. We propose that a minimal \emph{self-pointer}---a persistent latent variable binding organism-centered cues to one represented body---can emerge without an explicit self label. Motivated by orienting/interoceptive thalamic hypotheses and by \emph{recirculation} in transformers, we build a matched-counterfactual experiment: two visually identical bodies, identical exteroceptive histories, opposite action labels depending on hidden self assignment. Privileged cues (orienting response, efference copy, proprioception) can be ablated; a recurrent object-centric network optionally recirculates its bottleneck state into object tokens. Ten-seed learning curves (300 updates) show vision and proprioception at chance, orienting-related conditions crossing a delayed phase transition to ${>}93\%$ accuracy, and cue combinations outperforming single channels early in training. The study does not test consciousness; it tests whether organism-centered signals can ground an indexical ``which one is me?'' variable in a reusable world-model state.
 \end{abstract}
 
 \section{Introduction}
@@ -171,6 +167,13 @@ Y(W,S=0)
 Y \in \{\mathrm{left},\mathrm{right}\}.
 \end{equation}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/self_pointer_counterfactual.pdf}
+\caption{Matched counterfactual decision geometry. Panels (a) and (b) show the same final exteroceptive layout---two candidate bodies and a central target---but opposite hidden self assignments ($S=0$ versus $S=1$). Because consequences are evaluated relative to the privileged body, the supervised action label reverses even though vision alone cannot distinguish the rows. Privileged internal cues during the identification phase are therefore instrumentally necessary for above-chance performance.}
+\label{fig:counterfactual}
+\end{figure}
+
 The network must retain self evidence across time and combine it with the final geometry. A fixed `go left'' or `go right'' strategy achieves 50%, as does any purely visual policy on matched pairs.
 
 \section{Privileged Cue Ablations}
@@ -298,35 +301,55 @@ A stricter future intervention would patch only the identified self subspace rat
 
 \section{Pilot Implementation and Preliminary Results}
 
-The current implementation serves primarily as a sanity check for the environment and optimization pathway. Models use AdamW with learning rate $3\times10^{-4}$, horizon eight, a $48$-dimensional token space, a $32$-dimensional recurrent state, and the ``both'' architecture unless otherwise stated. Held-out evaluation is performed on independently generated paired worlds with dropout disabled. An initial plotting pass inadvertently left transformer dropout active during evaluation; this produced visible fluctuations even for the mathematically chance-limited vision control. The results below are from the corrected deterministic evaluation.
+The current implementation serves primarily as a sanity check for the environment and optimization pathway. Models use AdamW with learning rate $3\times10^{-4}$, horizon eight, a $48$-dimensional token space, a $32$-dimensional recurrent state, and the ``both'' architecture unless otherwise stated. Held-out evaluation uses independently generated paired worlds with dropout disabled.
 
-Table~\ref{tab:pilot} reports one training seed after 100 parameter updates. These numbers should not be interpreted as stable effect estimates: optimizer-seed variance has not yet been measured and is likely larger than held-out sampling error. Their purpose is to establish whether the design yields the expected controls and whether indirect self cues begin to support learning.
+Figure~\ref{fig:learning-curves} reports mean held-out accuracy over training for all cue ablations, aggregated over ten independent seeds (seeds 1--10 shared across conditions). Each seed is trained for 300 parameter updates; accuracy is evaluated every ten rounds on 256 held-out paired worlds. Shaded bands show $\pm 1$ standard deviation across seeds.
 
-\begin{table}[h]
+\begin{figure}[t]
 \centering
-\caption{Corrected single-seed pilot accuracy after 100 updates. Chance is 50\%.}
+\includegraphics[width=\textwidth]{figures/ablation_learning_curves.pdf}
+\caption{Cue-ablation learning curves (ten seeds; mean $\pm$ std). Vision and proprioception remain at chance throughout. Efference alone improves only weakly. Orienting-related conditions stay near chance until roughly round 60--90, then undergo a sharp phase transition. Combinations lead orienting alone modestly at convergence, with overlapping variance bands.}
+\label{fig:learning-curves}
+\end{figure}
+
+Table~\ref{tab:pilot} summarizes stable-state accuracy at round 300. Several conclusions follow from the joint table and learning curves.
+
+\paragraph{Controls behave as designed.}
+Vision-only and proprioception-only performance remain at chance ($49.6 \pm 2.1\%$ and $50.3 \pm 2.2\%$), confirming that matched counterfactual symmetry prevents visual self-identification and that proprioception alone, without temporal integration of the binding relation, is insufficient in this horizon.
+
+\paragraph{Orienting is the primary learnable channel.}
+Orienting-only accuracy rises from $60.3 \pm 7.1\%$ at round 100 to $93.0 \pm 1.1\%$ at round 300, despite the orienting bit being information-theoretically sufficient for an ideal decoder ($\approx 99.8\%$ expected identification under generator assumptions). The gap between oracle decodability and learned performance localizes the bottleneck to relational composition and optimization, not cue informativeness.
+
+\paragraph{Early combination synergy, late modest advantage.}
+At round 100, heterogeneous internal cues outperform the best single channel: all-internal accuracy is $64.3 \pm 9.5\%$ versus $60.3 \pm 7.1\%$ for orienting alone, and both pairwise orienting combinations exceed orienting-only mean performance despite high between-seed variance ($\approx 10\%$ std). This supports P3 (cue integration) as a \emph{sample-efficiency} claim rather than a claim that combinations always dominate every seed at every horizon. By round 300, orienting combinations converge to $93$--$94\%$, modestly above orienting alone ($94.0 \pm 1.0\%$ and $94.2 \pm 1.0\%$ versus $93.0 \pm 1.1\%$), with narrowing variance ($\approx 1\%$ std).
+
+\paragraph{High seed variance during the phase transition.}
+Single-seed plots are misleading: between rounds $\approx 80$ and $200$, orienting-related curves exhibit wide seed-dependent spread before collapsing near ceiling. Reported means should therefore include seed aggregation; claims about ordering among orienting conditions are only stable near convergence.
+
+\paragraph{Efference alone is weak at this horizon.}
+Efference-only accuracy reaches only $58.1 \pm 1.5\%$ by round 300, far below its performance with longer training in separate runs. Temporal action--motion matching appears to require more updates than the one-bit orienting channel in this small network.
+
+\begin{table}[t]
+\centering
+\caption{Stable-state held-out accuracy at training round 300 (mean $\pm$ std over ten seeds). Chance is 50\%.}
 \label{tab:pilot}
 \begin{tabular}{lc}
 \toprule
-Condition & Held-out accuracy \\
+Condition & Accuracy at round 300 \\
 \midrule
-Explicit self & 99.4\% \\
-All internal cues & 64.8\% \\
-Orienting + proprioception & 59.3\% \\
-Orienting + efference & 57.9\% \\
-Orienting only & 53.9\% \\
-Efference only & 51.8\% \\
-Proprioception only & 50.3\% \\
-Vision only & 50.0\% \\
+Explicit self & $99.1 \pm 0.4$\% \\
+Orienting + efference & $94.2 \pm 1.0$\% \\
+All internal cues & $94.0 \pm 1.0$\% \\
+Orienting + proprioception & $93.3 \pm 1.2$\% \\
+Orienting only & $93.0 \pm 1.1$\% \\
+Efference only & $58.1 \pm 1.5$\% \\
+Proprioception only & $50.3 \pm 2.2$\% \\
+Vision only & $49.6 \pm 2.1$\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Three observations matter. First, explicit identity reaches near-ceiling quickly, showing that the downstream geometry and policy are easy once the latent binding problem is removed. Second, vision remains exactly at chance, as required by the counterfactual symmetry. Third, the strongest non-oracle result is obtained from heterogeneous internal cues, not from any single alternative self-discovery channel. The late rise of the all-internal condition is consistent with, but does not establish, the hypothesis that multiple privileged signals can converge on a common latent entity.
-
-At 100 updates, orienting alone is only weakly above chance despite carrying enough information for an ideal decoder to identify self with approximately 99.8% expected accuracy. This gap is diagnostically useful: it indicates that the present bottleneck is learning the relational composition, not cue informativeness.
-
-The next quantitative run should therefore use at least $5$--$10$ independent training seeds and $10^3$--$10^4$ updates, report mean learning curves with between-seed intervals, and evaluate the recurrent-state probe, object-level probe, and state-swap intervention at fixed checkpoints. A useful falsification threshold is not merely eventual task success but the predicted \emph{ordering} of mechanistic signatures: self information should first become recoverable from $Z$, then become recoverable from the relevant object token when recirculation is enabled, and swapping the relevant state should transfer the policy's treated-as-self entity.
+The next quantitative step is not longer cue-ablation training but mechanistic readout at fixed checkpoints: recurrent-state probes, object-level ownership probes, and causal state-swap tests. A useful falsification threshold is the predicted \emph{ordering} of mechanistic signatures: self information should first become recoverable from $Z$, then become recoverable from the relevant object token when recirculation is enabled, and swapping the relevant state should transfer the policy's treated-as-self entity while leaving the visible world fixed.
 
 \section{Predictions and Falsification Criteria}
 
