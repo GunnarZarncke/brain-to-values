@@ -22,21 +22,27 @@ digraph paper_references {
     LHV  [label="Loop–Hub–Value\nModel (LHV)\n(Jul 2025)"];
     CAB  [label="Consciousness &\nAgency Backbone\n(Aug 2025)"];
 
-    // Upper tier
+    // Upper-middle tier
     LHCV [label="Loop–Hub–Control–\nValue (LHCV)\n(May 2026)"];
+    LRCI [label="Low-Rank Control\nInterfaces\n(Jul 2026)"];
+
+    // Upper tier
     VBD  [label="Value Bundle\nDrift\n(May 2026)"];
     UoC  [label="Unit of Caring\n(May 2026)"];
-    EVC  [label="Viability-Constrained\nValue Formation\n(Jul 2026)"];
+    VV   [label="Viability-Constrained\nValue Formation\n(Jul 2026)"];
+    SP   [label="From Orienting Signals\nto Self-Pointers\n(Sep 2026)"];
+
+    { rank=same; SRL; LHV; CAB; }
+    { rank=same; LHCV; LRCI; }
+    { rank=same; VBD; UoC; VV; SP; }
 
     // Explicit citations (solid)
     LHV  -> FEL  [label="cites", penwidth=2, color="#2a6099"];
     LHCV -> FEL  [label="cites", penwidth=2, color="#2a6099"];
     UoC  -> CSR  [label="cites", penwidth=2, color="#2a6099"];
-    EVC  -> FEL  [label="cites", penwidth=2, color="#2a6099"];
-    EVC  -> LHV  [label="cites", penwidth=2, color="#2a6099"];
-    EVC  -> LHCV [label="cites", penwidth=2, color="#2a6099"];
-    EVC  -> VBD  [label="cites", penwidth=2, color="#2a6099"];
-    EVC  -> UoC  [label="cites", penwidth=2, color="#2a6099"];
+    VV   -> LHCV [label="cites", penwidth=2, color="#2a6099"];
+    LRCI -> LHV  [label="cites", penwidth=2, color="#2a6099"];
+    SP   -> CSR  [label="cites", penwidth=2, color="#2a6099"];
 
     // Conceptual / extends (dashed)
     LHCV -> LHV  [style=dashed, label="extends"];
@@ -44,4 +50,8 @@ digraph paper_references {
     VBD  -> LHCV [style=dashed, label="uses value\nconcepts"];
     UoC  -> LHCV [style=dashed, label="uses control\nframework"];
     CAB  -> CSR  [style=dashed, label="shared consciousness\nframework"];
+    VV   -> FEL  [style=dashed, label="uses loop\nframework"];
+    VV   -> VBD  [style=dashed, label="value bundles"];
+    LRCI -> VV   [style=dashed, label="value-learning\nhypothesis"];
+    SP   -> CAB  [style=dashed, label="agency/self\nbinding"];
 }
