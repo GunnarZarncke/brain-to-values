@@ -65,6 +65,12 @@ Proposes a formal scaffold for “how much is at stake” in harm, pain, and suf
 
 Develops the hypothesis that fully embedded agents face constraints not only on instrumental behavior but on learned value formation. Formalizes actual versus represented continuation, value bundles, bearer maps, and update rules; derives elementary selection and plasticity results; and proposes an Entropic Ecology Transfer Test comparing protected optimizers, embedded task learners, viability-shaped agents, and evolved value-update architectures.
 
+### [From Orienting Signals to Self-Pointers](papers/self-pointers/self-pointers.pdf)
+
+**September 2026** · [source](papers/self-pointers/self-pointers.tex)
+
+Proposes a minimal computational experiment on how privileged organism-centered cues (orienting response, efference copy, proprioception) can become bound to one entity in a world model via recirculation. Uses matched counterfactual worlds, cue ablations, linear probes, and causal state-swap tests to distinguish decodable self information from a causally operative self-pointer.
+
 ## Quickstart
 
 ```bash
@@ -76,4 +82,5 @@ python3 viz/senses/senses.py
 
 # Rebuild a paper
 papers/embedded-value-formation/build.sh
+papers/self-pointers/build.sh
 ```

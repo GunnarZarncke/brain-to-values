@@ -23,6 +23,7 @@ brain-to-values/
     ├── status-regulation-loops/
     ├── value-bundle-drift/
     ├── embedded-value-formation/
+    ├── self-pointers/
     └── unit-of-caring/
 ```
 
@@ -55,6 +56,7 @@ papers/loop-hub-value-model/build.sh   # generates schematic, then pdflatex ×2
 papers/status-regulation-loops/build.sh # pdflatex ×2
 papers/value-bundle-drift/build.sh     # pdflatex ×2
 papers/embedded-value-formation/build.sh # pdflatex + bibtex + pdflatex ×2
+papers/self-pointers/build.sh  # pdflatex + bibtex + pdflatex ×2
 papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 ```
 
@@ -133,6 +135,7 @@ Update `README.md` when adding a new viz or paper (table row + build command). K
 | `papers/loop-hub-value-model/` | Loop–hub–value (LHV) formal model |
 | `papers/loop-hub-control-value/` | Loop–hub–control–value (LHCV) developmental readout |
 | `papers/embedded-value-formation/` | Viability constraints on learned value architectures |
+| `papers/self-pointers/` | Minimal self-pointer experiment; orienting cues and recirculation |
 | `papers/value-bundle-drift/` | Cultural selection vs value alignment |
 | `papers/unit-of-caring/` | Integrity pressure, suffering, aggregation scaffold |
 

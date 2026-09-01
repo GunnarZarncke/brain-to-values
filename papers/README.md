@@ -20,6 +20,7 @@ The [DOT source](paper-references.dot) can be re-rendered with `dot -Tsvg papers
 | Value bundle drift | [value-bundle-drift.tex](value-bundle-drift/value-bundle-drift.tex) | [PDF](value-bundle-drift/value-bundle-drift.pdf) | `value-bundle-drift/build.sh` |
 | Unit of caring | [unit-of-caring.tex](unit-of-caring/unit-of-caring.tex) | [PDF](unit-of-caring/unit-of-caring.pdf) | `unit-of-caring/build.sh` |
 | Viability-constrained value formation | [embedded-value-formation.tex](embedded-value-formation/embedded-value-formation.tex) | [PDF](embedded-value-formation/embedded-value-formation.pdf) | `embedded-value-formation/build.sh` |
+| From orienting signals to self-pointers | [self-pointers.tex](self-pointers/self-pointers.tex) | [PDF](self-pointers/self-pointers.pdf) | `self-pointers/build.sh` |
 
 Build from the repo root:
 
@@ -33,6 +34,7 @@ papers/loop-hub-control-value/build.sh
 papers/value-bundle-drift/build.sh
 papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 papers/embedded-value-formation/build.sh   # pdflatex + bibtex + pdflatex ×2
+papers/self-pointers/build.sh   # pdflatex + bibtex + pdflatex ×2
 ```
 
 LaTeX build artifacts (`*.aux`, `*.log`, etc.) are gitignored. Paper PDFs are tracked in git; regenerate after source changes.

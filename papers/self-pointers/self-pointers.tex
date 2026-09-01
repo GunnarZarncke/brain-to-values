@@ -1,0 +1,422 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit}
+\usepackage[round,authoryear]{natbib}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={From Orienting Signals to Self-Pointers},
+  pdfauthor={Gunnar Zarncke},
+  pdfsubject={Self-pointers, recirculation, agency, and self-binding}
+}
+
+\setlist{nosep,leftmargin=*}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.25em}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Pp}{\mathbb{P}}
+
+\title{\textbf{From Orienting Signals to Self-Pointers}\\
+\large A Minimal Computational Experiment on Recirculation, Agency, and Self-Binding}
+\author{Gunnar Zarncke}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A cognitive system acting in a world containing multiple agent-like entities faces a nontrivial binding problem: which represented entity is the source of its privileged internal signals and the locus of consequences relevant to its control objective? We propose that a minimal \emph{self-pointer} can emerge as a learned latent variable solving this problem. The motivating biological hypothesis is that low-bandwidth signals reporting organism-level orienting reactions may be relayed through intralaminar thalamic circuits and recurrently incorporated into cortical representations. This is compatible with anatomical and physiological work linking superior-collicular and brainstem signals to intralaminar thalamus, with evidence that intralaminar and medial thalamic nuclei precede and drive transient thalamofrontal coupling during conscious visual perception, and with older proposals that action-control circuitry supplies an implicit first-person pivot. Independently, recent work on \emph{recirculation} in transformers shows that feeding a later, more resolved state back into earlier processing can transform a feedforward architecture into a dynamical belief-state tracker.
+
+We combine these ideas into a minimal artificial experiment. Two visually identical candidate bodies obey the same dynamics and behavioral statistics. Each physical world is duplicated into matched counterfactual episodes differing only in which body is designated self. Visual histories are identical, while privileged cues---an orienting-response bit, efference copy, proprioception, or explicit self identity---depend on the hidden designation. A target introduced only after the identification phase makes the two counterfactual episodes require opposite actions. Thus vision alone is information-theoretically insufficient, while an internal self-binding variable is instrumentally useful. A small recurrent object-centric network maintains a bottleneck state and optionally recirculates it multiplicatively into object representations. We specify cue and architectural ablations, linear probes, and a causal state-swap test intended to distinguish mere decodability from a causally operative self-pointer.
+
+In a corrected single-seed 100-update pilot, explicit self identity reaches 99.4% held-out accuracy, vision remains exactly at 50%, and heterogeneous internal cues begin to rise above chance (all internal cues 64.8%; orienting+proprioception 59.3%; orienting+efference 57.9%; orienting alone 53.9%). These values are not yet inferential results; rather, they establish the tractability and diagnostic structure of the paradigm. The experiment does not test consciousness. It tests a narrower mechanistic claim that is relevant to self-referential theories of consciousness: privileged organism-centered signals can, under recurrence, become bound to one entity in a world model and thereby ground a reusable indexical variable equivalent to ``which one is me?''
+\end{abstract}
+
+\section{Introduction}
+
+Brains do not receive a variable labeled \emph{self}. They receive exteroceptive signals about a world containing bodies and events, together with privileged signals that arise from one particular causal locus: proprioception, interoception, efference copies, motor consequences, visceral state, reward, pain, and orienting reactions. Yet mature perception and control behave as if these heterogeneous signals were organized around a common index. One represented body is treated as \emph{this body}; some sensory consequences are treated as reafferent; some threats and resources are evaluated relative to the same entity; and actions are selected for the future of that entity. The computational question is not initially phenomenological. It is a binding problem: \emph{how can a system infer which entity in its world model is the common source and sink of privileged internal signals?}
+
+We call the minimal solution a \emph{self-pointer}. A self-pointer is weaker than a narrative self, an explicit self-concept, metacognition, or consciousness. It is a persistent latent variable that (i) identifies one candidate entity by its privileged causal relation to internal signals, (ii) survives temporary absence of those signals, (iii) is reused across control decisions, and (iv) can become bound into the representation of the corresponding external object. This notion is deliberately functional. The latent need not contain the token ``self'' and is not supervised as such.
+
+The immediate biological motivation is a conjecture about intralaminar thalamus and orienting circuitry.\footnote{The immediate prompt for the present work was Steven Byrnes's tentative conjecture, in personal correspondence, that at least part of the intralaminar thalamus may function analogously to a primary sensory thalamus, except that the ``sense'' is \emph{the interoceptive sense that a brainstem orienting reaction is happening right now}. The present paper does not attribute this conjecture to the cited neuroscience literature; rather, it asks whether the computational structure suggested by the conjecture is coherent and testable.} The conjecture is more specific than the generic claim that thalamus participates in arousal. If an orienting reaction is itself sensed and broadcast, the signal is organism-centered by construction: it reports not merely that a salient event occurred, but that \emph{this control system} reacted. When combined with a world model showing where the provoking event occurred, such a signal contains evidence about which represented body is causally privileged. Recurrently incorporating that evidence into later perception could convert an initially unstructured internal reaction into an entity-bound variable.
+
+This proposal intersects three literatures that are usually discussed separately. First, the intralaminar thalamus is anatomically connected to brainstem and superior-collicular circuitry associated with arousal, salience, orienting, action selection, and agency \citep{grunwerg1992,krout2001,fisher2014,kumar2023}; recent human recordings further implicate intralaminar and medial thalamus in the emergence of conscious visual perception \citep{fang2025}. Second, the sense of agency and ownership literature treats efference copy, reafference, proprioception, and multisensory congruence as partly separable cues by which bodily and agentive selfhood is inferred \citep{braun2018}. Merker's action-control account goes further, proposing that subcortical orienting and efference circuitry supplies an implicit first-person pivot around which phenomenal space is organized \citep{merker2013}. Third, machine-learning work on recirculation demonstrates a computational principle by which a resolved later state can be fed back into shallower processing so that subsequent computation is conditioned on an evolving belief state rather than repeatedly starting from locally ambiguous representations \citep{mozer2026}.
+
+The present work takes these converging motifs seriously while sharply limiting the claim. We do not infer that intralaminar thalamus implements the artificial architecture below, that recirculation in transformers is homologous to thalamocortical recurrence, or that a learned self-pointer constitutes consciousness. Instead we isolate a smaller proposition that can fail cleanly: \emph{a low-bandwidth organism-centered cue, when temporally integrated and recirculated into an object-centric world model, can induce a causally operative binding between internal state and one represented body.}
+
+\section{Prior Work and Motivation}
+
+\subsection{Intralaminar thalamus, orienting, and conscious perception}
+
+The intralaminar thalamic nuclei have long resisted a simple sensory-channel interpretation. Earlier accounts emphasized nonspecific arousal, but anatomical and electrophysiological work points to a more structured role. In anesthetized rats, \citet{grunwerg1992} found intralaminar neurons activated by intermediate and deep superior-collicular stimulation; roughly half also responded to sensory input, with many nociceptive, auditory, or multimodal responses. The authors explicitly implicated these pathways in attention, arousal, and postural orienting. Anatomical tracing likewise shows projections from intermediate and deep superior-collicular layers to multiple midline and intralaminar thalamic nuclei, including central lateral and parafascicular nuclei, with proposed roles in orienting and defensive reactions \citep{krout2001}.
+
+\citet{fisher2014} synthesize this anatomy into an ``expressway'' view: short-latency sensory and superior-collicular input reaches intralaminar nuclei, which project strongly to striatum and participate in subcortical loops relevant to action selection and to determining which aspects of the organism's behavior caused salient environmental changes. This is already close to the computational problem studied here: agency is inferred by relating an internal or action-side event to one among multiple candidate causes in the observed world.
+
+Human tractography is necessarily less mechanistically decisive than invasive tracing, but it establishes the plausibility of broad coupling. \citet{kumar2023} report structural connectivity from intralaminar nuclei to a wide range of cortical and subcortical regions; all examined intralaminar nuclei showed brainstem connections, central lateral displayed a refined projection toward superior colliculus, and reported brainstem targets included reticular, periaqueductal, parabrachial, vestibular, viscerosensory-motor, pedunculopontine, and other nuclei. Earlier diffusion work similarly reported connectivity with reticular formation, pedunculopontine nucleus, basal ganglia, sensorimotor cortex, and prefrontal regions \citep{jang2014}.
+
+The consciousness connection became more direct with simultaneous human stereoelectroencephalographic recordings by \citet{fang2025}. During a visual consciousness task, intralaminar and medial thalamic nuclei exhibited earlier and stronger consciousness-related activity than ventral nuclei and prefrontal cortex; transient thalamofrontal synchrony and cross-frequency coupling were driven by the theta phase of intralaminar and medial nuclei. The result supports a causal-gating interpretation of high-order thalamus in transient conscious perception, although it does not determine what variable the relevant thalamic activity represents. In particular, the data are compatible with multiple latent interpretations---salience, arousal, interrupt, behavioral relevance, orienting state, or content-specific gating---that are normally correlated in perceptual detection tasks.
+
+Central-thalamic stimulation provides a complementary line of evidence. In a single-subject study, bilateral thalamic deep brain stimulation improved behavioral responsiveness in a patient in a minimally conscious state years after severe traumatic brain injury \citep{schiff2007}. Such results support a systems-level enabling role for central thalamic circuitry but again do not identify the representational content of the signal. The present hypothesis is therefore not ``the thalamus is the seat of consciousness.'' It is narrower: one useful content carried through such circuitry may be an organism-centered indicator of an orienting/control reaction, which recurrent cortical processing can bind to a represented entity.
+
+\subsection{Efference copy, proprioception, ownership, and agency}
+
+The self-identification problem has a mature counterpart in the neuroscience of agency and body ownership. Sense of agency concerns experienced initiation or control of action; sense of ownership concerns experienced ``mineness'' of bodies, body parts, thoughts, or feelings. They usually coincide but can dissociate experimentally and clinically \citep{braun2018}. Comparator-style accounts use an efference copy or forward prediction of a motor command and compare predicted sensory consequences with reafferent input. Congruence supplies evidence that an observed event was self-caused; proprioceptive and multisensory correlations supply partly independent evidence about which body is one's own \citep{braun2018}.
+
+This literature motivates two aspects of our experiment. First, no single cue should be privileged a priori. Efference copy, proprioception, and an orienting/interoceptive response are treated as separable evidence channels whose contributions can be ablated or combined. Second, the natural computational object is not a binary ``self present'' detector but a posterior over candidate causes. If two visually equivalent bodies are present, the system should infer which one best explains the joint pattern of internal and external contingencies.
+
+\subsection{Action control as an implicit first-person pivot}
+
+Merker's \emph{efference cascade} account provides unusually close conceptual prior work \citep{merker2013}. The central claim is that the severe convergence from distributed cortical processing toward action requires a continually updated joint estimate of sensory, motivational, and motor circumstances. Merker argues that the resulting action-control architecture can organize phenomenal sensory space around an implicit first-person origin that need not itself appear as an object within that space. The superior colliculus and interconnected subcortical structures figure prominently as an orienting superhub.
+
+Our proposal differs in level and target. We do not model phenomenal space and do not assume that an implicit first-person pivot is sufficient for consciousness. Instead we ask how a system might \emph{learn which represented entity should occupy the privileged pivot}. The connection is nevertheless substantive: an action-control-centered coordinate system needs a stable causal anchor, and the present experiment asks whether heterogeneous privileged signals can induce such an anchor without an explicit self label.
+
+\subsection{Recursive self-models and the missing indexical}
+
+Self-model theories of consciousness generally require the system to represent itself as part of the represented world. \citet{zarncke2025}, for example, proposes that phenomenological self-appearance arises from recursive self-modeling rather than from a separate ontological substance, and predicts distributed recurrent architecture, lossy self-access, and partial separability of subjectivity from phenomenal appearance. Related traditions distinguish minimal bodily selfhood from explicit reflective self-concepts and emphasize perspectival or ownership structure \citep{blanke2009}.
+
+A structural gap remains: recursion by itself does not specify what makes one node in the world model indexical. A program can recursively model its own computations while failing to bind those computations to a particular represented body in an external scene. The self-pointer hypothesis supplies a possible grounding mechanism. Privileged internal signals are causal asymmetries that distinguish one world-model entity from all others. Once a latent variable summarizes that asymmetry, recursive processing can operate on an already indexical world model rather than having to invent indexicality ex nihilo.
+
+\subsection{Recirculation as a computational motif}
+
+\citet{mozer2026} introduce \emph{recirculation} as an inference-time architectural modification for frozen foundation models. Their motivating observation is that a deep layer may have resolved an ambiguity at time $t$, while shallow layers processing subsequent input at $t+1$ lack immediate access to that resolved representation. Recirculation mixes a deeper-layer state back into a shallower layer, allowing the network to behave more like a dynamical system that tracks belief state. This is distinct from ordinary depth looping: the key operation makes a later, more contextually resolved representation available to earlier processing of subsequent input.
+
+The analogy to the present proposal is architectural, not biological. In our model the recirculated state is a learned recurrent bottleneck integrating privileged cues and perceptual context, not a frozen transformer's residual stream. Nevertheless, the computational principle is the same:
+\begin{equation}
+\text{ambiguous perception}
+\rightarrow
+\text{resolved latent state}
+\curvearrowright
+\text{subsequent perception conditioned on that state}.
+\end{equation}
+If the resolved latent is ``candidate body $i$ is the privileged organism,'' recirculation provides a route by which this inference can become woven into later object representations rather than remaining a detached memory variable.
+
+Recent embodied-AI work explicitly introduces self models integrating body schema, memory, forward/inverse models, and agency \citep{jiang2026}. That work demonstrates the utility of architecturally represented self information. Our experiment asks a complementary question: can a minimal self variable arise because it is the simplest reusable explanation of privileged causal signals, without providing or supervising the self representation itself?
+
+\section{Computational Hypothesis}
+
+Let a world model contain $N$ candidate entities $E_1,\dots,E_N$. Exactly one entity $S \in \{1,\dots,N\}$ is causally privileged: it is the source of proprioceptive signals, the target of motor commands, the locus whose orienting reactions are internally reported, and the body whose consequences determine the agent's objective. The system observes exteroceptive state $X_t$ and privileged internal cues $C_t$. A normative self-location belief is
+\begin{equation}
+q_t(i)
+=
+\Pp\!\left(
+S=i \mid X_{1:t},C_{1:t},A_{1:t-1}
+\right).
+\end{equation}
+
+We do not require the learned network to explicitly represent a normalized posterior. The claim is only that a persistent latent $Z_t$ will become functionally equivalent to such a sufficient statistic when downstream decisions repeatedly depend on $S$.
+
+We distinguish three increasingly strong notions:
+\begin{enumerate}
+\item \textbf{Self information:} $Z_t$ contains decodable information about $S$.
+\item \textbf{Self pointer:} interventions on $Z_t$ causally redirect which represented entity is treated as privileged in downstream decisions.
+\item \textbf{Perceptually bound self pointer:} the identity information in $Z_t$ is recirculated such that the representation $H_{t,i}$ of candidate entity $i$ itself comes to encode whether $i=S$.
+\end{enumerate}
+
+The third notion is the closest computational analogue of an internal organism-state signal becoming ``woven into'' perception as ownership or mineness. It is also the most demanding: a recurrent classifier can solve the final task while keeping self identity in an unbound global memory. Recirculation is hypothesized specifically to encourage the third form.
+
+\section{Minimal Experimental Environment}
+
+\subsection{Matched counterfactual worlds}
+
+The core design requirement is to make self-location useful while eliminating visual shortcuts. Each physical world contains two candidate bodies following trajectories generated by the same dynamics, command distribution, inertia, and process noise. They are visually identical as body types and behaviorally symmetric in distribution. A physical world $W$ is duplicated into two rows:
+\begin{align}
+(W,S=0), \qquad (W,S=1).
+\end{align}
+The complete exteroceptive visual history is exactly identical within a pair. Only privileged internal cues and the final action label depend on $S$. Therefore,
+\begin{equation}
+P(X_{1:T}\mid S=0)
+=
+P(X_{1:T}\mid S=1)
+\end{equation}
+by construction for matched rows. Any policy using vision alone is forced to make the same prediction for two observations that require opposite actions and is therefore bounded at chance on nondegenerate pairs.
+
+The implementation uses an object-centric representation rather than pixels. At each timestep the network receives four tokens: candidate body 0, candidate body 1, a flash/event token, and a target token. Candidate-token order is randomly permuted once per physical world and remains stable within the episode, preserving ordinary object permanence without giving either token a privileged self role. Derived body-to-flash and body-to-target displacement vectors are provided explicitly. This is intentional: the experiment is about self-binding, not about whether a small network can rediscover Euclidean geometry.
+
+\subsection{Dynamics and identification phase}
+
+For $T_{\mathrm{id}}=8$ identification steps, each candidate body follows a persistent random walk driven by a latent four-direction motor-command stream. Both command streams are independent samples from the same distribution; both bodies have the same inertia and step size; symmetric Gaussian process noise is added. This eliminates the shortcut in which ``the nonrandomly moving dot'' identifies self.
+
+At each identification step, a flash is active with probability $p_f=0.65$. When active, it is placed near one randomly selected candidate body. The event is visible to both counterfactual rows. The orienting cue, when enabled, is
+\begin{equation}
+r_t
+=
+\I[\text{flash owner at }t=S]\oplus\eta_t,
+\qquad
+\eta_t\sim\mathrm{Bernoulli}(0.03),
+\end{equation}
+where $\oplus$ denotes a bit flip. Thus the cue does not say `body 0 is self.'' It says, approximately, `the currently visible event caused my orienting response.'' Correct self inference requires binding that organism-centered bit to the visible event-body relation.
+
+Importantly, the orienting cue is information-theoretically strong despite being only one bit. Conditional on an active flash whose associated candidate can be visually determined, each cue is a noisy binary observation of $S$ with 97% reliability. With eight timesteps and $p_f=0.65$, an ideal majority/Bayesian decoder has approximately 99.8% expected self-identification accuracy under the independent-noise assumptions of the generator. Therefore failure of the learned orient-only network at short training horizons is an optimization/representation result, not evidence that the cue lacks sufficient information.
+
+\subsection{Decision phase}
+
+At the final timestep the identification cues are absent. A target is placed at the horizontal midpoint between the two bodies. Except for degenerate ties, if the left body is self the correct action is \emph{right}; if the right body is self the correct action is \emph{left}. Hence the paired counterfactual worlds have identical final visual input but opposite correct labels:
+\begin{equation}
+Y(W,S=0)
+=
+1-Y(W,S=1),
+\qquad
+Y \in \{\mathrm{left},\mathrm{right}\}.
+\end{equation}
+
+The network must retain self evidence across time and combine it with the final geometry. A fixed `go left'' or `go right'' strategy achieves 50%, as does any purely visual policy on matched pairs.
+
+\section{Privileged Cue Ablations}
+
+The experiment separates four sources of self information:
+
+\begin{description}
+\item[Vision only.] No privileged cue. This is the hard chance control.
+
+\item[Orienting.] The one-bit response defined above. This is the minimal test of the motivating hypothesis.
+
+\item[Efference copy.] The motor command belonging to the physically designated self body. Because both bodies have command streams drawn from the same distribution, the command itself does not identify self; it must be matched temporally to subsequent visible motion.
+
+\item[Proprioception.] The displacement vector of the designated self body. Again, it acquires identity only by matching the privileged displacement to one visible trajectory.
+
+\item[Explicit self.] A direct one-hot token identity supplied at every timestep. This is an oracle upper bound and architecture sanity check, not a candidate biological mechanism.
+\end{description}
+
+Combinations include orienting+efference, orienting+proprioception, and all three internal cues. The combination condition is theoretically important. Biological self-location should be overdetermined: action contingency, proprioception, interoception, and orienting signals need not each be sufficient in isolation, but should converge on a common latent cause. Evidence that heterogeneous cues are compressed into a shared $Z_t$ is stronger than evidence that one cue supports an idiosyncratic shortcut.
+
+\section{Network and Recirculation Architecture}
+
+The reference model is deliberately small. Visual tokens $x_{t,i}\in\R^{11}$ are projected into a $d=48$ residual space and processed by a one-layer four-head transformer encoder. The pooled perceptual representation is concatenated with the current privileged cue vector and integrated by a GRU cell into a $32$-dimensional recurrent bottleneck $Z_t$:
+\begin{align}
+H^{(1)}_t &= \mathrm{Enc}_1(W_xX_t),\\
+\bar h_t &= \frac{1}{4}\sum_i H^{(1)}_{t,i},\\
+Z_t &= \mathrm{GRU}([\bar h_t,C_t],Z_{t-1}).
+\end{align}
+
+On the next perceptual computation, the previous recurrent state can be recirculated into each object token through a generic multiplicative interaction:
+\begin{equation}
+\widetilde H_{t,i}
+=
+H^{(1)}_{t,i}
++
+\tanh(W_gH^{(1)}_{t,i})
+\odot
+W_zZ_{t-1},
+\label{eq:recirc}
+\end{equation}
+followed by a second transformer encoder. The same $Z$ reaches every token; selective binding must arise because the token-dependent gate $\tanh(W_gH_{t,i})$ differs across objects. There is no hard-coded self slot.
+
+Equation~\ref{eq:recirc} is inspired by, but not identical to, the recirculation mechanism of \citet{mozer2026}. Their mechanism feeds normalized deep-layer residual state from one processing step back into a shallower layer on the next step, primarily at inference time in an already trained transformer. Ours trains the recurrent route end-to-end and uses a separate bottleneck that integrates privileged cues. The shared principle is that a later-resolved latent state is made available to earlier object processing at the next timestep.
+
+Three architectural variants distinguish memory from perceptual binding:
+\begin{enumerate}
+\item \textbf{Recirculation-only:} $Z_t$ can affect the decision only by modifying object representations through Eq.~\ref{eq:recirc}; the policy head does not read $Z$ directly.
+
+\item \textbf{State-to-policy-only:} recirculation is disabled, but the policy head directly reads $Z_t$. This is a standard recurrent-memory control.
+
+\item \textbf{Both:} $Z_t$ both recirculates into perception and is directly available to the policy.
+\end{enumerate}
+
+The key comparison is not simply which architecture reaches higher reward. If direct state-to-policy solves the task but only recirculation makes self identity causally and linearly available in object-token representations, that supports the specific claim that recirculation binds the latent self estimate into perception.
+
+\section{Training Objective}
+
+The first experiment uses supervised cross-entropy on the final left/right control action rather than reinforcement learning:
+\begin{equation}
+\mathcal L
+=
+-\E\log\pi_\theta(Y\mid X_{1:T},C_{1:T}).
+\end{equation}
+The self variable $S$ is never a training target. This design isolates representation formation from exploration and long-horizon credit assignment. Supervision says only what action would succeed, while the network must discover any intermediate self representation because it is instrumentally useful for predicting that action.
+
+This creates an intentionally compositional learning problem. Marginally, the flash location, orienting bit, target geometry, or candidate token identity does not determine $Y$. The useful computation is approximately
+\begin{equation}
+(\text{flash/body relation},r_t)
+\rightarrow
+\widehat S
+\rightarrow
+(\widehat S,\text{final geometry})
+\rightarrow
+Y.
+\end{equation}
+
+This helps explain why explicit self identity can learn rapidly while indirect cue conditions may exhibit delayed phase transitions: the oracle removes the latent-variable discovery problem. A later reinforcement-learning version should replace the final action label with environmental consequence, but only after the representational phenomenon is established under cleaner optimization.
+
+\section{Measurements: From Performance to Mechanism}
+
+Task accuracy is necessary but not sufficient. A network can solve the task with arbitrary hidden-state coding that deserves little interpretation as a self-pointer. We therefore specify progressively stronger tests.
+
+\subsection{Recurrent-state probe}
+
+At each timestep, fit a post-hoc linear probe from $Z_t$ to the hidden self identity $S$. Probe accuracy estimates whether a simple readout can recover self-location:
+\begin{equation}
+\widehat S_t^{(z)}
+=
+\arg\max_i
+\mathrm{Probe}_z(Z_t)_i.
+\end{equation}
+
+High accuracy establishes self information but not causal use.
+
+\subsection{Object-level ownership probe}
+
+For each candidate-object representation $H_{t,i}$ after recirculation, probe the binary predicate $i=S$. If self information exists only in global state, object-level accuracy should remain near chance. If recirculation binds state into perception, the self object's token should acquire a systematically different representation:
+\begin{equation}
+I(S;H_{t,i}\mid X_t)>0
+\end{equation}
+for the relevant candidate relation, even though current exteroception alone contains no self information in the paired construction.
+
+\subsection{Causal state swap}
+
+Decodability is vulnerable to epiphenomenal correlations. The strongest current test uses the matched counterfactual structure directly. Immediately before the final target frame, swap recurrent states between the two rows of a matched world:
+\begin{equation}
+Z_{T-1}^{(S=0)}
+\leftrightarrow
+Z_{T-1}^{(S=1)},
+\end{equation}
+while leaving the visual sequence unchanged. If $Z$ causally carries the self pointer, the patched policy should move toward the \emph{other} row's correct action. Define counterfactual swap accuracy as
+\begin{equation}
+A_{\mathrm{swap}}
+=
+\Pp\!\left(
+\widehat Y(X,Z^{\mathrm{other}})
+=
+Y^{\mathrm{other}}
+\right).
+\end{equation}
+
+High ordinary accuracy together with high $A_{\mathrm{swap}}$ is far stronger evidence for a causally operative self variable than either task performance or probe accuracy alone.
+
+A stricter future intervention would patch only the identified self subspace rather than the entire recurrent state. If a low-dimensional intervention transfers self-binding while preserving other latent episode information, this would support a genuinely modular pointer interpretation.
+
+\section{Pilot Implementation and Preliminary Results}
+
+The current implementation serves primarily as a sanity check for the environment and optimization pathway. Models use AdamW with learning rate $3\times10^{-4}$, horizon eight, a $48$-dimensional token space, a $32$-dimensional recurrent state, and the ``both'' architecture unless otherwise stated. Held-out evaluation is performed on independently generated paired worlds with dropout disabled. An initial plotting pass inadvertently left transformer dropout active during evaluation; this produced visible fluctuations even for the mathematically chance-limited vision control. The results below are from the corrected deterministic evaluation.
+
+Table~\ref{tab:pilot} reports one training seed after 100 parameter updates. These numbers should not be interpreted as stable effect estimates: optimizer-seed variance has not yet been measured and is likely larger than held-out sampling error. Their purpose is to establish whether the design yields the expected controls and whether indirect self cues begin to support learning.
+
+\begin{table}[h]
+\centering
+\caption{Corrected single-seed pilot accuracy after 100 updates. Chance is 50\%.}
+\label{tab:pilot}
+\begin{tabular}{lc}
+\toprule
+Condition & Held-out accuracy \\
+\midrule
+Explicit self & 99.4\% \\
+All internal cues & 64.8\% \\
+Orienting + proprioception & 59.3\% \\
+Orienting + efference & 57.9\% \\
+Orienting only & 53.9\% \\
+Efference only & 51.8\% \\
+Proprioception only & 50.3\% \\
+Vision only & 50.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three observations matter. First, explicit identity reaches near-ceiling quickly, showing that the downstream geometry and policy are easy once the latent binding problem is removed. Second, vision remains exactly at chance, as required by the counterfactual symmetry. Third, the strongest non-oracle result is obtained from heterogeneous internal cues, not from any single alternative self-discovery channel. The late rise of the all-internal condition is consistent with, but does not establish, the hypothesis that multiple privileged signals can converge on a common latent entity.
+
+At 100 updates, orienting alone is only weakly above chance despite carrying enough information for an ideal decoder to identify self with approximately 99.8% expected accuracy. This gap is diagnostically useful: it indicates that the present bottleneck is learning the relational composition, not cue informativeness.
+
+The next quantitative run should therefore use at least $5$--$10$ independent training seeds and $10^3$--$10^4$ updates, report mean learning curves with between-seed intervals, and evaluate the recurrent-state probe, object-level probe, and state-swap intervention at fixed checkpoints. A useful falsification threshold is not merely eventual task success but the predicted \emph{ordering} of mechanistic signatures: self information should first become recoverable from $Z$, then become recoverable from the relevant object token when recirculation is enabled, and swapping the relevant state should transfer the policy's treated-as-self entity.
+
+\section{Predictions and Falsification Criteria}
+
+The hypothesis makes several separable predictions.
+
+\paragraph{P1: Privileged-cue necessity under symmetry.}
+Vision-only performance must remain at chance on paired worlds. Any stable deviation indicates leakage or a pairing bug rather than evidence about self-modeling.
+
+\paragraph{P2: Orienting sufficiency in principle.}
+With enough training capacity and an appropriate optimizer, the orienting-only condition should substantially exceed chance because the cue identifies which visible event was organism-relevant. If an oracle decoder succeeds but the neural model cannot, the failure localizes to architecture or optimization rather than information.
+
+\paragraph{P3: Cue integration.}
+Combining independent privileged cues should improve robustness and sample efficiency, particularly when each cue is noisy or intermittently absent. More strongly, representations induced by one cue should transfer to episodes in which another cue is informative if both are compressed into a common self variable.
+
+\paragraph{P4: Recirculation-specific object binding.}
+Direct recurrent memory may support task performance without changing candidate-object representations. Recirculation should specifically increase self decodability from the selected object's token and should make object-level representations sensitive to causal state patches.
+
+\paragraph{P5: Counterfactual transfer.}
+Swapping the inferred self state between identical visual worlds should swap the appropriate policy. A network whose $Z$ merely correlates with self but whose policy ignores it will fail this test.
+
+\paragraph{P6: Causal-role generalization.}
+If physical control is transferred from one body to the other mid-episode, the inferred self should update after sufficient contrary evidence. This discriminates a causal-role representation from memorized object identity.
+
+\paragraph{P7: Cross-task reuse.}
+The strongest evidence for a genuine self-pointer would come from training on several downstream tasks---resource acquisition, damage avoidance, goal reaching, communication, tool use---that all require consequences to be evaluated relative to the same hidden body. A low-dimensional latent that is reused across such tasks is more plausibly interpreted as ``self'' than a task-specific classifier state.
+
+\section{Why the Experiment Is Not Trivially About Agency}
+
+One might object that the experiment merely reinvents the comparator model: match an action or internal signal to an observed body. This is partly correct and deliberately so. A self-pointer should have an evolutionary and computational precursor in mundane control. The stronger claim is about \emph{convergence and reuse}. Efference copy alone can identify which movement is self-caused; proprioception can identify which visual trajectory matches one's body; an orienting signal can identify which observed event affected the organism. If these channels remain isolated, there is no unitary self variable. The interesting phenomenon is their compression into a common latent that subsequently marks one object across modalities and tasks.
+
+The experiment therefore distinguishes local agency attribution from a generalized indexical. The simplest future test is cue substitution: infer the body from orienting during one episode, then remove orienting and require a proprioceptive or action-based task using the same persistent latent; reverse the modalities in other episodes. If the learned representation is genuinely common, cue-specific identification should update a shared state that supports all downstream uses.
+
+\section{Relation to Consciousness}
+
+The proposed experiment does not test whether the network is conscious, sentient, or phenomenally aware. Success would demonstrate only a mechanistic ingredient that several consciousness theories require implicitly: a world model can acquire an indexical center grounded in privileged causal relations rather than through an externally supplied ``self'' symbol.
+
+This matters because self-referential accounts face a bootstrapping problem. Recursive modeling can explain how a system represents its own representations, but recursion alone does not explain why one represented body or causal locus is treated as the owner of those representations. The self-pointer mechanism offers a decomposition:
+\begin{equation}
+\underbrace{\text{privileged organism signals}}_{\text{causal asymmetry}}
+\rightarrow
+\underbrace{\text{entity binding}}_{\text{self pointer}}
+\rightarrow
+\underbrace{\text{recirculated world model}}_{\text{indexical perception}}
+\rightarrow
+\underbrace{\text{recursive modeling}}_{\text{possible self-appearance}}.
+\end{equation}
+
+The first three stages can be studied without taking a position on phenomenal consciousness. If a later theory identifies recursive self-appearance with phenomenology \citep{zarncke2025}, the present mechanism becomes a candidate explanation for where the distinguished ``self'' argument comes from. If that theory is false, the experiment remains useful as a study of agency, embodiment, and recurrent representation learning.
+
+This decomposition also clarifies how the thalamic hypothesis could be true without making thalamus a consciousness center. A low-bandwidth orienting/interoceptive signal may contribute the organism-centered index, while distributed cortical recurrence supplies rich content and higher-order self-modeling. Conversely, cortical recursion could exist in an artificial system without a thalamus at all. The biological claim concerns one possible implementation of indexical grounding; the computational claim is substrate-independent.
+
+\section{Limitations}
+
+Several interpretations must be resisted.
+
+First, a self pointer is not a phenomenal self. The experiment operationalizes the minimal causal-binding problem and intentionally omits affect, valence, autobiographical continuity, introspection, and report.
+
+Second, linear probes can detect information that the policy does not use; this is why causal state swaps are central.
+
+Third, even a successful state swap may patch other episode information alongside self identity. Low-dimensional subspace interventions and mediation analyses are needed before claiming a separable pointer.
+
+Fourth, object-centric inputs substantially simplify perception. This is appropriate for the minimal experiment but future work should test whether the same phenomenon survives pixels, occlusion, changing numbers of candidate agents, and imperfect object permanence.
+
+Fifth, supervised final-action learning supplies a clean gradient but is not developmentally realistic; reinforcement learning or predictive objectives may alter which latent variables emerge.
+
+Sixth, the neuroscience motivates the architecture but does not uniquely select it. Intralaminar activity correlated with orienting could encode salience, interrupt, arousal, or action selection rather than a metarepresentation of the orienting reaction itself. The artificial experiment can show that the conjectured representation is useful, not that biology uses it.
+
+Finally, there is a subtle semantic issue. If a latent variable identifies `the entity whose internal signals I receive and whose reward matters,'' calling it \emph{self} is already partly an interpretation. The strongest defense is counterfactual and compositional: the latent should track causal role when bodies swap, integrate independent modalities, generalize across tasks, and causally redirect ownership-sensitive behavior. The more of these invariances it satisfies, the less plausible it becomes that `self'' is merely an anthropomorphic label for an arbitrary hidden bit.
+
+\section{Discussion}
+
+The central proposal can be stated compactly. A mobile agent is embedded in a world containing many objects and possibly many other agents. Exteroception alone does not mark which represented body is the control system's own. But the agent has privileged causal channels. Its motor commands predict one trajectory; its proprioception matches one body; its damage and reward arise at one locus; and, under the motivating thalamic conjecture, its orienting machinery may generate an internally available bit saying that an organism-level reaction is occurring now. These signals are heterogeneous in format but share a latent cause. A recurrent learner has an incentive to compress them into a common variable because downstream control repeatedly asks the same question: \emph{which represented entity should consequences be evaluated relative to?}
+
+Recirculation adds an important second step. A latent self estimate stored only in memory can guide action without changing perception. If that estimate is fed back into early object processing, subsequent representations can be conditioned on the inferred causal role. The same visual body can then be represented differently depending on whether it is currently inferred to be self. This supplies a concrete computational route from `an internal reaction occurred'' to `this perceived object is the one to which the reaction belongs.'' In phenomenological language one might call the latter ownership or mineness; in the present paper it remains a measurable representational binding.
+
+The neuroscience is suggestive precisely because it contains the requisite motifs without yet resolving their interpretation. Superior colliculus participates in multimodal orienting and sends signals to intralaminar thalamus; intralaminar nuclei are connected broadly to brainstem, striatum, and cortex; intralaminar and medial thalamic activity can precede prefrontal consciousness-related activity; and action-control theories have independently placed subcortical orienting machinery near the origin of a first-person reference frame \citep{grunwerg1992,krout2001,fisher2014,kumar2023,merker2013,fang2025}. None of these findings entails the self-pointer hypothesis. Together they make it concrete enough to model.
+
+The artificial experiment, in turn, is valuable because it separates claims that are entangled in biological data. We can make visual information exactly symmetric, expose or remove efference, proprioception, and orienting signals independently, force the model to retain identity across a cue-free interval, manipulate recurrence, and literally transplant the inferred state between counterfactual selves. If an orienting signal alone cannot be converted into a stable entity binding despite an oracle decoder showing near-perfect available information, the proposed architecture is wrong or incomplete. If ordinary recurrent memory solves the task but recirculation does not produce object-level binding, the perceptual-ownership claim fails. If heterogeneous cues converge and a low-dimensional causal intervention transfers which object is treated as self, the self-pointer interpretation gains substance.
+
+The most important next result is therefore not higher raw accuracy. It is a mechanistic trajectory: cue evidence should first change a compact persistent state; that state should then alter one candidate object's representation under recirculation; and intervention on the state should transfer downstream self-relative behavior while leaving the visible world fixed. This sequence would constitute a minimal constructive demonstration of how an organism-centered signal can become an indexical world-model variable.
+
+\section{Conclusion}
+
+We propose a minimal, falsifiable bridge from subcortical orienting hypotheses to computational self-modeling. The bridge does not require consciousness to be primitive, nor does it require a dedicated self module. It requires only a world with multiple candidate agents, privileged internal signals generated by one of them, an objective for which identifying that entity matters, and a recurrent architecture capable of retaining and recirculating the inferred latent cause.
+
+Under these conditions, ``self'' can emerge first as an economical control variable: the entity that explains why these particular internal events, actions, and consequences cohere. Recirculation then offers a route by which that variable can cease to be merely remembered and instead become part of how the corresponding object is represented.
+
+The experiment is intentionally small because the conceptual claim should survive in a setting where shortcuts can be excluded and causal structure can be manipulated directly. If it succeeds, richer environments can test whether the same pointer becomes multimodal, transferable, and recursively self-modelable. If it fails, the failure is informative: either organism-centered orienting signals do not support entity binding, the proposed recirculation mechanism is insufficient, or a self pointer requires additional ecological structure. Each outcome narrows the space between biological observations of orienting/thalamic recurrence and computational accounts of how a system comes to represent one body in its world as \emph{itself}.
+
+\bibliographystyle{plainnat}
+\bibliography{self-pointers}
+
+\end{document}
