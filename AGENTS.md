@@ -24,7 +24,8 @@ brain-to-values/
     ├── value-bundle-drift/
     ├── embedded-value-formation/
     ├── self-pointers/
-    └── unit-of-caring/
+    ├── unit-of-caring/
+    └── value-bundle-inference/
 ```
 
 Each paper directory should contain:
@@ -58,6 +59,7 @@ papers/value-bundle-drift/build.sh     # pdflatex ×2
 papers/embedded-value-formation/build.sh # pdflatex + bibtex + pdflatex ×2
 papers/self-pointers/build.sh  # pdflatex + bibtex + pdflatex ×2
 papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
+papers/value-bundle-inference/build.sh # pdflatex + bibtex + pdflatex ×2
 ```
 
 **Free-energy loops:** uses `refs.bib` (extracted from status-regulation ledger) plus `refs-supplement.bib` for alignment citations.
@@ -137,6 +139,7 @@ Update `README.md` when adding a new viz or paper (table row + build command). K
 | `papers/embedded-value-formation/` | Viability constraints on learned value architectures |
 | `papers/self-pointers/` | Minimal self-pointer experiment; orienting cues and recirculation |
 | `papers/value-bundle-drift/` | Cultural selection vs value alignment |
+| `papers/value-bundle-inference/` | Observability vs capability in inferring value bundles |
 | `papers/unit-of-caring/` | Integrity pressure, suffering, aggregation scaffold |
 
 When changing hub–value mappings in `brain.py`, rebuild the LHV paper so the schematic stays in sync.

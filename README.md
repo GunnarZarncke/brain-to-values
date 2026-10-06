@@ -71,6 +71,12 @@ Develops the hypothesis that fully embedded agents face constraints not only on 
 
 Proposes a minimal computational experiment on how privileged organism-centered cues (orienting response, efference copy, proprioception) can become bound to one entity in a world model via recirculation. Uses matched counterfactual worlds, cue ablations, linear probes, and causal state-swap tests to distinguish decodable self information from a causally operative self-pointer.
 
+### [Capability and Observability Effects in Value-Bundle Inference](papers/value-bundle-inference/value-bundle-inference.pdf)
+
+**October 2026** · [source](papers/value-bundle-inference/value-bundle-inference.tex)
+
+Argues that the dimensions easiest to infer from behavior need not be the dimensions that organize successful regulation. Combines an observability effect (negative deviations are rarer and more distinctive) with a capability effect (successful constraints can preserve a large reachable set). The resulting capability–observability inversion warns that value learning can overfit failure residuals rather than recover low-rank value bundles.
+
 ## Quickstart
 
 ```bash

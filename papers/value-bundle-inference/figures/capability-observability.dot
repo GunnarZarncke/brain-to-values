@@ -1,0 +1,35 @@
+digraph capability_observability {
+    rankdir=LR;
+    bgcolor="transparent";
+    pad=0.2;
+    nodesep=0.45;
+    ranksep=0.7;
+    splines=true;
+
+    node [
+        shape=box, style="rounded,filled",
+        fillcolor="#dce9f5", color="#4a7fb5",
+        fontname="Helvetica", fontsize=10,
+        margin="0.22,0.12", penwidth=1.5
+    ];
+    edge [fontname="Helvetica", fontsize=8, color="#555555"];
+
+    B [label="low-rank value\nbundles B", fillcolor="#b8d4a8", color="#5a8a42"];
+    MC [label="maintained\nconstraints"];
+    CAP [label="large viable\ncapability set"];
+    DSB [label="diverse successful\nbehavior"];
+    CV [label="constraint\nviolations", fillcolor="#f5e6b8", color="#b89a3e"];
+    R [label="heterogeneous\nresiduals R", fillcolor="#f5e6b8", color="#b89a3e"];
+    OBS [label="distinctive\nobservations", fillcolor="#f5e6b8", color="#b89a3e"];
+
+    B -> MC;
+    MC -> CAP;
+    CAP -> DSB;
+    B -> CV;
+    CV -> R;
+    R -> OBS;
+
+    { rank=same; MC; CV; }
+    { rank=same; CAP; R; }
+    { rank=same; DSB; OBS; }
+}

@@ -21,6 +21,7 @@ The [DOT source](paper-references.dot) can be re-rendered with `dot -Tsvg papers
 | Unit of caring | [unit-of-caring.tex](unit-of-caring/unit-of-caring.tex) | [PDF](unit-of-caring/unit-of-caring.pdf) | `unit-of-caring/build.sh` |
 | Viability-constrained value formation | [embedded-value-formation.tex](embedded-value-formation/embedded-value-formation.tex) | [PDF](embedded-value-formation/embedded-value-formation.pdf) | `embedded-value-formation/build.sh` |
 | From orienting signals to self-pointers | [self-pointers.tex](self-pointers/self-pointers.tex) | [PDF](self-pointers/self-pointers.pdf) | `self-pointers/build.sh` |
+| Value-bundle inference | [value-bundle-inference.tex](value-bundle-inference/value-bundle-inference.tex) | [PDF](value-bundle-inference/value-bundle-inference.pdf) | `value-bundle-inference/build.sh` |
 
 Build from the repo root:
 
@@ -35,6 +36,7 @@ papers/value-bundle-drift/build.sh
 papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 papers/embedded-value-formation/build.sh   # pdflatex + bibtex + pdflatex ×2
 papers/self-pointers/build.sh   # pdflatex + bibtex + pdflatex ×2
+papers/value-bundle-inference/build.sh   # pdflatex + bibtex + pdflatex ×2
 ```
 
 LaTeX build artifacts (`*.aux`, `*.log`, etc.) are gitignored. Paper PDFs are tracked in git; regenerate after source changes.

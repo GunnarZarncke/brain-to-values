@@ -31,10 +31,11 @@ digraph paper_references {
     UoC  [label="Unit of Caring\n(May 2026)"];
     VV   [label="Viability-Constrained\nValue Formation\n(Jul 2026)"];
     SP   [label="From Orienting Signals\nto Self-Pointers\n(Sep 2026)"];
+    VBI  [label="Value-Bundle\nInference\n(Oct 2026)"];
 
     { rank=same; SRL; LHV; CAB; }
     { rank=same; LHCV; LRCI; }
-    { rank=same; VBD; UoC; VV; SP; }
+    { rank=same; VBD; UoC; VV; SP; VBI; }
 
     // Explicit citations (solid)
     LHV  -> FEL  [label="cites", penwidth=2, color="#2a6099"];
@@ -43,6 +44,8 @@ digraph paper_references {
     VV   -> LHCV [label="cites", penwidth=2, color="#2a6099"];
     LRCI -> LHV  [label="cites", penwidth=2, color="#2a6099"];
     SP   -> CSR  [label="cites", penwidth=2, color="#2a6099"];
+    VBI  -> VBD  [label="cites", penwidth=2, color="#2a6099"];
+    VBI  -> VV   [label="cites", penwidth=2, color="#2a6099"];
 
     // Conceptual / extends (dashed)
     LHCV -> LHV  [style=dashed, label="extends"];
@@ -54,4 +57,6 @@ digraph paper_references {
     VV   -> VBD  [style=dashed, label="value bundles"];
     LRCI -> VV   [style=dashed, label="value-learning\nhypothesis"];
     SP   -> CAB  [style=dashed, label="agency/self\nbinding"];
+    VBI  -> VBD  [style=dashed, label="value bundles"];
+    VBI  -> VV   [style=dashed, label="viability /\ncapability"];
 }
