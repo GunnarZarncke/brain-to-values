@@ -32,10 +32,11 @@ digraph paper_references {
     VV   [label="Viability-Constrained\nValue Formation\n(Jul 2026)"];
     SP   [label="From Orienting Signals\nto Self-Pointers\n(Sep 2026)"];
     VBI  [label="Value-Bundle\nInference\n(Oct 2026)"];
+    OHV  [label="Nested-World Test of\nHanson's Drift Thesis\n(Oct 2026)"];
 
     { rank=same; SRL; LHV; CAB; }
     { rank=same; LHCV; LRCI; }
-    { rank=same; VBD; UoC; VV; SP; VBI; }
+    { rank=same; VBD; UoC; VV; SP; VBI; OHV; }
 
     // Explicit citations (solid)
     LHV  -> FEL  [label="cites", penwidth=2, color="#2a6099"];
@@ -46,6 +47,7 @@ digraph paper_references {
     SP   -> CSR  [label="cites", penwidth=2, color="#2a6099"];
     VBI  -> VBD  [label="cites", penwidth=2, color="#2a6099"];
     VBI  -> VV   [label="cites", penwidth=2, color="#2a6099"];
+    OHV  -> VBD  [label="cites", penwidth=2, color="#2a6099"];
 
     // Conceptual / extends (dashed)
     LHCV -> LHV  [style=dashed, label="extends"];
@@ -59,4 +61,5 @@ digraph paper_references {
     SP   -> CAB  [style=dashed, label="agency/self\nbinding"];
     VBI  -> VBD  [style=dashed, label="value bundles"];
     VBI  -> VV   [style=dashed, label="viability /\ncapability"];
+    OHV  -> VBD  [style=dashed, label="empirical test\nof drift"];
 }
