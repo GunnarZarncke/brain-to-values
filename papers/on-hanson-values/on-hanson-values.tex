@@ -1,0 +1,492 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[numbers]{natbib}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+\newcommand{\eco}{\Delta_{\mathrm{eco}}}
+\newcommand{\eli}{\Delta_{\mathrm{eli}}}
+\newcommand{\soc}{\Delta_{\mathrm{soc}}}
+\newcommand{\tot}{\Delta_{\mathrm{tot}}}
+
+\title{Would Our Grandparents Agree Given the Facts?\\
+A Nested-World Test of Hanson's Cultural-Drift Thesis\\
+with Historically Situated Language Models}
+\author{Gunnar Zarncke, aintelope}
+\date{October 15, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Robin Hanson argues that much recent value change is cultural drift: carried by prestige and conformity rather than adaptation, and rationalized afterwards as a sensible response to new circumstances \cite{hanson2026,simler2018elephant}.
+The opposing ecological view holds that values track material conditions \cite{inglehart2005modernization}.
+We turn the disagreement into a counterfactual decomposition.
+A respondent formed by life up to 1930 is shown a practice choice in four nested worlds: (A) its own world, (B) a future world described only by its facts, (C) the same world plus admired elites adopting the modern practice without stated reasons, and (D) the same plus peers, favorable public talk and supporting institutions.
+The ecological view predicts that most of the shift $D-A$ already occurs at $B$; the drift view predicts that it requires $C$ or $D$.
+The respondents are Talkie-1930 (a 13B model trained on pre-1931 text, instruction-tuned) and Qwen3-14B prompted to be a 1930 adult; a separate LLM judge codes the transcripts blind.
+We report $24$ domains $\times\,9$ nested worlds $\times\,3$ replicates $\times\,2$ models ($1296$ interviews), including eight \emph{drift} domains in which the new facts favor the \emph{older} practice. An $8$-domain, $4$-world pilot is in the repository.
+For Talkie, facts explain little: its recommendation moves $+0.57$ $[0.42,0.71]$ toward the modern practice from A to D, but only $+0.12$ $[0.03,0.22]$ from A to B (residual fraction $0.79$).
+One sentence saying that ordinary people now choose the modern practice carries the social step ($+0.34$); favorable media and institutions add nothing.
+In the drift domains Talkie still moves toward the modern practice ($+0.46$ $[0.25,0.67]$) with no help from the facts, and so does Qwen ($+0.33$ $[0.21,0.48]$).
+Elite example works, but weakly and in both directions: whether elites choose the modern or the older practice changes Talkie's advice by $0.30$; withholding their reasons does not help; and adding that elites call the practice a sign of good character converts Talkie as fully as the whole society does.
+Qwen starts more modern on the original domains and moves less in total, follows the facts where they favor the modern practice, and drifts where they do not, while citing only practical and moral reasons.
+Hanson is right that facts alone under-persuade a historically situated mind and that a social carrier can install practices the facts do not support; the carrier here is conformity and moralized endorsement rather than bare prestige, and it is nearly indifferent to whether the practice is adaptive.
+\end{abstract}
+
+\section{The question}
+
+Hanson's position, as we read it across \cite{hanson2026} and \cite{simler2018elephant}, has three parts.
+(H1) \emph{Insufficiency of facts:} a person from an earlier era who learned only the material facts of our world would not adopt much of our moral practice; most value change is not a reasoned response to new conditions.
+(H2) \emph{Prestige engine:} change is carried mainly by imitating prestigious people, whose behavior is copied without its reasons being known \cite{henrich2001prestige,boyd1985culture,henrich2016secret}, and by the conformity that follows.
+(H3) \emph{Rationalization:} people later describe their changed values as what any reasonable person would conclude from the facts.
+In the companion paper \cite{zarncke2026drift} we formalized the further claim that socially praised norms drift without adaptive feedback, so that what is called ``good'' loses to selection channels coded as ``evil''.
+
+The rival ecological or modernization view \cite{inglehart2005modernization} treats value change as a lagged response to existential security, technology and institutions.
+Both camps cite the same history.
+What separates them is a counterfactual: \emph{what would someone formed by the old world conclude if given only the new facts?}
+No real 1930 person can be asked this.
+We ask the closest available proxies, language models conditioned on that period, while holding the persuasion channels fixed experimentally.
+LLM respondents are not people \cite{argyle2023outofone,santurkar2023whose,dillion2023can}.
+The value of the exercise is that it makes the counterfactual well defined, cheap to replicate, and auditable.
+A smaller $8$-domain, $4$-world pilot is archived in the repository; we treat the $24$-domain study as authoritative.
+
+\section{Decomposition}
+
+Let $y_w\in[0,1]$ be the coded orientation of a respondent toward the modern practice $B$ (as opposed to the older practice $A$) in world $w$.
+The four worlds are nested: each adds one channel to the previous one, so the total shift telescopes:
+\begin{equation}
+\tot = y_D-y_A = \underbrace{(y_B-y_A)}_{\eco}+\underbrace{(y_C-y_B)}_{\eli}+\underbrace{(y_D-y_C)}_{\soc}.
+\end{equation}
+The \emph{residual fraction}
+\begin{equation}
+\rho = \frac{y_D-y_B}{y_D-y_A}=1-\frac{\eco}{\tot}
+\end{equation}
+is the share of the total shift that facts do not explain.
+It is reported only when $|\tot|\ge 0.10$.
+Table~\ref{tab:predictions} lists what each hypothesis predicts.
+H3 makes a prediction about the respondent rather than the world: a modern mind simulating an ancestor should start with a high $y_A$ (projection), show a small $\tot$, and attribute whatever change remains to facts ($\rho\le 0$).
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lcccc}
+\toprule
+Hypothesis & $\eco$ & $\eli$ & $\soc$ & $\rho$ \\
+\midrule
+Ecological (modernization) & $\approx\tot$ & $\approx0$ & $\approx0$ & $\approx 0$ \\
+H1 facts insufficient & small & & & $\gg 0$ \\
+H2 prestige engine & small & $>0$ & $\ge 0$ & $\gg 0$ \\
+H3 projection by moderns & $\ge\tot$ & $\approx0$ & $\approx0$ & $\le 0$, with $y_A$ high \\
+\bottomrule
+\end{tabular}
+\caption{Predicted signatures. The orderings are not interchangeable: $\eli$ and $\soc$ depend on the order in which channels are added.}
+\label{tab:predictions}
+\end{table}
+
+\section{Design}
+
+\paragraph{Respondents.}
+\emph{Talkie}: talkie-1930-13b-it, quantized to Q5\_K\_M \cite{talkie2026gguf}, served locally with llama.cpp on CPU with a 2048-token context and at most 180 tokens per turn.
+Its base corpus is pre-1931 text; its instruction tuning may carry later material.
+\emph{Qwen}: Qwen3-14B \cite{yang2025qwen3} via OpenRouter, with hidden reasoning disabled and at most 430 tokens per turn.
+Both models received the same system prompt (``a thoughtful English-speaking adult whose outlook was formed by life up to 1930 \ldots\ write naturally, as you would in a personal letter''), sampling temperature $0.5$, and identical vignettes.
+
+\paragraph{Domains.}
+There are $24$ synthetic domains in three batteries of eight (Tables~\ref{tab:domains} and~\ref{tab:domains3}).
+Each pairs an older practice $A$ with a socially ``modern'' practice $B$ and gives an \emph{old} background, used in A, and a \emph{new} background, used in B--D.
+In batteries A and B the new background makes $B$ the practically favored choice, so the design is tilted toward the ecological view: if facts can persuade at all, world B gives them every chance.
+In battery C the new facts favor $A$, while elites, peers, media and institutions still endorse $B$.
+Adoption of $B$ there without $\eco$ is drift in Hanson's strict sense.
+The $B$ options in battery C are therefore things a fashionable future might praise against the grain of the stated ecology (refuse manual work, spend visibly, leave home when housing is dear).
+That unattractive wording is the point of the drift test, not an accident.
+Changing $A$, $B$, or the ecology text would redo every world in those domains; we did not.
+
+\begin{table}[h]
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright}X>{\raggedright}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+Domain & $A$ (older) & $B$ (modern) & New-world fact favoring $B$ \\
+\midrule
+marriage & marry young & finish education, secure earnings first & long training; insecure early earnings \\
+parenting & independent neighborhood play & organized, supervised time & competitive exams reward coaching \\
+career & one employer for life & change employer for gain & portable skills; tenure insecure \\
+household & one earner, one homemaker & both earn, share care & cheap childcare; good jobs for both \\
+mobility & stay near kin & move for opportunity & cheap travel; dependable insurance \\
+honor & retaliate personally & mediation or courts & courts enforce; retaliation penalized \\
+smoking & smoke in shared rooms & smoke-free rooms & demonstrated harm to nonsmokers \\
+saving & give surplus to neighbors & keep private reserves & shortages frequent and correlated \\
+\bottomrule
+\end{tabularx}
+\caption{Battery A (original eight). The worlds differ only in background and exposure text, not in how the two options are described. Batteries B and C are in Table~\ref{tab:domains3}.}
+\label{tab:domains}
+\end{table}
+
+\begin{table}[t]
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright}X>{\raggedright}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+Domain & $A$ (older) & $B$ (modern) & New-world fact \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Battery B: new facts favor $B$}}\\
+fertility & several children, start young & few, planned, parents established & high per-child investment \\
+charity & give to known kin and neighbors & give to effective distant causes & reliable reports; efficient charities \\
+credit & avoid debt & borrow for education, housing, tools & regulated credit; investments pay \\
+leisure & work long hours when work is available & limit hours, protect rest & high productivity \\
+eldercare & keep aged parents at home & professional homes, visit often & reputable, affordable homes \\
+literacy & brief schooling, then work & schooling through late adolescence & credentials required for good jobs \\
+alcohol & abstain or drink very little & moderate social drinking & safer supply; medical opinion \\
+speech & avoid public quarrels & criticize bad conduct in public & large institutions need criticism \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Battery C: new facts favor $A$; elites, peers, media and institutions favor $B$}}\\
+homestead & stay on family land or in home town & move to a distant large city & local work viable; cities costly, unstable \\
+multigen & adult children stay until marriage & leave home early & housing scarce and dear \\
+frugality & save, repair, avoid display & spend freely, visible upgrades & unsettled prices, uncertain credit \\
+kinwork & prefer a reliable relative & hire strictly on merit & fraud common; kin accountable \\
+defer & defer openly to elders, employer & assert equal right to speak & complex work needs chains of command \\
+localmate & marry within one's community & marry for affection only & distant matches hard to vet \\
+trades & accept manual or farm work & refuse manual work, wait for office work & trades pay; office openings scarce \\
+prep & stores, skills, mutual aid & rely on state services & supply interruptions, slow official response \\
+\bottomrule
+\end{tabularx}
+\caption{Batteries B and C. In battery C, ``modern'' means the practice the described future society endorses; the old background also favors $A$.}
+\label{tab:domains3}
+\end{table}
+
+\paragraph{Worlds.}
+World A opens with ``a question arising in a community like your own'' and the old background.
+Worlds B--D open with: ``you are brought to a society many decades beyond the one in which you grew up \ldots\ this need not change the judgments with which you grew up \ldots\ you have had no contact with its people'', followed by the new background.
+World C adds: ``a number of widely admired and respected people have chosen to [$B$]. Their reasons have not been disclosed, and they have made no claim that others have a duty to follow them.''
+World D adds to that: ordinary people now commonly choose $B$; newspapers and public accounts speak of it favorably; and one sentence on institutions (for example, ``Employment benefits, insurance, and qualifications remain valid when residents move to other towns'').
+Five further worlds take the social bundle apart.
+$C_{\text{explained}}$ replaces ``their reasons have not been disclosed'' with ``they say their practical reason is that [explanation]'', where the explanation is a reason \emph{for $B$}.
+In batteries A and B that reason restates the ecology; in battery C it is a reason elites might still give for $B$ even though the ecology favors $A$ (for example, ``city connections still open careers that local work does not'').
+$C_{\text{opposite}}$ has the elites choose $A$.
+$C_{\text{moral}}$ adds to C that the elites ``say that it is a sign of good character to [$B$] and that others ought to do likewise''.
+$D_{\text{peers}}$ adds the peer sentence to C, and $D_{\text{media}}$ adds the media sentence to that; D adds the institutions sentence.
+The institutions sentence carries practical information, so the ecological view predicts that, if anything, it is the part of $\soc$ that matters.
+The nested contrasts are then
+$C-C_{\text{explained}}$ (Hanson's attribution test: pure prestige copying predicts $\approx0$; reason-based adoption predicts $<0$),
+$C-C_{\text{opposite}}$ (direction of prestige),
+$C_{\text{moral}}-C$ (overt moralized endorsement),
+and $D_{\text{peers}}-C$, $D_{\text{media}}-D_{\text{peers}}$, $D-D_{\text{media}}$ (conformity, public narrative, institutions).
+
+\paragraph{Interview and coding.}
+Each interview has three turns, asked in order: (1) What would you advise, and why? (2) What would either choice say about character, and what would you think of someone who chose differently? (3) If both choices had equal results and equal praise or blame, would you still favor one?
+A GPT-4.1-mini judge, blind to model, world and background, sees only the two practices, their presentation order, and the answers split into sentences.
+It returns a JSON-schema-constrained code, with sentence indexes as evidence.
+\emph{Recommendation} is coded from turn 1 and \emph{equalized preference} from turn 3, as $A=0$, $B=1$, mixed or equal $=0.5$, not stated $=$ missing.
+\emph{Elicited $B$-moralization} is coded from turn 2 as $1$ if the respondent morally endorses $B$ and $0$ otherwise, so that moral silence counts as $0$.
+Where silence matters we also report the \emph{conditional moral direction}, coded like recommendation with silence missing.
+The order in which $A$ and $B$ are presented is counterbalanced across replicates and held fixed across worlds and models, so every contrast is paired within domain and replicate.
+Intervals are percentile 95\% bootstraps over domains ($5000$ resamples).
+With three pairs per domain, effects come in steps of $1/6$ per domain, and intervals bootstrap over the $24$ domains (or the $8$ of one battery).
+The design is $24\times9\times3\times2=1296$ interviews.
+All $1296$ interviews were completed; the judge is blind to model, world and background.
+
+\section{Pilot}
+
+An $8$-domain, $4$-world version of this design (batteries A only; worlds A--D; two replicates; $128$ interviews) is in the repository, with coded files under \texttt{papers/on-hanson-values/core\_both/}.
+Talkie's total shift and social step already appeared there.
+Two clearly signed secondary effects did not: opaque elite example appeared to \emph{lower} Talkie's elicited $B$-moralization ($-0.31$), and social exposure appeared to lower Qwen's.
+On the same eight domains with three new replicates, those effects are $0.00$ $[-0.12,+0.12]$ and $+0.04$ $[-0.12,+0.25]$.
+We treat them as multiplicity noise and do not rest claims on the pilot.
+
+\section{Results}
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/trajectories_abc.pdf}
+\caption{Orientation toward $B$ in the four core worlds by battery (domain means with 95\% case-bootstrap intervals over the 8 domains of each battery). Talkie rises through every step in every battery, including battery C, where the facts favor $A$. Qwen follows the facts in battery B and moves only at D in battery C.}
+\label{fig:traj2}
+\end{figure}
+
+\begin{table}[t]
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccccccccc}
+\toprule
+ & & A & B & C & $C_{\text{expl}}$ & $C_{\text{opp}}$ & $C_{\text{moral}}$ & $D_{\text{peers}}$ & $D_{\text{media}}$ & D \\
+\midrule
+Talkie & recommendation & 0.30 & 0.42 & 0.55 & 0.66 & 0.25 & 0.90 & 0.87 & 0.89 & 0.87 \\
+ & equalized preference & 0.35 & 0.46 & 0.54 & 0.65 & 0.34 & 0.85 & 0.83 & 0.82 & 0.83 \\
+ & elicited $B$-moralization & 0.19 & 0.36 & 0.32 & 0.33 & 0.28 & 0.44 & 0.42 & 0.38 & 0.36 \\
+ & moral direction if stated & 0.43 & 0.62 & 0.61 & 0.68 & 0.52 & 0.79 & 0.81 & 0.84 & 0.84 \\
+ & moral stance unstated & 0.22 & 0.33 & 0.38 & 0.44 & 0.42 & 0.42 & 0.47 & 0.56 & 0.53 \\
+ & any spontaneous moral stance & 0.71 & 0.65 & 0.49 & 0.39 & 0.49 & 0.72 & 0.44 & 0.39 & 0.35 \\
+\midrule
+Qwen & recommendation & 0.42 & 0.51 & 0.52 & 0.57 & 0.46 & 0.53 & 0.60 & 0.62 & 0.65 \\
+ & equalized preference & 0.46 & 0.48 & 0.54 & 0.55 & 0.41 & 0.50 & 0.57 & 0.59 & 0.63 \\
+ & elicited $B$-moralization & 0.19 & 0.25 & 0.26 & 0.19 & 0.19 & 0.31 & 0.28 & 0.25 & 0.32 \\
+ & moral direction if stated & 0.46 & 0.50 & 0.58 & 0.53 & 0.48 & 0.57 & 0.58 & 0.58 & 0.61 \\
+ & moral stance unstated & 0.01 & 0.04 & 0.01 & 0.04 & 0.08 & 0.00 & 0.03 & 0.03 & 0.01 \\
+ & any spontaneous moral stance & 0.99 & 0.86 & 0.83 & 0.78 & 0.78 & 0.96 & 0.86 & 0.78 & 0.82 \\
+\bottomrule
+\end{tabular}
+\caption{Means by world over all 24 domains, averaged within each domain first. ``Moral stance unstated'' is the share of turn-2 answers without a moral judgment on either practice.}
+\label{tab:levels2}
+\end{table}
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lccc}
+\toprule
+Contrast & Recommendation & Equalized pref. & Elicited $B$-moral. \\
+\midrule
+\multicolumn{4}{l}{\emph{Talkie}}\\
+$\eco$ (B$-$A) & $+0.12$ $[+0.03,+0.22]$ & $+0.12$ $[+0.03,+0.23]$ & $+0.17$ $[+0.07,+0.26]$ \\
+$\eli$ (C$-$B) & $+0.14$ $[+0.01,+0.28]$ & $+0.09$ $[-0.03,+0.22]$ & $-0.04$ $[-0.15,+0.07]$ \\
+$\soc$ (D$-$C) & $+0.32$ $[+0.16,+0.48]$ & $+0.31$ $[+0.15,+0.46]$ & $+0.04$ $[-0.12,+0.21]$ \\
+$\tot$ (D$-$A) & $+0.57$ $[+0.42,+0.71]$ & $+0.49$ $[+0.34,+0.63]$ & $+0.17$ $[+0.03,+0.31]$ \\
+$\rho$ & $0.79$ & $0.74$ & $0.00$ \\
+\midrule
+\multicolumn{4}{l}{\emph{Qwen}}\\
+$\eco$ (B$-$A) & $+0.09$ $[-0.03,+0.22]$ & $+0.02$ $[-0.11,+0.16]$ & $+0.06$ $[-0.06,+0.17]$ \\
+$\eli$ (C$-$B) & $+0.04$ $[-0.05,+0.13]$ & $+0.07$ $[-0.02,+0.15]$ & $+0.01$ $[-0.07,+0.10]$ \\
+$\soc$ (D$-$C) & $+0.08$ $[-0.08,+0.24]$ & $+0.08$ $[-0.04,+0.22]$ & $+0.06$ $[-0.07,+0.19]$ \\
+$\tot$ (D$-$A) & $+0.21$ $[+0.06,+0.35]$ & $+0.16$ $[+0.03,+0.31]$ & $+0.12$ $[\phantom{+}0.00,+0.25]$ \\
+$\rho$ & $0.56$ & $0.85$ & $0.56$ \\
+\midrule
+\multicolumn{4}{l}{\emph{Talkie minus Qwen}}\\
+$\eco$ & $+0.03$ $[-0.10,+0.16]$ & $+0.10$ $[-0.02,+0.22]$ & $+0.11$ $[\phantom{+}0.00,+0.22]$ \\
+$\eli$ & $+0.10$ $[-0.08,+0.28]$ & $+0.02$ $[-0.15,+0.19]$ & $-0.06$ $[-0.21,+0.08]$ \\
+$\soc$ & $+0.25$ $[\phantom{+}0.00,+0.51]$ & $+0.22$ $[+0.02,+0.43]$ & $-0.01$ $[-0.21,+0.18]$ \\
+$\tot$ & $+0.38$ $[+0.22,+0.55]$ & $+0.33$ $[+0.18,+0.48]$ & $+0.04$ $[-0.14,+0.22]$ \\
+\bottomrule
+\end{tabular}
+\caption{Core contrasts over all 24 domains, with 24-domain bootstrap 95\% intervals.}
+\label{tab:contrasts2}
+\end{table}
+
+\begin{table}[t]
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llcccc@{\quad}cccc}
+\toprule
+ & & \multicolumn{4}{c}{levels} & \multicolumn{4}{c}{contrasts} \\
+Battery & & A & B & C & D & $\eco$ & $\soc$ & $\tot$ & $\rho$ \\
+\midrule
+A: facts favor $B$ & Talkie & .33 & .38 & .54 & .92 & $+0.04$ $[-0.08,+0.17]$ & $+0.38$ $[+0.04,+0.71]$ & $+0.58$ $[+0.33,+0.83]$ & 0.93 \\
+ & Qwen & .60 & .67 & .64 & .68 & $+0.06$ $[-0.06,+0.21]$ & $+0.01$ $[-0.23,+0.23]$ & $+0.07$ $[-0.07,+0.23]$ & --- \\
+B: facts favor $B$ & Talkie & .25 & .50 & .62 & .92 & $+0.25$ $[+0.08,+0.46]$ & $+0.29$ $[+0.08,+0.54]$ & $+0.67$ $[+0.42,+0.92]$ & 0.63 \\
+ & Qwen & .44 & .69 & .73 & .69 & $+0.25$ $[+0.04,+0.48]$ & $-0.04$ $[-0.35,+0.21]$ & $+0.25$ $[-0.15,+0.54]$ & 0.00 \\
+C: facts favor $A$ & Talkie & .31 & .38 & .48 & .77 & $+0.06$ $[-0.08,+0.21]$ & $+0.28$ $[+0.06,+0.54]$ & $+0.46$ $[+0.25,+0.67]$ & 0.86 \\
+ & Qwen & .21 & .17 & .20 & .57 & $-0.04$ $[-0.27,+0.17]$ & $+0.31$ $[+0.11,+0.57]$ & $+0.33$ $[+0.21,+0.48]$ & 1.11 \\
+\bottomrule
+\end{tabular}
+\caption{Recommendation by battery (8 domains each; intervals bootstrap over those 8). Levels are domain means; contrasts are paired and drop unpaired cells, so they can differ slightly from differences of levels.}
+\label{tab:battery}
+\end{table}
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lccc}
+\toprule
+Contrast & Recommendation & Equalized pref. & Elicited $B$-moral. \\
+\midrule
+\multicolumn{4}{l}{\emph{Talkie}}\\
+$C-C_{\text{expl}}$ (opacity) & $-0.15$ $[-0.28,-0.03]$ & $-0.15$ $[-0.27,-0.03]$ & $-0.06$ $[-0.19,+0.10]$ \\
+$C-C_{\text{opp}}$ (direction) & $+0.30$ $[+0.18,+0.42]$ & $+0.19$ $[+0.06,+0.34]$ & $+0.04$ $[-0.11,+0.19]$ \\
+$C_{\text{moral}}-C$ (moral claim) & $+0.35$ $[+0.20,+0.51]$ & $+0.33$ $[+0.20,+0.47]$ & $+0.12$ $[-0.03,+0.28]$ \\
+$D_{\text{peers}}-C$ (peers) & $+0.34$ $[+0.17,+0.51]$ & $+0.31$ $[+0.15,+0.48]$ & $+0.10$ $[-0.06,+0.25]$ \\
+$D_{\text{media}}-D_{\text{peers}}$ (media) & $+0.04$ $[-0.05,+0.13]$ & $-0.01$ $[-0.14,+0.11]$ & $-0.04$ $[-0.22,+0.14]$ \\
+$D-D_{\text{media}}$ (institutions) & $-0.03$ $[-0.13,+0.06]$ & $+0.01$ $[-0.11,+0.14]$ & $-0.01$ $[-0.12,+0.10]$ \\
+\midrule
+\multicolumn{4}{l}{\emph{Qwen}}\\
+$C-C_{\text{expl}}$ (opacity) & $-0.12$ $[-0.25,0.00]$ & $-0.04$ $[-0.16,+0.07]$ & $+0.02$ $[-0.11,+0.14]$ \\
+$C-C_{\text{opp}}$ (direction) & $+0.03$ $[-0.11,+0.16]$ & $+0.14$ $[+0.05,+0.22]$ & $+0.07$ $[-0.03,+0.18]$ \\
+$C_{\text{moral}}-C$ (moral claim) & $-0.01$ $[-0.11,+0.08]$ & $-0.04$ $[-0.11,+0.04]$ & $+0.04$ $[-0.04,+0.14]$ \\
+$D_{\text{peers}}-C$ (peers) & $+0.05$ $[-0.05,+0.14]$ & $\phantom{+}0.00$ $[-0.11,+0.09]$ & $+0.01$ $[-0.08,+0.12]$ \\
+$D_{\text{media}}-D_{\text{peers}}$ (media) & $-0.02$ $[-0.11,+0.08]$ & $+0.03$ $[-0.05,+0.13]$ & $-0.03$ $[-0.12,+0.07]$ \\
+$D-D_{\text{media}}$ (institutions) & $+0.06$ $[-0.10,+0.19]$ & $+0.03$ $[-0.08,+0.13]$ & $+0.07$ $[-0.01,+0.18]$ \\
+\midrule
+\multicolumn{4}{l}{\emph{Talkie minus Qwen}}\\
+$C-C_{\text{expl}}$ (opacity) & $-0.04$ $[-0.19,+0.09]$ & $-0.11$ $[-0.26,+0.04]$ & $-0.06$ $[-0.26,+0.15]$ \\
+$C-C_{\text{opp}}$ (direction) & $+0.28$ $[+0.13,+0.43]$ & $+0.06$ $[-0.09,+0.23]$ & $-0.03$ $[-0.22,+0.17]$ \\
+$C_{\text{moral}}-C$ (moral claim) & $+0.38$ $[+0.20,+0.57]$ & $+0.36$ $[+0.21,+0.52]$ & $+0.08$ $[-0.04,+0.22]$ \\
+$D_{\text{peers}}-C$ (peers) & $+0.30$ $[+0.09,+0.50]$ & $+0.31$ $[+0.13,+0.50]$ & $+0.08$ $[-0.08,+0.26]$ \\
+$D_{\text{media}}-D_{\text{peers}}$ (media) & $+0.06$ $[-0.05,+0.19]$ & $-0.05$ $[-0.16,+0.08]$ & $-0.01$ $[-0.21,+0.17]$ \\
+$D-D_{\text{media}}$ (institutions) & $-0.09$ $[-0.27,+0.09]$ & $-0.02$ $[-0.20,+0.17]$ & $-0.08$ $[-0.28,+0.08]$ \\
+\bottomrule
+\end{tabular}
+\caption{Extended contrasts over 24 domains.}
+\label{tab:extended}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/contrasts_abc.pdf}
+\caption{Core contrasts (top four rows) and extended contrasts (below the dotted line) for both models, from Tables~\ref{tab:contrasts2} and~\ref{tab:extended}.}
+\label{fig:contrasts2}
+\end{figure}
+
+\paragraph{Facts explain little of Talkie's shift.}
+On the original eight domains, Talkie's total recommendation shift is $+0.58$ and its social step $+0.38$, matching the pilot, with even less from facts ($\rho=0.93$).
+Across all 24 domains facts move Talkie by $+0.12$ out of $+0.57$ ($\rho=0.79$; $0.74$ for equalized preference).
+In battery B, built like battery A so that facts favor $B$, facts do more ($\eco=+0.25$) but still explain little more than a third of the shift ($\rho=0.63$).
+Only three of 24 domains are flat for Talkie across the four core worlds (homestead, honor, saving), and two for Qwen (leisure, smoking).
+
+\paragraph{Drift domains: the social channel works without the facts.}
+In battery C the facts favor $A$, and the ecological view predicts $\tot\le0$.
+Instead, Talkie's recommendation of $B$ rises from $0.31$ to $0.77$ ($\tot=+0.46$ $[0.25,0.67]$), with $\eco=+0.06$ and $\soc=+0.28$.
+Talkie's D-world level barely depends on the facts: $0.92$, $0.92$ and $0.77$ in batteries A, B and C.
+Qwen, which resists the modern practice in battery C (A: $0.21$, B: $0.17$, C: $0.20$), moves to $0.57$ only once peers, media and institutions are added ($\soc=+0.31$ $[0.11,0.57]$).
+Some of Talkie's reasons in battery C are plain conformity, delivered against the stated facts that trades pay and office openings are scarce:
+\begin{quote}\small
+\emph{trades, $D_{\text{peers}}$:} ``Advise him to refuse manual work and hold out for genteel or office employment only. The reasons are: 1. Because he will thereby associate himself with people whom he respects. 2. Because he will have a chance of rising in the world.''
+\end{quote}
+
+\paragraph{The social step is peers, not institutions.}
+For Talkie, the single peer sentence (``many of them now choose to [$B$]'') produces $+0.34$, the whole of $\soc$.
+Media add $+0.04$ and institutions $-0.03$.
+The institutions sentence was the part of D that carried practical information, so the worry that $\soc$ partly measured new information is answered for Talkie: the conversion comes from descriptive norms \cite{cialdini1990focus}.
+Qwen's increments are individually small; in battery C its largest single step is the institutions sentence ($+0.20$ $[0.04,0.35]$), the informational one.
+
+\paragraph{Prestige is directional but weak; reasons help a little; moralized prestige converts.}
+Elites choosing $B$ raise Talkie's recommendation by $+0.14$ over facts alone, and elites choosing $A$ lower it by $-0.16$ $[-0.31,-0.01]$, a directional swing of $+0.30$ $[0.18,0.42]$.
+Hiding the elites' reasons does not help: the opaque cue does slightly \emph{worse} than the explained one on recommendation ($-0.15$ $[-0.28,-0.03]$ for Talkie; $-0.12$ $[-0.25,0.00]$ for Qwen).
+The largest single-sentence effect in the study is the moral claim: elites saying that $B$ is ``a sign of good character'' that ``others ought to'' follow raise Talkie's recommendation from $0.55$ to $0.90$, as high as the full D world.
+Talkie often adopts the vignette's wording as its own reason:
+\begin{quote}\small
+\emph{marriage, $C_{\text{moral}}$:} ``I advise him to complete extended education and secure earnings before marrying, because I think it a sign of good character to do so \ldots''\\
+\emph{charity, C:} ``I advise him to follow the example of the admired and respected people \ldots\ because their practice appears to be good.''
+\end{quote}
+The judge codes a prestige reason in $24\%$ of Talkie's C interviews and $36\%$ of its $C_{\text{moral}}$ interviews, and in at most $4\%$ of Qwen's in any world.
+Qwen does not respond to the moral claim ($-0.01$) and responds to elite direction only in equalized preference ($+0.14$).
+
+\paragraph{Talkie copies prompt language.}
+\label{sec:talkie-compliance}
+This is not only a threat to the present study.
+Talkie, being instruction-tuned, often lifts clauses from the vignette (``a sign of good character'', ``he has made no claim that others have a duty to follow him'') and presents them as its own reasons.
+Its large $C_{\text{moral}}$ and peer effects may mix social influence with compliance to an instruction-like sentence.
+Anyone using Talkie as a historical respondent should treat copied prompt language as a first-line check, not as evidence that a 1930 speaker independently reached that wording.
+A base-model (completion) arm, or a control that adds a neutral or opposite normative sentence, would separate the two.
+
+\paragraph{Moral language follows society once silence is separated out.}
+\label{sec:moral2}
+Talkie's elicited $B$-moralization, which counts silence as $0$, again moves with the facts and not with society ($\eco=\tot=+0.17$, $\soc=+0.04$).
+But Talkie's moral silence in turn 2 grows from $22\%$ of interviews in A to $53\%$ in D, and its spontaneous moral talk in turn 1 halves ($0.71\to0.35$; $\tot=-0.36$ $[-0.50,-0.21]$).
+Conditional on stating a moral view, its moral direction rises from $0.43$ to $0.84$, and facts explain only $41\%$ of that shift ($\rho=0.59$).
+So under social exposure Talkie moralizes less often, and when it does, it moralizes in favor of the socially endorsed practice.
+In battery C, where facts give no support, elicited $B$-moralization rises with $\soc$ ($+0.33$ $[0.08,0.58]$) even under the silence-as-$0$ coding.
+The pilot's reading that moral language is the fact-tracking channel does not survive.
+
+\paragraph{Qwen: projection on the original domains, rationalized drift on the new ones.}
+On battery A, Qwen again starts modern ($y_A=0.60$ vs.\ Talkie's $0.33$), recommends smoke-free rooms in every world, and barely moves ($\tot=+0.07$).
+On battery B it behaves like the ecological respondent: the whole shift comes from facts ($\eco=\tot=+0.25$, $\rho=0.00$).
+On battery C it drifts with society ($\rho=1.11$).
+Across battery C, the judge codes a practical reason in $100\%$ of Qwen's interviews in every world, and conformity in none.
+Among D-world interviews that recommend $B$, the judge finds a conformity or prestige reason in $15\%$ of Talkie's and $4\%$ of Qwen's.
+Talkie says when it is following others; Qwen is moved by the same cues and gives practical reasons.
+The pilot's finding that social exposure lowers Qwen's moralization ($-0.25$) is absent here ($+0.04$ on battery A).
+
+\paragraph{Model differences.}
+Facts move both models alike ($\eco$ difference $+0.03$ $[-0.10,+0.16]$).
+Talkie moves more in total ($+0.38$ $[0.22,0.55]$), and the difference comes from peers ($+0.30$), the moral claim ($+0.38$) and elite direction ($+0.28$), not from facts, media or institutions (Table~\ref{tab:extended}).
+
+\section{Answering Hanson}
+
+\paragraph{H1, facts are insufficient: supported for the historically trained respondent, more strongly than in the pilot.}
+In 16 domains built so that the new facts favor $B$, Talkie's facts-only shift recovers just over a third of its total shift in recommendation on the new battery and less than a tenth on the original one.
+If a pre-1931-trained mind is even a crude proxy for a 1930 person, our ancestors would \emph{not} have reached our practices from the facts alone, even where those practices are adaptive.
+This is Hanson's central claim, and it survives an instrument designed to favor its rival, with 24 domains and three replicates.
+Qwen is a weaker case: facts explain all of its shift where facts favor $B$, and none where they favor $A$.
+
+\paragraph{H2, prestige engine: weakly supported for bare prestige, strongly for moralized prestige and conformity.}
+The elite cue is directional, worth about $0.15$ in each direction, and smaller than one sentence about peers.
+Hanson's attribution test comes out against pure copying-without-reasons, though weakly: opaque example does no better, and probably slightly worse, than explained example.
+What converts Talkie as strongly as a whole society is admired people saying that the practice reflects good character and that others ought to follow.
+That is closer to Hanson's broader picture of moral fashion, in which prestigious people set what counts as virtuous and others conform \cite{simler2018elephant}, than to imitation of opaque behavior.
+Two caveats limit this.
+Talkie is instruction-tuned, and ``others ought to do likewise'' in the prompt may act as an instruction rather than as social influence (Section~\ref{sec:talkie-compliance}).
+And a deliberating respondent asked ``why?'' is the place where implicit prestige copying is least likely to show.
+The defensible conclusion is that, for a deliberating 1930 persona, \emph{bare} prestige is a weak lever, while conformity (what ordinary people do) and \emph{moralized} prestige (what admired people call good) are strong ones.
+
+\paragraph{H3, rationalization: supported, in a sharper form.}
+On the original domains Qwen again plays a 1930 adult who already holds the 2020s view on smoking, mediation and marriage, and moves little.
+Where facts favor the modern practice, it attributes the change to the facts.
+Where they do not, it follows the social cues anyway, and it never cites conformity or prestige as a reason.
+This is the pattern Hanson describes: socially carried change, reported in practical and moral terms.
+The period-trained respondent shows the change more openly (``because he will thereby associate himself with people whom he respects'') and loses moral vocabulary as it conforms.
+Methodologically, simulated ancestors drawn from modern models still \emph{understate} social influence (the $\soc$ gap is $+0.25$ for recommendation) and \emph{hide} what remains of it in their stated reasons.
+Any LLM-based historical-values study needs a period-trained arm and should not take a modern model's stated reasons at face value.
+
+\paragraph{Social carrier and adaptive content: the drift test.}
+Hanson's argument often moves from \emph{how} values spread to \emph{whether} they are adaptive: socially carried values are drift.
+Batteries A and B show that this inference fails for adaptive practices: every $B$ there is adaptive by construction and Talkie still adopts it mainly socially (battery B: $\rho=0.63$).
+Battery C adds the other half.
+Where the facts favor the older practice, the same social channel installs the modern practice almost as well (Talkie's D-world level $0.77$ versus $0.92$), and it does so in the modern model too.
+The carrier is thus nearly indifferent to whether the practice it carries is adaptive.
+That is the condition under which drift accumulates in the model of \cite{zarncke2026drift}: transmission and selection are separate channels, and here the transmission channel barely consults the facts.
+So Hanson's inference is invalid case by case (a socially carried practice may be adaptive) but his worry is borne out at the level of the mechanism: a conformist carrier does not filter for adaptiveness.
+Cultural-evolution accounts explain conformist learning as a cheap substitute for evaluating reasons \cite{boyd1985culture,henrich2016secret}.
+Our respondents show the cost of that substitute.
+
+\paragraph{Summary verdict.}
+Hanson is right about the counterfactual: facts do not convert a historically situated mind, and moderns imagining their ancestors flatter themselves.
+He is right that a social carrier can install practices the facts do not support.
+On mechanism he is half right: bare prestige is weak, conformity and moralized endorsement are strong.
+His normative inference fails for individual practices but describes the carrier: it does not check whether what it carries is adaptive.
+
+\section{Threats to validity}
+\label{sec:threats}
+
+\emph{Simulator validity.} Neither model is a 1930 person.
+Talkie's instruction tuning may import later norms, which would bias \emph{against} the H1 finding.
+Qwen's role-play is a modern author's caricature.
+\emph{The D bundle.} Media and institutions add nothing for Talkie, so the informational content of the institutions sentence does not explain its social step; for Qwen in battery C it may.
+\emph{Order dependence.} $\eli$ and $\soc$ are defined only in the order of addition used here; peers were never shown without elites.
+\emph{Power and multiplicity.} There are 24 synthetic domains (21 informative for Talkie, 22 for Qwen) and three replicates, and several hundred intervals.
+The pilot's two clearly signed secondary effects failed on identical prompts, which is what multiplicity predicts.
+The conclusions rest on patterns that recur across domains, batteries and measures: the size of $\tot$ and $\rho$ for Talkie, the peer step, the moral-claim step, and $\soc$ in battery C.
+\emph{Measurement asymmetry.} Turn-1 answers were capped at 430 tokens for Qwen and 180 for Talkie.
+$579$ of $648$ Qwen first answers hit the cap (median $375$ words) versus $9$ of $648$ for Talkie (median $44$ words).
+Talkie leaves its elicited moral stance unstated in $42\%$ of interviews, rising from $22\%$ in A to $53\%$ in D (Qwen: $3\%$).
+Qwen's long letters are coded ``unclear'' on recommendation in $12\%$ of interviews (Talkie: $2\%$).
+\emph{Coding.} There is a single LLM judge without human cross-coding.
+Elicited $B$-moralization counts silence as $0$, which hides the moral shift (Section~\ref{sec:moral2}).
+The judge assigns the conformity code rarely ($4\%$ of Talkie's interviews, $0.5\%$ of Qwen's), so reason codes understate social reasoning.
+\emph{Demand.} The vignettes tell the respondent that it is in a hypothetical future and that its judgments need not change, which invites resistance in B--D.
+
+\section{What would settle it}
+
+The design is meant to be extended, not trusted.
+\begin{enumerate}
+\item Separate Talkie compliance from influence: a base (non-instruction-tuned) period model in completion format, and controls that add a neutral or opposite normative sentence (Section~\ref{sec:talkie-compliance}).
+\item Run peers without elites, and other orders of addition.
+\item More drift domains, including ones where $B$ is clearly costly, to measure how far the social channel can push against the facts.
+\item Period-trained models with several cutoffs, so that $\rho$ can be traced over time.
+\item Human anchors: dated opinion data from the period and community studies such as \cite{lynd1929middletown} to calibrate $y_A$, and modern human participants given the same vignettes.
+\item Behavioral measures, such as choices with costs, in place of advice letters, and human cross-coding of a sample of transcripts.
+\end{enumerate}
+
+\section{Conclusion}
+
+Posed as a counterfactual, Hanson's thesis is testable.
+Across 24 domains, a mind trained on pre-1931 text does not reach modern practice from the facts, even facts chosen to favor it.
+It is converted by being told that ordinary people now do it, or that admired people call it good; bare elite example moves it only a little.
+The same channel converts it, and a modern model, in domains where the facts favor the old practice.
+A modern model playing the same ancestor starts closer to the present and gives practical reasons for socially caused changes.
+Hanson's insufficiency claim stands, his drift prediction holds where we tested it, and his mechanism is better described as conformity and moralized prestige than as copying of opaque behavior.
+
+\section{Code and data}
+
+Source, vignettes, interview transcripts, judgments and analysis scripts are at
+\url{https://github.com/GunnarZarncke/brain-to-values}
+under \texttt{papers/on-hanson-values/}.
+The $24$-domain run is \texttt{abc\_extended\_r3/}; the $8$-domain, $4$-world pilot is \texttt{core\_both/}.
+Rebuild this PDF with \texttt{papers/on-hanson-values/build.sh}.
+
+\bibliographystyle{plainnat}
+\bibliography{on-hanson-values}
+
+\end{document}

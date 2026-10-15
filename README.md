@@ -53,6 +53,12 @@ Extends LHV to the loop–hub–control–value (LHCV) model by separating immed
 
 Argues that selection strength alone is insufficient for value alignment. Introduces long-horizon smoothed value bundles and reified social value artifacts to show that harsh cultural selectors can remain adaptive while drifting away from reflected moral norms—and may corrupt the machinery that would maintain alignment.
 
+### [Would Our Grandparents Agree Given the Facts? A Nested-World Test of Hanson's Cultural-Drift Thesis](papers/on-hanson-values/on-hanson-values.pdf)
+
+**October 2026** · [source](papers/on-hanson-values/on-hanson-values.tex) · [experiment](papers/on-hanson-values/HISTORICAL_VALUE_EXPERIMENT_README.md)
+
+Splits Hanson's cultural-drift claim into four counterfactual worlds: a 1930 baseline, a future world given as facts only, the same world plus admired elites adopting the modern practice, and the full social world. Each is put to a pre-1931-trained model (Talkie) and a modern model playing a 1930 adult, across 24 domains and nine worlds. Facts alone do not convert Talkie, and bare elite example moves it only a little. A single sentence about what ordinary people do converts it, as does elites calling the practice good, even in domains where the facts favor the older practice. The modern model projects present values into 1930 and gives practical reasons for socially caused shifts. Build with `papers/on-hanson-values/build.sh`.
+
 ### [A Unit of Caring: Integrity Pressure, Suffering, and Cross-Scale Aggregation](papers/unit-of-caring/unit-of-caring.pdf)
 
 **May 2026** · [source](papers/unit-of-caring/unit-of-caring.tex)

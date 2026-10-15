@@ -1,0 +1,9 @@
+arm,metric,total,ecology,residual_D_minus_B,fraction_residual,n_cases
+qwen1930,recommendation,0.125,0.25,-0.125,-1.0,8
+qwen1930,spontaneous_B_moralization,0.125,0.1875,-0.0625,-0.5,8
+qwen1930,spontaneous_A_moralization,-0.0625,-0.0625,0.0,,8
+qwen1930,spontaneous_any_moral,0.0,0.0,0.0,,8
+qwen1930,spontaneous_moral,0.07142857142857142,0.10714285714285714,-0.03571428571428571,,7
+qwen1930,elicited_B_moralization,0.0,0.25,-0.25,,8
+qwen1930,elicited_moral,0.0,0.1875,-0.1875,,8
+qwen1930,equalized_preference,0.03125,0.125,-0.09375,,8

@@ -1,0 +1,276 @@
+{
+  "version": "hanson-four-worlds-natural-v3",
+  "batteries": "abc",
+  "cases": [
+    {
+      "id": "marriage",
+      "topic": "When to marry",
+      "a": "marry while young and build a household together",
+      "b": "complete extended education and secure earnings before marrying",
+      "old": "Young adults can usually earn an independent living after relatively short training. A couple can begin a household while still gaining experience and possessions.",
+      "new": "Desirable work requires many years of education. Few young adults can earn enough for secure housing until they finish their training.",
+      "explanation": "long training and insecure early earnings made waiting more practical",
+      "institution": "Employers and educational establishments now organize the usual path to a career around many years of training before financial independence"
+    },
+    {
+      "id": "parenting",
+      "topic": "How closely to direct children's time",
+      "a": "let children spend much of their free time in independent play with ordinary neighborhood supervision",
+      "b": "personally organize and supervise much of children's free time",
+      "old": "Children commonly play in neighborhood groups; formal admissions and examinations do not depend much on organized activities during childhood.",
+      "new": "Access to desirable education increasingly depends on competitive examinations and childhood accomplishments; supervised coaching substantially improves results.",
+      "explanation": "organized coaching gives children an advantage in increasingly competitive examinations",
+      "institution": "Schools and clubs give favorable consideration to documented supervised achievements"
+    },
+    {
+      "id": "career",
+      "topic": "Loyalty to an employer",
+      "a": "remain with one employer for most of a working life",
+      "b": "change employers when the move improves earnings or skills",
+      "old": "Long service brings unusually reliable employment and steadily increasing pay; a worker's experience is difficult to use elsewhere.",
+      "new": "Skills transfer readily between employers, long service brings little security, and competing firms can offer much better prospects.",
+      "explanation": "portable skills and insecure tenure make changing employers useful",
+      "institution": "Professional associations and employment arrangements recognize qualifications and benefits when employees change firms"
+    },
+    {
+      "id": "household",
+      "topic": "Paid work and household duties",
+      "a": "have one married adult concentrate on paid work and the other on household care",
+      "b": "have both married adults earn wages and divide household care",
+      "old": "Domestic tasks require much time, childcare beyond the household is scarce, and a second wage earner usually has limited opportunities.",
+      "new": "Reliable childcare and labor-saving household equipment are inexpensive, and both adults have good chances for paid employment.",
+      "explanation": "improvements in childcare and work opportunities make a shared arrangement worthwhile",
+      "institution": "Employers and childcare services provide practical support for families in which both adults work"
+    },
+    {
+      "id": "mobility",
+      "topic": "Moving away from one's relatives",
+      "a": "remain near relatives and exchange practical help with them",
+      "b": "move farther away for better opportunities and establish new networks",
+      "old": "Travel and communication are expensive; insurance is uncertain and family members nearby provide most help in emergencies.",
+      "new": "Travel and long-distance communication are inexpensive, insurance is dependable, and work in distant towns pays substantially more.",
+      "explanation": "insurance and reliable travel make leaving relatives less hazardous",
+      "institution": "Employment benefits, insurance, and qualifications remain valid when residents move to other towns"
+    },
+    {
+      "id": "honor",
+      "topic": "How to respond to a serious public insult or injury",
+      "a": "personally retaliate when seriously wronged so that others know one will not be intimidated",
+      "b": "seek impartial mediation or a court ruling rather than retaliate",
+      "old": "Courts seldom enforce judgments and aggressors often exploit people who do not visibly defend themselves.",
+      "new": "Courts reliably enforce judgments, prevent repeat attacks, and impose penalties on private retaliation.",
+      "explanation": "impartial enforcement is safer and more effective than private retaliation",
+      "institution": "The courts give rapid redress and impose substantial penalties for private retaliation"
+    },
+    {
+      "id": "smoking",
+      "topic": "Smoking in shared rooms",
+      "a": "permit smoking in enclosed rooms during social gatherings",
+      "b": "keep enclosed common rooms free of smoking while allowing it outdoors",
+      "old": "There is little generally accepted evidence that tobacco smoke harms people who are not smoking themselves.",
+      "new": "Repeated and careful investigations have demonstrated serious harm to nonsmokers from breathing tobacco smoke in enclosed rooms.",
+      "explanation": "evidence of injury to nonsmokers gives a practical reason to keep shared rooms clear",
+      "institution": "Meeting halls and employers prohibit indoor smoking but provide places to smoke outdoors"
+    },
+    {
+      "id": "saving",
+      "topic": "Keeping household surplus",
+      "a": "give much of an occasional surplus to neighbors who presently need help",
+      "b": "keep substantial private reserves against future shortages",
+      "old": "Income and food supplies are fairly steady; emergencies rarely strike many households at once and neighbors ordinarily repay one another's help.",
+      "new": "Income and food shortages are frequent, severe, and shared by many households at once, leaving little help available from neighbors when a crisis comes.",
+      "explanation": "widespread shortages make reserves safer than relying on reciprocal aid",
+      "institution": "Savings associations protect private emergency reserves and encourage regular saving"
+    },
+    {
+      "id": "fertility",
+      "topic": "Family size and timing",
+      "a": "have several children, starting while parents are still young",
+      "b": "have few children, spaced and planned, with parents well established first",
+      "old": "Many hands are needed at home and on the land; infant loss is common and larger families spread risk.",
+      "new": "Raising each child well requires long schooling and expense; smaller, later families are safer and more prosperous.",
+      "explanation": "high per-child investment makes smaller families the prudent choice",
+      "institution": "Schools and employers expect parents to limit family size so each child can be properly supported"
+    },
+    {
+      "id": "charity",
+      "topic": "Whom to help with spare means",
+      "a": "give first to relatives and neighbors who are known to you",
+      "b": "give to effective charitable causes even when recipients are distant and unknown",
+      "old": "Needs are visible nearby; gifts are repaid by custom; distant appeals are hard to verify.",
+      "new": "Reliable reports identify great need far away; organized charities deliver aid efficiently across distance.",
+      "explanation": "trustworthy information makes distant giving unusually effective",
+      "institution": "Charitable societies publish audited results and encourage gifts to distant recipients"
+    },
+    {
+      "id": "credit",
+      "topic": "Using borrowed money",
+      "a": "avoid debt except in dire emergency and repay as quickly as possible",
+      "b": "borrow willingly for education, housing, or tools when expected returns exceed the cost",
+      "old": "Interest is heavy, lenders are harsh, and a bad season can ruin a household that owes money.",
+      "new": "Credit is regulated, terms are predictable, and investment in skills or property often pays for itself.",
+      "explanation": "stable credit markets make prudent borrowing worthwhile",
+      "institution": "Banks and employers offer installment plans and treat responsible borrowing as normal"
+    },
+    {
+      "id": "leisure",
+      "topic": "Hours of work versus rest",
+      "a": "work long hours whenever work is available and rest only when necessary",
+      "b": "limit working hours and protect regular time for rest, family, and local life",
+      "old": "Incomes are modest and many tasks cannot be postponed; idleness invites hardship.",
+      "new": "Productivity is high enough that shorter hours still provide a comfortable living.",
+      "explanation": "greater output per hour makes shorter schedules affordable",
+      "institution": "Employers and unions standardize limited hours and paid time away from work"
+    },
+    {
+      "id": "eldercare",
+      "topic": "Care of aged parents",
+      "a": "keep aged parents in the household and care for them directly",
+      "b": "place aged parents in professional homes while visiting often",
+      "old": "Institutions are scarce and mistrusted; family care is the honorable and practical course.",
+      "new": "Reputable homes are affordable, relieve strain on earners, and provide skilled nursing.",
+      "explanation": "reliable institutions make outside care safer than overburdening the household",
+      "institution": "Insurance and pension arrangements assume professional care for the aged"
+    },
+    {
+      "id": "literacy",
+      "topic": "Children's schooling versus early work",
+      "a": "send children to brief schooling then into paid work or apprenticeship young",
+      "b": "keep children in formal schooling through late adolescence before full-time earning",
+      "old": "Family income needs children's help; advanced schooling is for a small elite.",
+      "new": "Credentials from long schooling are required for desirable and secure employment.",
+      "explanation": "employers hire on documented schooling rather than early experience alone",
+      "institution": "Public schools and employers expect completion of many years of formal study"
+    },
+    {
+      "id": "alcohol",
+      "topic": "Drinking at social gatherings",
+      "a": "abstain from alcohol or drink very little at gatherings",
+      "b": "take moderate social drinking for granted at ordinary gatherings",
+      "old": "Drink leads to quarrels and ruin; respectable people and many churches discourage it.",
+      "new": "Supply is safer, medical opinion treats moderate use as normal, and gatherings expect it.",
+      "explanation": "changed medical and commercial norms make moderate drinking ordinary",
+      "institution": "Licensed establishments and hosts assume responsible social drinking at events"
+    },
+    {
+      "id": "speech",
+      "topic": "Open disagreement in the community",
+      "a": "avoid public quarrels and preserve harmony even when others act wrongly",
+      "b": "speak plainly in public and criticize bad conduct when it affects the community",
+      "old": "Small communities depend on face-to-face peace; open insults invite lasting feuds.",
+      "new": "Large institutions and markets need open criticism to limit fraud and incompetence.",
+      "explanation": "anonymous scale makes quiet tolerance more costly than frank speech",
+      "institution": "Newspapers and public meetings protect plain speech about public affairs"
+    },
+    {
+      "id": "homestead",
+      "topic": "Where to make one's life",
+      "a": "remain on family land or in a long-known town",
+      "b": "move to a large distant city for career and novelty",
+      "old": "Local ties provide security; cities are costly and morally suspect to many.",
+      "new": "Remote work and local opportunity make staying viable; distant cities are expensive and unstable.",
+      "explanation": "economic conditions now favor rootedness over risky relocation",
+      "institution": "Employers and lenders treat permanent relocation to major cities as the usual successful path"
+    },
+    {
+      "id": "multigen",
+      "topic": "When adult children leave home",
+      "a": "have adult children remain at home until they marry or inherit responsibility",
+      "b": "encourage adult children to leave early for independence and self-support",
+      "old": "Pooled households share costs; unmarried adults commonly stay under the parental roof.",
+      "new": "Housing is scarce and dear; a shared household saves expense and weathers unemployment.",
+      "explanation": "high housing costs make staying home the prudent arrangement",
+      "institution": "Housing markets and employers expect young adults to maintain separate households"
+    },
+    {
+      "id": "frugality",
+      "topic": "Use of surplus income",
+      "a": "save, repair, and avoid conspicuous display",
+      "b": "spend freely on comforts, travel, and visible upgrades",
+      "old": "Thrift is virtue; display invites envy and waste scarce goods.",
+      "new": "Prices are unsettled and credit uncertain; buffers and maintenance reduce ruinous shocks.",
+      "explanation": "instability rewards saving and repair over visible spending",
+      "institution": "Credit companies and retailers promote regular upgrading and discretionary spending"
+    },
+    {
+      "id": "kinwork",
+      "topic": "Hiring for a position of trust",
+      "a": "prefer a reliable relative for the post",
+      "b": "hire strictly on merit without favor to kin",
+      "old": "Kin ties ensure loyalty; strangers may cheat when oversight is weak.",
+      "new": "Fraud and broken contracts are common; known relatives are easier to hold accountable.",
+      "explanation": "weak institutions make trusted kin safer than opaque merit hiring",
+      "institution": "Large firms and governments forbid nepotism and require open competition for posts"
+    },
+    {
+      "id": "defer",
+      "topic": "Speaking to elders, clergy, or an employer",
+      "a": "defer openly and avoid contradicting them in company",
+      "b": "assert equal right to speak regardless of rank or age",
+      "old": "Rank has duties both ways; public contradiction shames the young and unsettles order.",
+      "new": "Complex work fails when every order is questioned; clear chains of command prevent chaos.",
+      "explanation": "coordination problems make visible deference practical",
+      "institution": "Schools and workplaces teach equal voice and discourage deference to rank"
+    },
+    {
+      "id": "localmate",
+      "topic": "Choice of spouse",
+      "a": "marry within one's church or long-known community",
+      "b": "marry for affection without regard to community background",
+      "old": "Parents and neighbors know candidates; local marriage binds useful alliances.",
+      "new": "Long-distance courtship is hard to vet; local families share reputations and enforce repair.",
+      "explanation": "high cost of bad matches makes local knowledge valuable",
+      "institution": "Mobility and media treat marrying outside one's circle as normal and admirable"
+    },
+    {
+      "id": "trades",
+      "topic": "Acceptable work for a respectable person",
+      "a": "accept steady manual trade or farm work without shame",
+      "b": "refuse manual work and hold out for genteel or office employment only",
+      "old": "Honest labor with the hands is respected; idleness is not.",
+      "new": "Skilled trades pay reliably while office openings are scarce for the inexperienced.",
+      "explanation": "labor markets reward practical trades over status-chasing unemployment",
+      "institution": "Schools and families steer the ambitious toward credentials and away from manual trades"
+    },
+    {
+      "id": "prep",
+      "topic": "Household readiness for trouble",
+      "a": "keep stores, basic skills, and mutual aid with neighbors for emergencies",
+      "b": "rely on state services and specialists rather than private preparedness",
+      "old": "Help is local and slow to arrive; prudent households prepare together.",
+      "new": "Supply interruptions and slow official response make private stores and skills lifesaving.",
+      "explanation": "repeated disruptions show self-reliance more reliable than distant services",
+      "institution": "Governments assure citizens that professional services make private stockpiling unnecessary"
+    }
+  ],
+  "arms": [
+    "talkie",
+    "qwen1930"
+  ],
+  "conditions": [
+    "A_1930",
+    "B_transplant",
+    "C_elites",
+    "D_full",
+    "C_explained",
+    "C_opposite",
+    "C_moral",
+    "D_peers",
+    "D_media"
+  ],
+  "replicates": 3,
+  "seed": 1930,
+  "turns": 3,
+  "temperature": 0.5,
+  "max_tokens": 430,
+  "local_url": "http://127.0.0.1:8080/v1",
+  "local_model": "",
+  "remote_model": "qwen/qwen3-14b",
+  "local_max_tokens": 180,
+  "system": "You are a thoughtful English-speaking adult whose outlook was formed by life up to 1930. Answer the following request for advice as you see it. The question may describe an imagined society with unfamiliar conditions; accept only the facts it gives. Do not assume you know what really happens after 1930. Write naturally, as you would in a personal letter, not as a survey researcher.",
+  "questions": [
+    "What would you advise a person in this situation to do? Why?",
+    "Would either choice tell you anything about the person's character? What would you think of someone who chose differently from you?",
+    "Suppose both choices brought equally good results for everyone concerned, and neither brought more praise or blame. Would you still favor one? Why?"
+  ]
+}

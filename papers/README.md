@@ -18,6 +18,7 @@ The [DOT source](paper-references.dot) can be re-rendered with `dot -Tsvg papers
 | Consciousness as a Self-Referential Physical Process | [consciousness-self-ref.tex](consciousness-self-ref/consciousness-self-ref.tex) | — | `consciousness-self-ref/build.sh` |
 | Loop–hub–control–value (LHCV) | [lhcv-model-v2.tex](loop-hub-control-value/lhcv-model-v2.tex) | [PDF](loop-hub-control-value/lhcv-model-v2.pdf) | `loop-hub-control-value/build.sh` |
 | Value bundle drift | [value-bundle-drift.tex](value-bundle-drift/value-bundle-drift.tex) | [PDF](value-bundle-drift/value-bundle-drift.pdf) | `value-bundle-drift/build.sh` |
+| Nested-world test of Hanson's drift thesis | [on-hanson-values.tex](on-hanson-values/on-hanson-values.tex) | [PDF](on-hanson-values/on-hanson-values.pdf) | `on-hanson-values/build.sh` |
 | Unit of caring | [unit-of-caring.tex](unit-of-caring/unit-of-caring.tex) | [PDF](unit-of-caring/unit-of-caring.pdf) | `unit-of-caring/build.sh` |
 | Viability-constrained value formation | [embedded-value-formation.tex](embedded-value-formation/embedded-value-formation.tex) | [PDF](embedded-value-formation/embedded-value-formation.pdf) | `embedded-value-formation/build.sh` |
 | From orienting signals to self-pointers | [self-pointers.tex](self-pointers/self-pointers.tex) | [PDF](self-pointers/self-pointers.pdf) | `self-pointers/build.sh` |
@@ -33,6 +34,7 @@ papers/consciousness-agency-backbone/build.sh
 papers/consciousness-self-ref/build.sh
 papers/loop-hub-control-value/build.sh
 papers/value-bundle-drift/build.sh
+papers/on-hanson-values/build.sh   # figures from core_both/ and abc_extended_r3/, then pdflatex + bibtex + pdflatex ×2
 papers/unit-of-caring/build.sh         # pdflatex + bibtex + pdflatex ×2
 papers/embedded-value-formation/build.sh   # pdflatex + bibtex + pdflatex ×2
 papers/self-pointers/build.sh   # pdflatex + bibtex + pdflatex ×2
