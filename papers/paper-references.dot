@@ -36,7 +36,8 @@ digraph paper_references {
 
     { rank=same; SRL; LHV; CAB; }
     { rank=same; LHCV; LRCI; }
-    { rank=same; VBD; UoC; VV; SP; VBI; OHV; }
+    { rank=same; VBD; UoC; VV; SP; }
+    { rank=same; VBI; OHV; }
 
     // Explicit citations (solid)
     LHV  -> FEL  [label="cites", penwidth=2, color="#2a6099"];
