@@ -1,0 +1,192 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,tabularx,array}
+\usepackage[round,authoryear]{natbib}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Beyond the Value Readout: LHCV Reconstruction},
+  pdfauthor={Gunnar Zarncke},
+  pdfsubject={Loop--hub--control--value model, cultural reconstruction, bounded influence}
+}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.25em}
+\setlength{\tabcolsep}{5pt}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\II}{\mathrm I}
+\newcommand{\TV}{\mathrm{TV}}
+\newcommand{\doop}{\operatorname{do}}
+\newtheorem{definition}{Definition}
+\title{Beyond the Value Readout:\\Control Bypasses, Cultural Reconstruction, and Conditional Influence in the Loop--Hub--Control--Value Model}
+\author{Gunnar Zarncke, aintelope}
+\date{October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The Loop--Hub--Control--Value (LHCV) model proposes that heterogeneous biological regulatory errors are compressed through partially overlapping neural hubs into control-relevance signals, which both steer immediate behavior and shape the developmental acquisition of abstract values. Its original pipeline notation can obscure the fact that policy need not pass through a symbolic value readout; likewise, its account of cultural value artifacts leaves the recipient-side mechanism underspecified. We offer a conservative architectural revision. Immediate control, learned value bundles, and interpreted social observations contribute concurrently to policy and to future learning. Public cultural artifacts enter as observations reconstructed under recipients' existing regulatory states, histories, and inductive biases rather than as copied internal values. Some reconstructed artifacts may themselves modify subsequent interpretation or transmission, without founding those capacities or requiring predefined social roles. This accommodates transient public conformity, durable learning, recurrent cultural reconstruction, and cultural drift as different, potentially co-occurring outcomes. We state a formal stochastic-process skeleton retaining the original loop--hub and hub--control steps and separate latent bundles, symbolic value readouts, and measured responses. Existing evidence from homeostatic learning, multiple action-control systems, cultural transmission, norm interventions, and a historically situated language-model vignette experiment motivates and constrains the revision but does not establish the proposed neural implementation or human lifetime-learning dynamics. We briefly propose prospective, conditional bounds on immediate and propagated effects as a route from an accommodating architecture toward empirically discriminable models. No universal social-influence coefficient, bound magnitude, or human-like artificial learner is assumed.
+\end{abstract}
+
+\noindent\textbf{Keywords:} value formation; biological regulation; cultural reconstruction; social learning; causal identification; bounded influence; LHCV.
+
+\section{Introduction}
+An individual may sincerely endorse frugality yet spend in response to an immediate appetite, publicly praise a fashionable but privately disfavored practice, or learn from repeated social experience to value what initially appeared alien. These outcomes should not be treated as successive degrees of one event called ``value change.'' Each may depend on distinct but interacting routes between regulation, acquired abstractions, observations, and action. A cultural prescription can affect what someone says without becoming a persistent learned value; alternatively it can alter practical opportunities, social expectations, and recurring control experiences until a lasting abstraction is acquired. A sufficiently salient immediate control signal may dominate a nominally endorsed value. The converse is also possible: social information may recruit threat, attachment, exclusion, or competence-related control relevance rather than merely compete with it.
+
+The Loop--Hub--Control--Value model \citep{zarnckeLHCV,zarnckeLoops} was intended to distinguish immediately actionable regulatory signals from developmentally acquired abstract value readouts. Its compact $L\to H\to C\dashrightarrow V$ diagram, however, can misleadingly suggest that behavior must pass through $V$. The companion value-bundle account further treats socially communicated concepts and practices as compressed artifacts of learned regulation, while acknowledging that cultural selection can maintain artifacts after their relation to original regulatory consequences has changed \citep{zarnckeDrift,zarnckeEmbedded}. What remained comparatively implicit was the receiving individual's construction of meaning and the distinct causal paths from an encounter to immediate response, to persistent learning, and to future encounters. This matters when interpreting changes in expressed judgment induced by social cues, including the simulated counterfactual interviews in \citet{zarnckeTalkie}.
+
+This paper revises rather than replaces LHCV. The biological loop inventory and candidate hub correspondences remain hypotheses inherited from the earlier model, not results newly established here. We retain its compression and control-relevance equations, make concurrent routes to policy explicit, and interpret cultural transmission as observation-dependent reconstruction \citep{sperber1996,kalish2007}. We do not posit a fixed taxonomy of elites, peer pressure, production, enforcement, or normalization. Such distinctions can be valuable when an application supplies measurable actors and observations, but cannot be universal primitives by stipulation. Neither do we posit that every learned reception rule was itself acquired through another reception rule: culturally acquired heuristics alter more basic regulatory, perceptual, mnemonic, and learning capacities.
+
+The research problem is consequently twofold. First, identify causal structure economical enough to explain differences between immediately expressed evaluations and enduring learning without inventing a new mechanism for every discordant observation. Second, restrict the admissible response and propagation functions prospectively. An unrestricted statement that outcomes depend on history, control, and culture is compatible with almost anything. Conditional effect bounds, if supported by independent measurements, could give the architectural proposal non-vacuous empirical consequences. Here these bounds are only a program, not an accomplished result.
+
+\section{Inherited architecture and distinctions}
+\subsection{Regulation, compression, and relevance}
+LHCV begins with multiple regulatory loops indexed by $\ell$, each producing a potentially heterogeneous error signal $\epsilon_{\ell,t}\in\mathbb R^{d_\ell}$. In the original illustrative compression,
+\begin{equation}
+ s_{h,t}=\sigma_h\!\left(\sum_{\ell\in I(h)}w_{\ell h}\lVert\epsilon_{\ell,t}\rVert_p\right),\qquad
+ c_{h,t}=g_h(s_{h,t},z_t,u_t),
+ \label{eq:lhcv}
+\end{equation}
+where $I(h)$ denotes inputs to hub $h$, $w_{\ell h}$ effective transfer weights, $z_t$ the available learned state, and $u_t$ an ongoing or contemplated action context. The original notation used $a_t$ for the last argument; $u_t$ here clarifies that a current control-relevance proxy need not depend circularly on an action that the policy has not yet selected. $s_h$ and $c_h$ are abstract effective variables, not claims that each named structure broadcasts precisely one anatomical scalar or that all error vectors are reduced by literal norm-taking. In particular, the norm and nonlinearity are modeling choices awaiting empirical resolution, and cross-hub interactions are not excluded.
+
+The conceptual distinction is between a signal's immediate relevance to controlling the organism's situation and an explicit value concept. Regulation may concern injury, energy, attachment, uncertainty, opportunity, social exclusion, or other needs; a neural signal's control role does not mean that a named nucleus encodes justice, health, or freedom. Predictive regulation and homeostatic reinforcement learning offer compatible, though not identical, frameworks for coupling changing internal demands to decisions \citep{sterling2012,keramati2014}. LHCV adopts the stronger, still unverified architectural proposal that overlapping low-bandwidth hub signals constitute a tractable intermediate representation between diverse loop errors and learned value readouts \citep{zarnckeLHCV}.
+
+\subsection{Values, bundles, and readouts}
+A value is used here as a learned, somewhat persistent, cross-context regulatory abstraction affecting evaluation, attention, choice, or future learning, rather than as any regulatory set point or momentary verbal endorsement \citep{zarnckeEmbedded}. Write the individual's accumulated history as $h_{i,t}$ and the latent bundle as
+\begin{equation}
+ B_{i,t}=D_{\theta_{i,t}}(h_{i,t})\in\mathcal B. \label{eq:bundle}
+\end{equation}
+The low-dimensional $\mathbb R^k$ instance of $\mathcal B$ in the existing bundle theory is a useful compression hypothesis, not a presupposition that exactly $k$ psychologically separable values exist or that a unique latent factorization is identifiable. A learned coordinate may have been grounded in predicted future regulation under an earlier model of the world even if its present consequences differ; acquisition-grounding is not a guarantee of current adaptive correctness. It is therefore possible for particular mature values to persist despite contemporary conflict with a biological control signal, and for the learner to update those values only slowly \citep{zarnckeEmbedded}.
+
+$V_{i,t}$ denotes a symbolic or task-relative value \emph{readout} from that learned state, rather than the complete underlying state. The original LHCV softmax can be retained as an illustrative decoder,
+\begin{equation}
+ \PP(V_{i,t}=v_k\mid c_{i,t},e_{i,t})
+ =\operatorname{softmax}_k\!\left[\beta_k+\sum_h\alpha_{kh}(e_{i,t})c_{i,h,t}\right],
+ \label{eq:originaldecoder}
+\end{equation}
+where $e_{i,t}$ summarizes developmental and situational context, including concepts, memory, language, and socially derived information. Equation~\eqref{eq:originaldecoder} is not a complete dynamics of $B$: its coefficients can carry the effect of learned history, but a reported value label is not itself evidence of a newly stabilized bundle. More explicit versions may condition on $B_{i,t}$ or the learned parameters $\theta_{i,t}$; the inherited expression is an example rather than a separate obligatory causal stage.
+
+\subsection{The artifact distinction}
+The companion cultural account introduces publicly communicable artifacts, written $A$, through a reification map $A=\rho(B)$ and a feedback path from artifacts into future regulatory trajectories \citep{zarnckeDrift}. This captures one route by which a long history of personal evaluation may become a transmissible word, justification, narrative, institution, or practice. It is not an exhaustive origin story: artifacts can be modified, assembled, prescribed, strategically fabricated, or reconstructed without the current transmitter endorsing a corresponding latent value. Nor does a public token reveal which individual bundle, if any, generated it. We retain $A$ as the public-level concept and specify reception below instead of introducing a redundant ``meme'' layer.
+
+\section{Concurrent control pathways and moderation}
+\subsection{Policy need not pass through a symbolic value readout}
+The earlier LHCV policy example already allowed immediate control to affect action directly:
+\begin{equation}
+ \pi_t(a\mid z_t,c_t)\propto\exp\!\left[Q_\theta(z_t,a)+\sum_h\lambda_h c_{h,t}\phi_h(z_t,a)\right].
+ \label{eq:oldpolicy}
+\end{equation}
+The architectural correction is to state this concurrency explicitly. Action selection can depend on current control, learned bundle, reconstructed observations, and circumstances without requiring a serial $C\to V\to a$ path. A convenient general notation is
+\begin{equation}
+ \pi_{i,t}(\cdot)=\Pi_{\theta_{i,t}}(\cdot\mid c_{i,t},B_{i,t},\widehat A_{i,t},z_{i,t}).
+ \label{eq:policy}
+\end{equation}
+The inputs in Eq.~\eqref{eq:policy} do not imply independence, additive rewards, or privileged access to an artifact's objective meaning. In particular, $\widehat A$ can change the attention paid to a control signal, alter the individual's prediction of consequences, or trigger control relevance associated with social acceptance or disapproval. Conversely, strong immediate regulation can limit how far an expressed cultural endorsement controls an available action. These possibilities are not exceptions to LHCV but different routes through its hypothesized architecture.
+
+\subsection{Moderation is not a discretionary explanation}
+A useful distinction is between the \emph{direct} effect of an encountered artifact on policy under a held-fixed control state and its \emph{total} effect when the same encounter is allowed to modify salience, expectation, and control relevance. The latter can be larger and of a different sign. A person advised to act generously while hungry might continue to protect their food; in a different situation, the same advice can increase the anticipated risk of exclusion for refusing and thereby recruit an additional control pressure. It follows that biological and cultural contributions cannot be assumed to subtract mechanically. Their interaction must be measured or otherwise constrained under specified conditions.
+
+This distinction also guards against treating every departure from stated endorsement as failed value learning. The observed variables should be separated: a recommendation, a costly action, a private preference, a public moral statement, and a retained cross-context disposition need not coincide. Habitual and goal-directed controls likewise make it unwise to identify a single stated evaluation with all available policy determinants \citep{balleine2010,dolan2013}. The argument is functional; it does not assert that those established behavioral distinctions map one-to-one onto $L$, $H$, $C$, or $B$.
+
+\subsection{Neural restraint}
+There is evidence for interacting predictive, interoceptive, corticostriatal, and regulatory processes \citep{barrett2015,balleine2010,keramati2014}; that evidence does not establish a literal sequence of fifteen errors, fixed hub scalars, and a unique downstream abstract-value decoder. Multiple neural processes contribute to a given action, and the contributions of a structure can change with task, development, and the rest of the network. LHCV should thus treat hubs as candidate overlapping integration and control sites, with cross-cutting contributions across multiple learned values. A mature value's expression can survive disruption of a process important during acquisition, while an ongoing intervention may affect choice, attention, or learning without immediately erasing the value. These are hypotheses about dissociable roles, not a license to declare every lesion outcome supportive.
+
+A defensible neural test requires prior specification of the intervention, task, time window, and predicted mediating observable. An intervention that alters a candidate hub but produces no predicted change in its proximal control measures would count against that particular mapping. No conclusion about LHCV as a whole follows from a single anatomically specific negative finding unless the mapping is indispensable to the version being tested.
+
+\section{Cultural artifacts as reconstructed observations}
+\subsection{From public trace to recipient-side interpretation}
+Let $x_t$ be the joint environment, encompassing material conditions, observable behavior, public utterances, documents, and institutions. An individual receives only an observation $o_{i,t}$ drawn from their particular observational circumstances, not the entire public state. When relevant cultural content is recognized, its interpretation is reconstructed:
+\begin{equation}
+ \widehat A_{i,t}\sim K_{\theta_{i,t}}(\cdot\mid o_{i,t},h_{i,t},c_{i,t}).
+ \label{eq:reconstruct}
+\end{equation}
+Here the hat indicates an internal reconstruction, not noisy access to an otherwise assumed canonical message. The observation may carry the utterance of a practice, other people's choices, outcomes, apparent consensus, disagreement, or a pattern of institutional behavior. Whether these constitute evidence, a request, a threat, a moral prescription, or something irrelevant depends in part on the recipient's existing learned machinery. Their effects can therefore vary between recipients and environments without introducing different universal ``elite,'' ``peer,'' and ``enforcement'' primitives for each culture.
+
+The importance of reconstruction rather than literal copying has substantial precedent. Sperber's epidemiology of representations treats cultural persistence as repeated transformations across public and mental representations \citep{sperber1996}. Iterated-learning analyses and human experiments show that chains of transmission can reflect shared inductive biases even when the initial input differs \citep{griffiths2007,kalish2007}. A socially stable representation may therefore persist through high-fidelity copying, repeated independent reconstruction under similar constraints, or some mixture. This is congenial to LHCV: shared learning and regulatory architectures are a candidate source of convergence, although the cited experiments do not show that LHCV's proposed biological intermediates are responsible.
+
+\subsection{Higher-order artifacts and the base of learning}
+Cultural content can concern other content. An injunction to follow proven experts, an expectation of deference, a norm of public dissent, or a rule to judge claims on their merits may change how subsequent observations are reconstructed, reported, and acted upon. Such higher-order artifacts need no ontologically separate class; they are content whose learned effects include changes in $K$, $\Pi$, or the future learning update. Importantly, observing the words of such a rule is not equivalent to acquiring a durable new update policy.
+
+This proposal would become circular if every ability to interpret an artifact were assumed to require an earlier learned artifact. We instead assume available perceptual, memory, regulatory, and general learning capacities that can operate before explicit cultural rules are acquired, and can themselves be modified over development. Findings that young children selectively trust previously accurate informants are compatible with learned modulation of these capacities without establishing that all selective trust is articulated cultural inheritance \citep{koenig2004}. Higher-order artifacts operate on an existing learner; they do not create learning ex nihilo.
+
+\subsection{Endogenous normalization without a universal social taxonomy}
+Actual adoption, visible choices, believed prevalence, public approval, private evaluation, and expected costs of dissent are distinct objects. The joint dynamics may make some artifacts appear normal, increase their use, and change their subsequent practical consequences. Normalization is therefore a candidate emergent property of recurring observations and responses. An influential person or subpopulation may control some individuals' encounters while being disregarded by others; this can be represented in an observation mechanism whenever independently observable, without assigning invariant social roles to the foundational theory. Empirical examples show both that correcting misperceived social approval can change costly behavior \citep{bursztyn2020} and that a descriptive norm can generate a counterproductive response unless combined with evaluative information \citep{schultz2007}. The direction and magnitude of a normalization response cannot be assumed a priori.
+
+\section{A minimal coupled formal model}
+The following stochastic-process skeleton specifies relationships and counterfactual targets, not a parameterized, anatomically validated generative model. Let $i\in\{1,\ldots,n\}$ index persons or learners; $x_t\in\mathcal X$ denote an environment that includes public cultural traces; $z_{i,t}$ the individual's currently represented situation; $h_{i,t}=(o_{i,0:t},a_{i,0:t-1},c_{i,0:t-1})$ an accumulated information-and-control history; and $\theta_{i,t}$ parameters of the individual's learned representations and response rules. The following order separates already available regulatory inputs, encounter, interpretation, action, and update:
+\begin{align}
+ o_{i,t}&\sim\Omega_i(\cdot\mid x_t,h_{i,t-1}), \label{eq:observation}\\
+ \epsilon_{i,\ell,t}&=E_{i,\ell}(x_t,z_{i,t},h_{i,t-1}),\qquad
+ s_{i,h,t}=\sigma_h\!\left(\sum_{\ell\in I(h)} w_{\ell h}\lVert\epsilon_{i,\ell,t}\rVert_p\right), \label{eq:loops}\\
+ c_{i,h,t}&=g_h(s_{i,h,t},z_{i,t},u_{i,t}),\qquad
+ B_{i,t}=D_{\theta_{i,t}}(h_{i,t}),\label{eq:controlbundle}\\
+ \widehat A_{i,t}&\sim K_{\theta_{i,t}}(\cdot\mid o_{i,t},h_{i,t},c_{i,t}),\label{eq:innerrec}\\
+ a_{i,t}&\sim\Pi_{\theta_{i,t}}(\cdot\mid c_{i,t},B_{i,t},\widehat A_{i,t},z_{i,t}),\label{eq:innerpolicy}\\
+ x_{t+1}&\sim P_E(\cdot\mid x_t,a_{1,t},\ldots,a_{n,t}),\label{eq:env}\\
+ \theta_{i,t+1}&\sim U_i(\cdot\mid\theta_{i,t},h_{i,t},o_{i,t+1},a_{i,t},c_{i,t+1}).\label{eq:update}
+\end{align}
+The update equation is understood as the subsequent learning step after the environment transition in Eq.~\eqref{eq:env} has supplied a new observation and the next control signal has become available. The notation suppresses intermediate environmental events and does not assert synchronous real-world timing. In implementation, $h_{i,t}$ is enlarged by newly available observations and actions and $B_{i,t+1}=D_{\theta_{i,t+1}}(h_{i,t+1})$. Explicit public artifact production need not be a primitive update separate from $P_E$: speaking, publishing, copying, and modifying a practice are actions that leave traces in $x_{t+1}$. When such an application requires a public-level projection $A_t=\mathcal P(x_t)$, it may be added without assuming $A_t=\rho(B_{i,t})$ for every instance.
+
+We also require an observation model for empirical responses. Let $Y_{i,t}^{(q)}$ be a recorded outcome under measurement protocol $q$ (choice, recommendation, declared moral evaluation, delayed transfer, etc.):
+\begin{equation}
+ Y_{i,t}^{(q)}\sim M_q(\cdot\mid h_{i,t},B_{i,t},c_{i,t},\widehat A_{i,t},a_{i,t}).\label{eq:measurement}
+\end{equation}
+This measurement equation is deliberately separate from $B$. It does not license equating self-reported endorsement with latent long-horizon regulatory organization. A stable learned value coordinate, as defined in \citet{zarnckeEmbedded}, should exhibit some persistence and cross-situation influence beyond a single prompt; the relevant horizon and outcomes must be declared rather than supplied after the fact. We also avoid presuming that the learner's represented self, the beneficiaries of a particular value, and biological individuality coincide.
+
+\paragraph{Causal reading and limitations.}
+The kernels $\Omega$, $K$, $\Pi$, and $U$ may share underlying parameters and be strongly history dependent; the factorization is an analytical description of ordered causal questions, not a claim that there are four separable brain modules. Likewise, the observation mechanism may depend on prior actions and environmental constraints, and what is informally called elite influence may materialize as differences in which observations are likely to arrive. Merely writing a reconstruction kernel does not identify transmission effects: similar evaluations may reflect selective association, shared material causes, or similar recipient priors. In observational social-network studies homophily and contagion are generically confounded under common assumptions \citep{shalizi2011}. Moving observations inside the reconstruction process identifies \emph{where} to intervene but cannot replace measured exposure, longitudinal information, or suitable experimental variation.
+
+\section{What current evidence does and does not constrain}
+\subsection{Regulatory control and multiple routes to behavior}
+Accounts of allostasis emphasize predictive resource allocation rather than fixed-set-point correction \citep{sterling2012}. Homeostatic reinforcement learning gives a normative framework in which internal physiological state changes the value of outcomes and learned behavior \citep{keramati2014}. Separately, experimental and neural literatures distinguish habit-related and outcome-sensitive contributions to action control \citep{balleine2010,dolan2013}. These findings make concurrent control routes plausible and caution against reducing action to publicly articulated value; none uniquely validates the LHCV bottleneck inventory or its proposed $H\to C$ mapping. Predictive interoception additionally suggests interactions between ascending bodily information and central expectations, which argues for treating cross-hub moderation as an open systems question \citep{barrett2015}. The stronger neural claims of the earlier LHCV manuscript remain proposals to test, not premises that cultural observations have proved.
+
+\subsection{Heterogeneity of artifact reception}
+The historically situated language-model experiment in \citet{zarnckeTalkie} compared counterfactual vignettes across $24$ practice domains using Talkie-1930 and a historically prompted modern model. For Talkie's coded recommendation, newer material facts shifted orientation by $0.12$ on the study's $[0,1]$ measure, an elite-adoption cue by $0.14$, and the subsequent combined social cue by $0.32$. A peer-adoption sentence contributed a similar change after elite exposure, whereas additional media and institutional cues made little incremental difference in that specified order. Across eight scenarios deliberately written so the supplied practical facts favored the older practice, both simulated respondents still moved toward the socially endorsed newer practice in the full vignette. These are observations of elicited generated text under controlled prompts, not acquired values in humans or evidence that social forces are indifferent to every relevant consequence. Talkie's instruction tuning and copying of normatively worded prompt language, the bundled and order-dependent conditions, and the coding design qualify any interpretation. In particular, the large peer contrast was never identified independently of preceding elite exposure.
+
+Human evidence supplies both enabling and limiting cases. In a randomized study in Saudi Arabia, correcting underestimates of others' approval of women's outside employment changed costly assistance with job search and later application behavior \citep{bursztyn2020}; this supports a causal role for \emph{perceived} social information without measuring acquisition of an underlying value. Descriptive neighborhood-consumption feedback altered household electricity use in opposite directions depending on prior use, with an accompanying approval/disapproval cue removing the undesirable boomerang effect \citep{schultz2007}. Cultural-market experiments demonstrated that visible popularity can generate unequal, unpredictable, partially self-fulfilling adoption, while initially inverted popularity failed to wholly determine long-run outcomes \citep{salganik2006,salganik2008}. Laboratory studies of social convention exhibit tipping behavior in a specified coordination setting \citep{centola2018}. These findings warrant responsive, context-dependent feedback, but not a universal normalization threshold or a fixed sign for exposure effects.
+
+Negative and heterogeneous findings matter equally. A Cochrane synthesis of social-norm information interventions for student alcohol use found any longer-term average benefits generally too small to be substantively meaningful \citep{foxcroft2015}. Experimental social-learning results vary with task complexity, payoff relevance, and transmission fidelity \citep{muthukrishna2016}. These are not anomalies to explain away as invariably strong biological override. They constrain the range of contexts in which an artifact encounter is likely to acquire control relevance, modify evaluation, or persist. Without independent measurements of those intermediate processes, LHCV must not assign the cause of a null or reversed effect post hoc.
+
+\subsection{Reconstruction is not evidence of persistent value change}
+Iterated learning shows that shared cognitive biases can repeatedly reconstruct related content from imperfect transmission \citep{griffiths2007,kalish2007}. This is a plausible route from common learning architecture to cultural regularity, not proof that a particular cultural object was copied, nor that a biological hub acquired a specific symbolic value. Similarly, transient advice, moral language, costly behavior, and stable learned preferences are different observables. Aggregated historical text or cross-sectional opinion surveys may describe an artifact's public trajectory, but cannot alone separate within-person updating, cohort replacement, strategic expression, or changing ecology. Independent observations and interventions, not reconstructed psychological motives assigned to past populations, are required for that distinction.
+
+\section{A restrained proposal for quantitative restrictions}
+The formal skeleton currently imposes little beyond its declared causal ordering. To make a specific LHCV implementation discriminable, the next step should be to estimate conditional effect limits from independently specified perturbations, holding out at least some outcomes or contexts. This paper does not assert universal constants, a calibrated human response model, or general small-input--small-consequence guarantees.
+
+For an observable $Y^{(q)}$ and two admissible interventions $o,o'$ on encounter information, a candidate experiment might estimate
+\begin{equation}
+ d_q\!\left(\mathcal L[Y^{(q)}\mid\doop(o),\mathcal D],
+               \mathcal L[Y^{(q)}\mid\doop(o'),\mathcal D]\right)
+ \leq \varepsilon_q(\mathcal D;o,o'),\label{eq:bound}
+\end{equation}
+where $d_q$ is a predeclared distance, $\mathcal D$ an explicitly measured domain of recipient state and environment, and $\varepsilon_q$ is estimated without using the held-out intervention outcome. Experiments must distinguish a partial effect with proximal control state held fixed from the total effect of an encounter allowed to recruit control relevance. A bound should also specify whether its target is the distribution of immediate actions, delayed evaluations, changes to an identified learned state, or propagation of public observations; these are not interchangeable.
+
+For longer horizons one could investigate \emph{whether} a predeclared trajectory distance obeys a relation such as $d_{t+1}\leq\gamma_t d_t+\eta_t$ over a restricted ecological region. Amplification and threshold-like population outcomes are then possibilities to examine, not properties guaranteed by LHCV. Similarly, any information bound derived from a conditional Markov chain $A\to O_i\to\widehat A_i$ constrains information about that \emph{particular originating artifact} carried through the stated channel; reconstruction may still draw on shared priors or additional observations. We defer substantive quantitative claims until the relevant distances, channels, and time horizons have empirical anchors. Any chosen bound must be frozen before transfer evaluation rather than expanded retroactively to absorb discrepant effects.
+
+This narrow proposal yields one clear failure mode. If an independently calibrated version cannot predict even sign, relative scale, or admissible range of response to specified held-out perturbations without new unconstrained latent influences, then that version offers no explanatory gain over an arbitrary history-dependent response function. The biological and cultural portions also admit more proximal failure tests: a proposed hub-to-control link must specify what perturbing the hub should do to measured salience, attention, or policy in a defined task; a reconstruction claim must specify which observations vary and which outcomes are expected to transfer. Absent such restrictions, architectural compatibility with a finding is not evidence for LHCV.
+
+\section{Discussion}
+\paragraph{Grounding without direct value readout.}
+The revision preserves the distinction between innate or developmentally prior regulatory organization and learned, reusable abstractions. Learned values are neither directly encoded in every hub signal nor guaranteed to control every act. At the same time, current control is not simply an adversary to culture. An observation of social approval can itself recruit motivational relevance, and cultural information can improve a person's prediction of real consequences. Treating the routes as concurrent avoids describing all conformity as irrational drift or all nonconformity as biological override.
+
+\paragraph{Persistence without literal copying.}
+Artifact prevalence can reflect repeated reconstruction as well as transmission, and a later reconstruction need not share the original producer's regulatory grounding. Public agreement may coexist with private divergence; common private evaluations may also arise independently under similar ecologies. A cultural artifact can become consequential by reshaping what people observe and experience, while remaining a poor proxy for their durable value bundles. The old $A=\rho(B)$ expression remains useful for explaining one route of artifact origination, but should not be imposed on every reproduction, publication, or uptake event.
+
+\paragraph{No privileged sociological partition.}
+Populations may differ dramatically in influence over encounters. This is an empirical property of the observation and environmental dynamics, not a reason to prelabel sources as universally effective elites, peers, media, or institutions. Culturally learned rules concerning whom to believe or whether to dissent may themselves change these dynamics, subject to the recipient's more basic capacities and control constraints. Identifying particular social groups may improve an applied model once the observations warrant it; it is not a prerequisite for the foundational architecture.
+
+\paragraph{What remains unestablished.}
+The theory has not demonstrated a unique neural bottleneck mechanism for abstract human values, inferred complete individual value histories, or recovered latent bundles from short verbal reports. It has not shown that every culturally acquired norm reduces long-horizon regulatory error or that selection on artifact prevalence maintains welfare. Reconstruction makes causal pathways more explicit, but observational association does not determine which pathways operated. Finally, the proposed quantitative restrictions presently lack empirically established ranges. These uncertainties should remain visible: weakening them into unrestricted flexibility would remove the theory's potential to fail.
+
+\section{Conclusion}
+LHCV is best read as a hypothesis about how heterogeneous biological regulation can shape both immediate control and the acquisition of persistent, abstract values. Its value-readout notation should not be mistaken for an obligatory route to action. Cultural artifacts enter this architecture as partial observations reconstructed by already situated learners; they can modify current expression, future regulation and learning, or subsequent public observations to different degrees. Their persistence need not imply faithful copying or corresponding private value acquisition. This clarification accommodates bypass and moderation without granting either unlimited explanatory scope. The resulting formal model is a conservative extension of LHCV; its prospective empirical progress depends on identifying observable mediators and establishing transferable, conditional restrictions on their influence rather than on inventing additional cultural layers.
+
+\bibliographystyle{plainnat}
+\bibliography{lhcv-reconstruction}
+\end{document}

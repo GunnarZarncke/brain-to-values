@@ -18,6 +18,7 @@ brain-to-values/
 │       └── output/
 └── papers/                # One subdirectory per paper
     ├── free-energy-loops/
+    ├── lhcv-reconstruction/
     ├── loop-hub-control-value/
     ├── loop-hub-value-model/
     ├── status-regulation-loops/
@@ -53,6 +54,7 @@ Use `MPLBACKEND=Agg` for headless runs. Prefer `.venv/bin/python` if the venv ex
 ```bash
 papers/free-energy-loops/build.sh      # pdflatex + bibtex + pdflatex ×2
 papers/loop-hub-control-value/build.sh # pdflatex + bibtex + pdflatex ×2
+papers/lhcv-reconstruction/build.sh # pdflatex + bibtex + pdflatex ×2
 papers/loop-hub-value-model/build.sh   # generates schematic, then pdflatex ×2
 papers/status-regulation-loops/build.sh # pdflatex ×2
 papers/value-bundle-drift/build.sh     # pdflatex ×2
@@ -136,6 +138,7 @@ Update `README.md` when adding a new viz or paper (table row + build command). K
 | `viz/senses/` | Illustrative bandwidth compression across processing stages |
 | `papers/loop-hub-value-model/` | Loop–hub–value (LHV) formal model |
 | `papers/loop-hub-control-value/` | Loop–hub–control–value (LHCV) developmental readout |
+| `papers/lhcv-reconstruction/` | LHCV revision: concurrent control, cultural reconstruction, conditional bounds |
 | `papers/embedded-value-formation/` | Viability constraints on learned value architectures |
 | `papers/self-pointers/` | Minimal self-pointer experiment; orienting cues and recirculation |
 | `papers/value-bundle-drift/` | Cultural selection vs value alignment |

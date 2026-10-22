@@ -20,7 +20,7 @@ See [`viz/README.md`](viz/README.md) for figure generation and [`papers/README.m
 
 ![Paper cross-references](papers/paper-references.svg)
 
-Solid arrows are explicit citations; dashed arrows are conceptual dependencies.
+Solid arrows are explicit citations (from citing paper up to cited paper); dashed arrows are conceptual dependencies or cross-repo links to agency-detect (grey dashed nodes in the graph). Transitive edges are omitted.
 See [`papers/paper-references.dot`](papers/paper-references.dot) for the source.
 
 ### [Stratification of Free-Energy-Minimising Loops in the Vertebrate Brain](papers/free-energy-loops/free_energy_loops.pdf)
@@ -46,6 +46,12 @@ Introduces the loop–hub–value (LHV) model: neuromodulatory hubs compress hig
 **May 2026** · [source](papers/loop-hub-control-value/lhcv-model-v2.tex)
 
 Extends LHV to the loop–hub–control–value (LHCV) model by separating immediate control relevance proxies from developmental value readouts. Hub scalars first steer policy (attention, precision, learning rate, exploration) and are later decoded—via language, social feedback, and self-model—into stabilized value tags. Adds a three-step transfer formalism and an empirical hub–control–value map with testable predictions.
+
+### [Beyond the Value Readout: Control Bypasses, Cultural Reconstruction, and Conditional Influence in LHCV](papers/lhcv-reconstruction/lhcv-reconstruction.pdf)
+
+**October 2026** · [source](papers/lhcv-reconstruction/lhcv-reconstruction.tex)
+
+Revises LHCV so immediate control, learned value bundles, and reconstructed cultural observations contribute concurrently to policy and learning—without requiring a serial value-readout path to action. Treats public artifacts as recipient-side reconstructions under existing regulatory state and inductive bias, separates measured responses from latent bundles, and sketches conditional effect bounds as a route toward empirically discriminable models. Build with `papers/lhcv-reconstruction/build.sh`.
 
 ### [Selection-Channel Alignment or the Limits of Harsh Correction](papers/value-bundle-drift/value-bundle-drift.pdf)
 

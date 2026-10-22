@@ -3,7 +3,7 @@ digraph paper_references {
     bgcolor="transparent";
     pad=0.4;
     nodesep=0.6;
-    ranksep=0.8;
+    ranksep=0.85;
 
     node [
         shape=box, style="rounded,filled",
@@ -13,54 +13,73 @@ digraph paper_references {
     ];
     edge [fontname="Helvetica", fontsize=8, color="#555555"];
 
-    // Foundational papers (bottom tier)
+    // brain-to-values papers
     FEL  [label="Stratification of\nFree-Energy Loops\n(Jul 2025)", fillcolor="#b8d4a8", color="#5a8a42"];
     CSR  [label="Consciousness as\nSelf-Referential Process\n(Sep 2025)", fillcolor="#f5e6b8", color="#b89a3e"];
 
-    // Middle tier
-    SRL  [label="Status Regulation\nLoops\n(Aug 2025)"];
     LHV  [label="Loop–Hub–Value\nModel (LHV)\n(Jul 2025)"];
+    SRL  [label="Status Regulation\nLoops\n(Aug 2025)"];
     CAB  [label="Consciousness &\nAgency Backbone\n(Aug 2025)"];
 
-    // Upper-middle tier
     LHCV [label="Loop–Hub–Control–\nValue (LHCV)\n(May 2026)"];
-    LRCI [label="Low-Rank Control\nInterfaces\n(Jul 2026)"];
+    SP   [label="From Orienting Signals\nto Self-Pointers\n(Sep 2026)"];
 
-    // Upper tier
     VBD  [label="Value Bundle\nDrift\n(May 2026)"];
     UoC  [label="Unit of Caring\n(May 2026)"];
+
     VV   [label="Viability-Constrained\nValue Formation\n(Jul 2026)"];
-    SP   [label="From Orienting Signals\nto Self-Pointers\n(Sep 2026)"];
-    VBI  [label="Value-Bundle\nInference\n(Oct 2026)"];
     OHV  [label="Nested-World Test of\nHanson's Drift Thesis\n(Oct 2026)"];
 
-    { rank=same; SRL; LHV; CAB; }
-    { rank=same; LHCV; LRCI; }
-    { rank=same; VBD; UoC; VV; SP; }
-    { rank=same; VBI; OHV; }
+    LHCR [label="Beyond the Value\nReadout (LHCV Recon.)\n(Oct 2026)"];
+    LRCI [label="Low-Rank Control\nInterfaces\n(Jul 2026)"];
+    VBI  [label="Value-Bundle\nInference\n(Oct 2026)"];
 
-    // Explicit citations (solid)
+    // agency-detect (external; dashed border)
+    UAD  [label="Unsupervised Agent\nDiscovery (UAD)\n(agency-detect)", fillcolor="white", style="rounded,dashed", color="#888888", fontcolor="#666666"];
+    ABC  [label="Attractor Basins\n(agency-detect)", fillcolor="white", style="rounded,dashed", color="#888888", fontcolor="#666666"];
+    MBU  [label="Maintained Agent\nBoundaries\n(agency-detect)", fillcolor="white", style="rounded,dashed", color="#888888", fontcolor="#666666"];
+    APP  [label="Empirical Loop\nDetection (APP)\n(agency-detect)", fillcolor="white", style="rounded,dashed", color="#888888", fontcolor="#666666"];
+    PCC  [label="Preference-\nConditioned Capability\n(agency-detect)", fillcolor="white", style="rounded,dashed", color="#888888", fontcolor="#666666"];
+
+    { rank=max; FEL; CSR; UAD; ABC; MBU; }
+    { rank=same; LHV; SRL; CAB; }
+    { rank=same; LHCV; SP; }
+    { rank=same; VBD; UoC; }
+    { rank=same; VV; OHV; }
+    { rank=same; APP; PCC; }
+    { rank=min; LHCR; LRCI; VBI; }
+
+    // Explicit citations (solid); transitive edges omitted
     LHV  -> FEL  [label="cites", penwidth=2, color="#2a6099"];
     LHCV -> FEL  [label="cites", penwidth=2, color="#2a6099"];
-    UoC  -> CSR  [label="cites", penwidth=2, color="#2a6099"];
+    VV   -> LHV  [label="cites", penwidth=2, color="#2a6099"];
     VV   -> LHCV [label="cites", penwidth=2, color="#2a6099"];
+    VV   -> VBD  [label="cites", penwidth=2, color="#2a6099"];
+    VV   -> UoC  [label="cites", penwidth=2, color="#2a6099"];
+    VV   -> MBU  [label="cites", penwidth=2, color="#2a6099"];
+    UoC  -> CSR  [label="cites", penwidth=2, color="#2a6099"];
+    CAB  -> UAD  [label="cites", penwidth=2, color="#2a6099"];
+    SRL  -> ABC  [label="cites", penwidth=2, color="#2a6099"];
     LRCI -> LHV  [label="cites", penwidth=2, color="#2a6099"];
     SP   -> CSR  [label="cites", penwidth=2, color="#2a6099"];
-    VBI  -> VBD  [label="cites", penwidth=2, color="#2a6099"];
     VBI  -> VV   [label="cites", penwidth=2, color="#2a6099"];
+    VBI  -> PCC  [label="cites", penwidth=2, color="#2a6099"];
     OHV  -> VBD  [label="cites", penwidth=2, color="#2a6099"];
+    LHCR -> VV   [label="cites", penwidth=2, color="#2a6099"];
+    LHCR -> OHV  [label="cites", penwidth=2, color="#2a6099"];
 
-    // Conceptual / extends (dashed)
+    // Cross-repo (dashed)
+    APP  -> LHCV [style=dashed, color="#999999", label="tests readout"];
+    PCC  -> LHCV [style=dashed, color="#999999"];
+    PCC  -> UoC  [style=dashed, color="#999999"];
+    PCC  -> VBI  [style=dashed, color="#999999"];
+
+    // Conceptual dependencies (dashed); transitive edges omitted
     LHCV -> LHV  [style=dashed, label="extends"];
     SRL  -> FEL  [style=dashed, label="applies\nframework"];
     VBD  -> LHCV [style=dashed, label="uses value\nconcepts"];
     UoC  -> LHCV [style=dashed, label="uses control\nframework"];
     CAB  -> CSR  [style=dashed, label="shared consciousness\nframework"];
-    VV   -> FEL  [style=dashed, label="uses loop\nframework"];
-    VV   -> VBD  [style=dashed, label="value bundles"];
     LRCI -> VV   [style=dashed, label="value-learning\nhypothesis"];
     SP   -> CAB  [style=dashed, label="agency/self\nbinding"];
-    VBI  -> VBD  [style=dashed, label="value bundles"];
-    VBI  -> VV   [style=dashed, label="viability /\ncapability"];
-    OHV  -> VBD  [style=dashed, label="empirical test\nof drift"];
 }
