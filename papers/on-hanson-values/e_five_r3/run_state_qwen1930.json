@@ -1,0 +1,10 @@
+{
+  "updated_utc": "2026-10-22T18:09:09.308157+00:00",
+  "pid": 62947,
+  "phase": "run_complete",
+  "arms": [
+    "qwen1930"
+  ],
+  "out": "papers/on-hanson-values/e_five_r3",
+  "pending": 0
+}

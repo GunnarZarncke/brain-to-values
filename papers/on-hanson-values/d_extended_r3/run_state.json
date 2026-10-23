@@ -1,0 +1,10 @@
+{
+  "updated_utc": "2026-10-21T10:31:21.229393+00:00",
+  "pid": 29599,
+  "phase": "run_complete",
+  "arms": [
+    "talkie"
+  ],
+  "out": "papers/on-hanson-values/d_extended_r3",
+  "pending": 0
+}

@@ -1,0 +1,10 @@
+{
+  "updated_utc": "2026-10-23T02:03:31.941569+00:00",
+  "pid": 24363,
+  "phase": "run_complete",
+  "arms": [
+    "qwen1930"
+  ],
+  "out": "papers/on-hanson-values/e_rest_r3",
+  "pending": 0
+}

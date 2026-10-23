@@ -1,0 +1,57 @@
+id,world,claim,source,status
+diagnosis,old,most physicians withheld cancer diagnoses; hope thought to help,Oken 1961 JAMA 175:1120 (90% preferred not to tell),verified
+diagnosis,new,treatment requires informed consent,Canterbury v. Spence 1972; Salgo 1957,verified
+diagnosis,new,most patients want to be told; some do not,Jenkins Fallowfield Saul 2001 Br J Cancer 84:48 (87% wanted all information),removed: states an opinion
+diagnosis,new,suicide risk rises in weeks after cancer diagnosis,Fang et al. 2012 NEJM 366:1310,verified
+dying,old,assisting suicide a crime; churches condemn suicide,state penal codes c.1930,verified
+dying,new,hospice and pain relief control most but not all end-of-life suffering,WHO analgesic ladder; cancer pain relieved in ~70-90% (Zech et al. 1995 Pain 63:65),corrected: 'pain' not 'suffering'
+dying,new,"some states: competent adult, six-month prognosis, repeated requests",Oregon Death with Dignity Act 1997 (ORS 127.800-995),verified
+dying,new,"few use it; top reasons loss of autonomy and enjoyment, not pain",Oregon Health Authority DWDA annual reports (e.g. 2023),verified
+dying,new,critics: undetected depression,Ganzini et al. 2008 BMJ 337:a1682; OHA DWDA 2023,corrected: opinion clause replaced by fear of burden (Oregon reports) and undetected depression
+unwed,old,little public aid; children of unmarried parents had fewer legal rights,Mothers' pension laws (limited); Levy v. Louisiana 1968 changed status,verified
+unwed,new,equal legal rights for nonmarital children,Levy v. Louisiana 1968; Trimble v. Gordon 1977; Lalli v. Lalli 1978,corrected: 'essentially ... once parentage is established'
+unwed,new,children of single mothers do somewhat worse on average; part reflects poverty and selection,McLanahan & Sandefur 1994 Growing Up with a Single Parent,verified
+unwed,new,pregnancy-precipitated marriages divorce more often,"Gibson-Davis et al., North Carolina records (white women 30% vs 19% divorced within 10 years)",verified (source replaced)
+unwed,new,adopted children generally do well; birth mothers report lasting grief,van IJzendoorn & Juffer 2006; Askren & Bloom 1999,verified
+cohabit,old,cohabitation a crime in several states,"state ""lewd and lascivious cohabitation"" statutes (e.g. Michigan to 2016)",verified
+cohabit,new,cohabiting couples separate more than married,Manning & Cohen; NSFG,verified
+cohabit,new,premarital cohabitation effect shrank or vanished; engaged cohabitors no higher risk,Manning & Cohen 2012 JMF; Rosenfeld & Roesler 2019 JMF; Stanley et al. 2010,corrected: studies disagree; small or absent after engagement
+tattoo,new,infections rare with sterile licensed shops,state licensing; Kluger 2012 review,corrected: 'serious infections are uncommon'
+tattoo,new,about one in four regret a tattoo,Pew 2023 (24%),removed: opinion measure
+tattoo,new,one large study found higher lymphoma risk not yet confirmed,Nielsen et al. 2024 eClinicalMedicine (Lund),"verified (IRR 1.21, 95% CI 0.99-1.48)"
+trousers,new,no health difference between trousers and skirts,no evidence either way (absence),common knowledge; absence of evidence
+sundayshop,old,most states had Sunday closing laws; 5.5-6 day work week,McGowan v. Maryland 1961; Whaples EH.net hours of work,verified
+sundayshop,new,five-day week; dual-earner households; Sunday opening legal in most places,BLS; FLSA 1938/1940,verified
+spirituality2,new,"attenders report more support, give more, live somewhat longer",Li et al. 2016 JAMA Intern Med 176:777; Putnam & Campbell 2010 American Grace,verified
+lottery2,old,lotteries illegal in every state in 1930,Louisiana lottery ended 1894; NH 1964 first modern state lottery,verified
+lottery2,new,payout about sixty cents per dollar; proceeds to schools,Census state lottery finances FY2024: $70.2B prizes on $104.7B sales,corrected: about two-thirds
+lottery2,new,"small share of players buy most tickets, disproportionately poor",Clotfelter & Cook 1989 Selling Hope; Clotfelter et al. 1999,verified
+cremation,old,crematories few; Catholic ban until 1963,CANA history; Piam et Constantem 1963,verified
+cremation,new,"cremation cheaper, much less when direct",NFDA 2023 median cost: burial with viewing $8300 vs cremation $6280; direct cremation ~$2000,verified
+supermarket,old,few mechanical refrigerators in 1930,Electric refrigerator ~8% of homes 1930 (Bowden & Offer 1994),verified
+supermarket,new,large stores cheaper than small shops,USDA ERS store-format price studies,"verified; 'fresher produce' clause removed as unsourced; old: 'few days', 'in towns'"
+stocks,old,"high commissions, margin, weak regulation, 1929 crash",Securities Acts 1933/34,verified
+stocks,new,equity premium several percent a year; drawdowns of half,Dimson Marsh Staunton yearbook; S&P 500 2000-02 and 2007-09,verified
+climate,old,coal/wood stoves; central heat costly; no cooling,1940 Census house heating (central heat 42%),verified
+climate,new,heating and cooling large share of household energy,EIA electricity mix,verified; 'power stations burn coal and gas' corrected to 'much of the electricity'
+climate,new,air conditioning greatly reduced heat-wave deaths,Barreca et al. 2016 JPE 124:105,verified
+machines,old,washers minority; farms unelectrified,Washer ~24% (Reading article); ~10% of farms electrified 1930 (REA),verified
+machines,new,appliances cost about one or two weeks' average wages,NAHB life expectancy of home components,corrected: 'up to' one or two weeks' wages; life 'about ten years'
+machines,new,laundry time fell sharply; total housework fell less,Ramey 2009 J Econ Hist 69:1; Cowan 1983 More Work for Mother,verified
+telephone2,old,about two homes in five had telephone (1930); operator calls; long distance expensive,HSUS R-1 (40.9% 1930),corrected: 'most calls' by operator (28% of Bell phones dial in 1930)
+telephone2,new,phone fraud deceives many each year,FTC Consumer Sentinel Data Book 2023 (phone call most common contact method for reported fraud losses),verified
+insurance,new,few days in hospital costs several months' wages,KFF: average hospital expense per inpatient day ~$3000 (2023),corrected: two or three months' wages
+insurance,new,family premium about a quarter of average household income; employer share tax-free,"KFF 2025 Employer Health Benefits ($26,993 family premium)",corrected: a quarter to a third
+insurance,new,RAND HIE: more care little health gain; Oregon: reduced financial strain,Newhouse 1993; Finkelstein et al. 2012 QJE,verified
+homeown,old,"short balloon mortgages, ~50% down",Fishback et al.; HOLC history,corrected: 'most mortgages' (NBER: avg LTV 48% 1920)
+homeown,new,"30-year fixed, low down payments, mortgage interest deduction",IRS Pub 936; Fed SCF,corrected: down payment 'can be'; deduction for itemizers; wealth gap cause disputed
+homeown,new,national prices fell about a quarter 2006-2012,S&P CoreLogic Case-Shiller national index (peak-to-trough ~27%),verified
+supplements,old,vitamin pills not sold in 1930; cod-liver oil for rickets,WARF 1930,corrected (was wrong): a few vitamin concentrates sold (Viosterol 1929-30)
+supplements,new,folic acid prevents neural tube defects,MRC Vitamin Study 1991 Lancet,verified
+supplements,new,multivitamins little or no effect on CVD/cancer/mortality; high-dose harm,USPSTF 2022 JAMA 327:2326; ATBC 1994 NEJM (beta-carotene),verified
+water,old,filtration and chlorination spread; typhoid fell,Cutler & Miller 2005 Demography 42:1,corrected: 'most large cities filter or chlorinate'; bottled 'at considerable cost'
+water,new,most systems meet standards; lead pipes remain; violations occur,EPA SDWIS; EPA lead service line inventory (~9 million),verified
+water,new,bottled costs hundreds of times tap; much is treated tap water,NRDC 1999,corrected: 'a quarter or more' is tap water
+bank,old,over a thousand banks failed in 1930,FDIC history: ~1350 suspensions 1930,verified; 'no federal insurance' (state guaranty schemes 1908-30 had collapsed)
+bank,new,no depositor has lost insured funds since 1934,FDIC,verified
+cohabit,new,no law penalizes such couples,"Mississippi Code 97-29-1 still in force, unenforced",corrected: 'the few laws ... still on the books are not enforced'

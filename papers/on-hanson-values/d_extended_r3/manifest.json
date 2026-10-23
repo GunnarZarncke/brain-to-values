@@ -1,0 +1,118 @@
+{
+  "version": "hanson-four-worlds-natural-v3",
+  "batteries": "d",
+  "cases": [
+    {
+      "id": "religion",
+      "topic": "Religious practice in a family",
+      "a": "attend church every week and raise the children in the faith",
+      "b": "treat religion as a private matter, attending seldom or not at all and letting the children decide for themselves",
+      "old": "Nearly every family belongs to a congregation; charity, schooling, courtship and help in trouble are largely arranged through the churches.",
+      "new": "Science explains much of nature, and secular schools, charities and public welfare provide many services once arranged through churches. Studies find that regular attenders report more social support, live somewhat longer and have more children on average, yet many prosperous and orderly communities are now largely unreligious.",
+      "explanation": "church obligations take time and money that can go to family and work, and secular institutions now provide what churches once did",
+      "institution": "Public schools, welfare offices and charities operate without religious affiliation, and civic life does not require church membership"
+    },
+    {
+      "id": "premarital",
+      "topic": "Sexual relations before marriage",
+      "a": "keep sexual relations for marriage and expect the same of one's children",
+      "b": "accept sexual relationships between unmarried adults who use reliable contraception",
+      "old": "Contraception is unreliable and hard to obtain; a pregnancy outside marriage usually means a hasty marriage or ruin for the mother, and venereal disease is common and hard to cure.",
+      "new": "Reliable contraception is cheap and widely available, though not infallible; most venereal infections can be cured or prevented, though some remain incurable; paternity can be proved by testing; and people commonly marry around thirty, long after physical maturity.",
+      "explanation": "reliable contraception has removed most of the risk of unwanted pregnancy, and marriage now comes many years after maturity",
+      "institution": "Clinics supply contraception to unmarried adults, and housing, employment and schooling make no distinction by marital status"
+    },
+    {
+      "id": "samesex",
+      "topic": "Couples of two men or two women",
+      "a": "regard sexual relations between two men or two women as wrong and discourage such couples from living openly together",
+      "b": "accept a committed couple of two men or two women openly, including their marriage",
+      "old": "Such relations are criminal offenses; physicians describe them as a disorder or vice, and many believe they are acquired through example or corruption.",
+      "new": "Careful research finds that attraction to one's own sex appears early in life, is rarely changed by treatment or punishment, and is not by itself a mental illness; attempts to change it rarely succeed and can cause distress. Such couples can keep stable households, and most studies, though limited, find broadly similar outcomes for children they raise.",
+      "explanation": "the inclination cannot be changed, and stable couples do better for themselves and their communities than hidden or punished ones",
+      "institution": "The law recognizes such marriages, and employers and landlords may not refuse people on account of them"
+    },
+    {
+      "id": "intermarriage",
+      "topic": "Marriage between people of different races",
+      "a": "marry within one's own race and discourage marriages across racial lines",
+      "b": "judge a prospective spouse of another race by the same standards as anyone else",
+      "old": "Many states forbid such marriages by law; mixed couples and their children face exclusion, and respected scientific opinion warns of harm from mixing races.",
+      "new": "Research finds no biological harm to the health or ability of children of mixed parentage, and no law forbids such marriages; such couples still meet some disapproval, and some studies find they divorce somewhat more often.",
+      "explanation": "a spouse's character and compatibility matter far more than race, and the old legal and medical objections have fallen away",
+      "institution": "Marriage law, housing and employment make no distinction by race"
+    },
+    {
+      "id": "divorce",
+      "topic": "Ending an unhappy marriage",
+      "a": "stay married for life, ending a marriage only for grave cause such as cruelty or desertion",
+      "b": "end a marriage when it no longer satisfies one or both partners, even without grave cause",
+      "old": "Divorce requires proving grave fault in court, and a divorced woman seldom has a way to support herself.",
+      "new": "Divorce can be obtained without proving fault, and most women can support themselves by paid work. Research finds that children of high-conflict marriages tend to do better after a divorce, while children of low-conflict marriages tend to do worse; on average divorce lowers household income.",
+      "explanation": "an unhappy marriage harms both partners, and the law and paid work now make separation workable",
+      "institution": "Courts grant divorce without proof of fault and divide property and support by settled rules"
+    },
+    {
+      "id": "spanking",
+      "topic": "Discipline of young children",
+      "a": "use spanking or other physical punishment when a child misbehaves seriously",
+      "b": "discipline children without any physical punishment",
+      "old": "Physical punishment by parents and teachers is customary; there is little systematic study of its effects.",
+      "new": "Many studies find that children who are spanked more often tend later to be more aggressive and to have more behavior problems, although researchers dispute how much of this spanking itself causes; other methods of discipline have been studied and are taught to parents.",
+      "explanation": "studies link physical punishment with later aggression, and other methods of discipline work",
+      "institution": "Schools forbid physical punishment, and child welfare services discourage it at home"
+    },
+    {
+      "id": "war",
+      "topic": "Military duty in time of war",
+      "a": "regard fighting for one's country in war as a duty and raise one's sons to be ready to do it",
+      "b": "regard war as an evil to be avoided and leave military service to those who volunteer for it",
+      "old": "Armies rely on mass conscription; war between great powers is a recurring danger, and a nation's survival may depend on the readiness of its young men to fight.",
+      "new": "There has been no war between the great powers for many decades, and some nations hold weapons that could destroy whole cities; armies are smaller, professional and technical; yet wars elsewhere continue, and some nations still face invasion.",
+      "explanation": "modern armies need trained professionals rather than mass levies, and great-power wars have become rare",
+      "institution": "The armed forces are staffed by volunteers, and conscription has been ended"
+    },
+    {
+      "id": "medicine",
+      "topic": "Use of doctors and medical care",
+      "a": "consult a doctor only for serious illness or injury and otherwise rely on rest and home care",
+      "b": "see a doctor regularly for checkups and screenings and seek prompt professional treatment even for minor complaints",
+      "old": "Doctors can do little for many illnesses; hospitals are costly and often dangerous, and most people recover from ordinary complaints at home.",
+      "new": "Antibiotics, vaccines and surgery now cure or prevent many once-deadly conditions, and some screenings find cancers early. Yet a large controlled experiment found that giving people more doctor visits and treatment did little to improve their average health, and many tests and treatments for minor complaints bring little benefit.",
+      "explanation": "modern medicine can prevent and cure much that once killed people, and early detection catches some diseases in time",
+      "institution": "Employers and insurers pay for regular checkups and screenings, and doctors schedule them as a matter of course"
+    }
+  ],
+  "arms": [
+    "qwen1930"
+  ],
+  "conditions": [
+    "A_1930",
+    "B_transplant",
+    "C_elites",
+    "D_full",
+    "C_explained",
+    "C_opposite",
+    "C_moral",
+    "D_peers",
+    "D_media"
+  ],
+  "replicates": 3,
+  "seed": 1930,
+  "turns": 3,
+  "temperature": 0.5,
+  "max_tokens": 430,
+  "local_url": "http://127.0.0.1:8080/v1",
+  "local_model": "",
+  "remote_model": "qwen/qwen3-14b",
+  "local_max_tokens": 180,
+  "system": "You are a thoughtful English-speaking adult whose outlook was formed by life up to 1930. Answer the following request for advice as you see it. The question may describe an imagined society with unfamiliar conditions; accept only the facts it gives. Do not assume you know what really happens after 1930. Write naturally, as you would in a personal letter, not as a survey researcher.",
+  "questions": [
+    "What would you advise a person in this situation to do? Why?",
+    "Would either choice tell you anything about the person's character? What would you think of someone who chose differently from you?",
+    "Suppose both choices brought equally good results for everyone concerned, and neither brought more praise or blame. Would you still favor one? Why?"
+  ],
+  "planned_arms": [
+    "qwen1930"
+  ]
+}

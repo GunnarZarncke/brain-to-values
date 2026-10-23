@@ -1,0 +1,23 @@
+id,cell,priority,topic,a,b,source_note
+sundayshop,moral_real,,shopping on Sunday,keep Sunday free of shopping,shop on Sunday as on any other day,Sunday-closing laws in over forty states (McGowan 1961); 72% grocery-shop on Sunday (2009)
+spirituality2,moral_real,,belonging to a church,belong to a church or synagogue and attend it,belong to no church or other congregation,Gallup membership 73% (1937) to 45% (2023)
+lottery2,moral_real,,lottery tickets,regard buying lottery tickets as a vice,regard buying an occasional lottery ticket as harmless,lotteries illegal in 1930; gambling morally acceptable 57-67% (2016-2026)
+cremation,moral_real,,disposal of one's body after death,arrange to be buried when one dies,arrange to be cremated when one dies,CANA cremation rates
+climate,practical_real,,heating and cooling the home,heat one or two rooms with a stove in winter and bear the summer heat,heat and cool the whole house to a steady temperature all year,central heat 42% (1940); AC 12% (1960); 81% / 89% (2020)
+machines,practical_real,,housework,"do the washing, drying, dishwashing and cleaning by hand","do the washing, drying, dishwashing and cleaning with electric machines",washer ~24% of homes (1930); RECS 2020 washer 84% dryer 83% dishwasher 73%
+telephone,practical_real,,keeping in touch with distant family,keep in touch with distant family by letters and occasional visits,keep in touch with distant family by frequent telephone calls,households with telephone 40.9% (1930); ~99% now
+insurance,practical_real,,paying for medical care,pay doctors' and hospital bills as they come,buy health insurance to cover doctors' and hospital bills,insured <2% (1930); ~92% (2023)
+homeown,practical_real,,housing,rent one's home,buy one's home,homeownership 47.8% (1930); 65.6% (2024)
+supplements,practical_real,,vitamin pills,take no vitamin or mineral pills,take vitamin or mineral pills regularly,vitamin pills barely sold before 1937; 57.6% use (2017-18)
+water,practical_real,,drinking water,drink water from the tap or the well,drink mainly filtered or bottled water,bottled water niche in 1930; ~50% rely on home treatment or bottled (WQA 2021)
+bank,practical_real,,keeping savings,keep one's savings at home in cash,keep one's savings in an insured bank account,deposit insurance from 1934; 95.8% banked (FDIC 2023)
+fixedperiod,moral_fictional,,the end of life in old age,live out one's natural life,"end one's life voluntarily at a fixed age, such as sixty-eight, to spare the young the burden of the old",Trollope The Fixed Period 1882 (compulsory there)
+uniformdress,moral_fictional,,everyday dress,choose one's own clothes,wear the same plain clothing as everyone else in one's community,More Utopia (English 1551); Shakers
+plainspeech,moral_fictional,,forms of address,address superiors and strangers by their titles,"use no titles and address everyone, superiors included, in the same plain form",Quaker plain speech; Le Guin Anarres
+hospitality,moral_fictional,,lodging travellers,lodge only family and friends in one's home,"lodge any traveller who asks, without payment",Rule of Benedict ch.53; More Utopia; Morris News from Nowhere 1890
+earthhouse,practical_fictional,,building a house,build an ordinary house above ground,build a house set partly into the earth for insulation,1970s earth-sheltered housing; Plains dugouts
+hydropathy,practical_fictional,,treating illness at home,"treat illness at home with rest, ordinary remedies and a doctor when needed",treat illness at home with cold-water baths and wet wrappings,Priessnitz water cure; Water-Cure Journal 1845
+segway,practical_fictional,,making short trips,make short trips on foot or by bicycle,make short trips on a self-balancing motor scooter,Segway 2001-2020
+woolsystem,practical_fictional,,underclothing,wear cotton or linen underclothes,wear only wool next to the skin,Jaeger Sanitary Woollen System 1884
+steelhouse,practical_fictional,,buying a house,buy a house built of wood or brick,buy a factory-built house of enamelled steel panels,Lustron 1948-50
+telephone2,practical_real,,arranging business and household matters,handle business and household arrangements by letter or in person,handle business and household arrangements by telephone,households with telephone 40.9% (1930); ~99% now

@@ -1,0 +1,53 @@
+id,cell,priority,topic,a,b,source_note
+lottery,moral_real,1,buying lottery tickets,regard gambling as a vice and never buy lottery tickets,buy a lottery ticket now and then for amusement,state lotteries illegal in 1930; run by most states now
+sunday,moral_real,2,shopping and working on Sunday,keep Sunday free of shopping and paid work,shop and work on Sunday as on any other day,Sunday-closing (blue) laws widespread in 1930; mostly repealed
+diagnosis,moral_real,3,telling a patient of a fatal illness,keep a fatal diagnosis from the patient to spare him distress,tell the patient frankly that his illness is fatal,most US physicians withheld cancer diagnoses (1961) vs nearly all disclose (1979)
+dying,moral_real,4,a doctor helping a dying patient end his life,regard a doctor helping a patient end his life as wrong in every case,accept a doctor helping a terminally ill patient who asks for it to end his life,Gallup support since 1947; legal in several states
+unwed,moral_real,5,an unmarried woman who becomes pregnant,expect her to marry quickly or give the child up for adoption,accept her raising the child herself without marrying,nonmarital births and adoption relinquishment series
+contraception,moral_real,6,limiting the size of a family,regard preventing conception within marriage as wrong,accept married couples using contraception to limit their family,Comstock-era restrictions; Gallup 1936 onward
+sexed,moral_real,7,teaching children about sex,leave children uninformed about sex until they are nearly grown,teach children frankly about sex and reproduction before adolescence,school sex education opinion series
+cohabit,moral_real,8,an unmarried couple living together,regard an unmarried couple sharing a home as living in sin,accept an unmarried couple sharing a home before or instead of marriage,share of marriages preceded by cohabitation
+swearing,moral_real,9,swearing in ordinary conversation,regard swearing in mixed company as wrong,accept casual swearing in ordinary conversation,media and survey evidence on profanity norms
+trousers,moral_real,10,women's dress in public,expect women to wear skirts or dresses in public,accept women wearing trousers in public,dress norms
+tattoo,moral_real,11,getting a tattoo,regard a tattoo as a mark of low character and refuse one,accept a tattoo as an ordinary personal decoration,share of adults with a tattoo
+interfaith,moral_real,12,marrying outside one's religion,marry only within one's own religion,marry a person of another religion if otherwise suited,interfaith marriage share (overlaps localmate)
+hunting,moral_real,13,hunting for sport,regard hunting for sport as a manly and healthy pastime and take it up,refuse to kill animals for sport,hunting licence share of population
+supermarket,practical_real,1,buying food,buy food fresh almost every day from small local shops,shop once a week at a large store and keep food in a refrigerator,supermarket and refrigerator diffusion
+readymade,practical_real,2,obtaining clothes,make one's own clothes or have them made by a dressmaker or tailor,buy nearly all one's clothes ready-made,home sewing and ready-to-wear share
+eatingout,practical_real,3,where to eat,eat nearly all meals at home,eat many meals in restaurants or from takeaway shops,USDA ERS food-away-from-home share since 1929
+prepared,practical_real,4,preparing meals,cook meals from raw ingredients,"rely mostly on canned, frozen and ready-prepared foods",processed food share
+stocks,practical_real,5,where to keep savings,keep savings in a savings bank account,invest savings in a broad fund of many companies' shares,household stock ownership share
+cashless,practical_real,6,paying for purchases,pay for everything in cash,pay by card or bank transfer and carry little cash,payment diary studies
+commute,practical_real,7,getting to work,live within walking or streetcar distance of one's work,live farther out and drive to work each day,census journey-to-work
+airtravel,practical_real,8,making long journeys,make long journeys by train,make long journeys by air,passenger-miles by mode
+exercise,practical_real,9,keeping fit,take no exercise beyond one's daily work,exercise deliberately several times a week by running swimming or in a gymnasium,leisure-time physical activity
+shower,practical_real,10,washing oneself,take a full bath about once a week,wash in a shower every day,bathing frequency and indoor plumbing
+washer,practical_real,11,washing clothes,wash clothes by hand or send them to a laundry,wash clothes at home in an electric machine,appliance ownership
+dental,practical_real,12,care of the teeth,see a dentist only when a tooth aches,brush twice a day and see a dentist twice a year for cleaning,dental visits (overlaps medicine)
+seatbelt,practical_real,13,riding in a motor car,ride in a motor car without any restraint,fasten a seat belt on every trip,belt use; not fitted in 1930 cars
+celibate,moral_fictional,1,marriage and celibacy,marry and raise one's own children,live celibate in a community and raise adopted children instead of marrying,Shakers
+multispouse,moral_fictional,2,the form of marriage,marry one spouse,marry into a household of several husbands and wives who share their lives,Oneida complex marriage 1848-81; Heinlein line marriage 1966
+bequest,moral_fictional,3,leaving an estate,leave one's savings and property to one's own children,leave nearly all one's wealth to the public and only a modest sum to one's children,Carnegie Gospel of Wealth 1889; Giving Pledge 2010
+equalpay,moral_fictional,4,pay within a cooperative,accept pay according to one's skill and effort,take the same pay as every other member of one's cooperative whatever one's skill,Bellamy 1888; kibbutz equal budgets
+nonviolence,moral_fictional,5,defending oneself,use force when needed to defend oneself or one's family,never use force against another person even in self-defense,Tolstoyan non-resistance; Doukhobors
+confession,moral_fictional,6,dealing with one's faults,keep one's faults a private matter,confess one's faults at a monthly meeting of one's neighbours and hear their criticism,Oneida mutual criticism; comrades' courts
+nonexclusive,moral_fictional,7,romantic attachment,seek one exclusive romantic partner,avoid any exclusive romantic attachment and keep several close companions,Huxley Brave New World 1932
+nothanks,moral_fictional,8,thanking people,thank and praise people for ordinary help,refrain from thanking or praising people for ordinary help,Skinner Walden Two 1948
+adoptclub,moral_fictional,9,where a child lives,keep one's child living in one's own home until grown,let one's child move to another family of the same adoption club whenever the child wishes,Huxley Island 1962
+nopossess,moral_fictional,10,personal possessions,own one's things and lend them as one sees fit,own nothing beyond daily use and lend anything one has to whoever asks,Le Guin The Dispossessed 1974
+honesty,moral_fictional,11,polite lies,tell small polite lies to spare people's feelings,never tell even a polite lie,Radical Honesty (Blanton 1994)
+breadlabor,moral_fictional,12,manual labour,leave manual labour to those whose trade it is,do some manual labour every day whatever one's occupation,Tolstoy / Gandhi bread labour
+nogossip,moral_fictional,13,talking about others,talk freely about absent acquaintances,never speak about a person who is not present,Skinner Walden Two 1948 code
+spelling,practical_fictional,1,how to spell,write in standard spelling,write in simplified spelling such as tho thru and frend,Simplified Spelling Board 1906; Chicago Tribune 1934-75
+esperanto,practical_fictional,2,learning a second language,learn French or German as a second language,learn Esperanto as a second language,Zamenhof 1887
+fletcher,practical_fictional,3,how to eat,eat at regular mealtimes at an ordinary pace,eat only when hungry and chew each mouthful until it is liquid,Fletcherism c.1900-1919
+timebank,practical_fictional,4,paying for services,pay for repairs and services in cash,trade services hour for hour through a neighbourhood time bank,Owen labour notes; 1980s time banks
+calendar,practical_fictional,5,keeping business accounts,keep one's business accounts by the ordinary twelve-month calendar,keep one's business accounts by a calendar of thirteen equal four-week months,Cotsworth calendar; Kodak 1928-89
+dvorak,practical_fictional,6,learning to type,type on the standard keyboard,type on a keyboard with the letters rearranged for speed,Dvorak 1936
+ita,practical_fictional,7,learning to read,learn to read in the ordinary alphabet and spelling,learn to read first in a phonetic alphabet and switch to ordinary spelling later,Initial Teaching Alphabet 1961
+polyphasic,practical_fictional,8,how to sleep,sleep once a night for seven or eight hours,sleep in several short naps through the day and night totalling about five hours,polyphasic sleep 2000s
+mealdrink,practical_fictional,9,what to eat,eat ordinary meals,replace most meals with a nutritionally complete drink,Metrecal 1959; Soylent 2014
+sleepporch,practical_fictional,10,where to sleep,sleep indoors in a closed bedroom,sleep outdoors on an open porch all year round,sleeping porches c.1900-1930
+garden,practical_fictional,11,getting vegetables,buy one's vegetables,grow most of one's vegetables in a garden plot,Victory gardens 1940s
+shorthand,practical_fictional,12,writing personal notes,write personal notes in ordinary longhand,write all personal notes in shorthand,Pitman/Gregg shorthand
+paperclothes,practical_fictional,13,everyday clothing,wear clothes made to last for years,wear cheap disposable paper clothes and throw them away after a few wearings,paper dresses 1966-68

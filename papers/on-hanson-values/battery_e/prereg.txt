@@ -1,0 +1,127 @@
+Battery E pre-registration (frozen 2026-10-22, before any rating, vignette text or interview)
+
+PURPOSE
+Test whether the carrier of value change depends on the kind of practice:
+elite example for moral practices, peer conformity for practical ones.
+This pattern was noticed after the fact in batteries A-D; battery E tests it on new domains.
+
+CELLS (10 domains each)
+moral_real, moral_fictional, practical_real, practical_fictional.
+Candidates and their priority order are in candidates.csv (13 per cell).
+In each cell the first 10 candidates, in priority order, that pass both the source check
+and the classification rule are used. If fewer than 10 pass, the cell runs short and this is reported.
+
+SOURCE CHECK
+Real domains:
+  (1) Dated US evidence shows B was a minority, illegal or stigmatized practice around 1930
+      (1925-1945) and a majority or broadly accepted practice now (2010 or later).
+  (2) No reversal after mid-century larger than half the total change.
+  (3) A was a feasible choice for an ordinary person in 1930.
+  (4) Not the same practice as one of the 32 domains of batteries A-D.
+Fictional domains:
+  (1) B is documented in a named work of fiction or as a practice adopted by an identifiable group.
+  (2) B has never been the prevailing practice (done or approved by a majority) in the US.
+  (3) Coded pre1931 = 1 if B was described in English print before 1931, else 0.
+  (4) Coded failed = 1 if B was adopted by a group and later abandoned, 0 if it stayed fiction or marginal.
+
+CLASSIFICATION RULE
+Raters: google/gemini-2.5-flash, meta-llama/llama-3.3-70b-instruct, mistralai/mistral-large
+(OpenRouter; none is used as respondent or judge in the experiment; temperature 0; one call per item).
+Raters see only the topic and the two practices, in random order labelled Practice 1 and Practice 2,
+with no source, cell, hypothesis or study context. Prompt (verbatim apart from the placeholders):
+
+  Consider an ordinary American adult in 1930 choosing between two practices.
+  Topic: {topic}
+  Practice 1: {p1}
+  Practice 2: {p2}
+  For such a person, is the choice between these practices mainly a question of right and wrong
+  (morality, decency, duty, religion, obligations to others) or mainly a question of what works best
+  for the person (cost, convenience, health, efficiency, skill)?
+  Answer on a scale from 1 to 7: 1 = entirely a question of what works best, 4 = equally both,
+  7 = entirely a question of right and wrong.
+  Reply with JSON only: {"rating": <integer 1-7>, "reason": "<one sentence>"}
+
+Score = mean of the three ratings.
+  moral     if score >= 5.5 and every rating >= 5
+  practical if score <= 2.5 and every rating <= 3
+  otherwise excluded as ambiguous.
+A candidate passes only if its class matches its intended cell.
+Unparseable replies are retried up to 3 times; a rater that still fails counts as a failed rating
+and the candidate is excluded.
+
+RULE CHECK (not confirmatory)
+The same raters and prompt are applied to the 32 domains of batteries A-D, and agreement with the
+post-hoc moral/practical split is reported.
+
+DESIGN
+Worlds: A_1930, B_transplant, C_elites, C_opposite, D_peers.
+Respondents: talkie (talkie-1930-13b-it Q5_K_M) and qwen1930 (qwen/qwen3-14b), unchanged from batteries A-D.
+Judge: openai/gpt-4.1-mini, unchanged. 3 replicates.
+40 x 5 x 3 x 2 = 1200 interviews.
+Vignettes: A and B keep the rated wording (grammatical adjustments only). New-world facts are balanced,
+stating evidence on both sides; for real domains they are sourced; for fictional domains they are
+invented but plausible and marked as invented. World B states no customs or opinions.
+
+ANALYSIS
+Outcome: recommendation, oriented toward B, paired within (domain, replicate) as in batteries A-D.
+Per domain: elite step E = C_elites - B_transplant; peer step P = D_peers - C_elites;
+direction R = C_elites - C_opposite.
+Primary (Talkie): X = mean over moral domains of (E - P) minus mean over practical domains of (E - P).
+Prediction: X > 0. Test: 95% percentile interval from 5000 bootstrap resamples of domains,
+resampling within the moral and the practical group; supported if the interval excludes 0.
+Secondary: E and P separately (moral minus practical); R (moral minus practical);
+E real minus fictional; E pre1931 minus not; the same contrasts for Qwen; Talkie minus Qwen.
+Domains with missing pairs keep their available pairs; no imputation.
+
+POWER
+From batteries A-C (Talkie): between-domain variance of the E - P effect about 0.32,
+replicate variance about 0.49. With 20 domains per type and 3 replicates the standard error of X is
+about 0.22. The post-hoc estimate was 0.53; an effect half that size would probably be missed.
+
+DEVIATIONS
+Any change after this file is frozen is reported with its reason.
+
+DEVIATION 1 (2026-10-22, after the first rating and source check, before any vignette or interview)
+Reason: the first round left moral_real with 5 and practical_real with 3 domains, and several
+practical cells repeated one need (household technology; four language/writing items; two food,
+two sleep). Changes, decided by the author:
+  (a) Structural 1930 evidence (laws, absence of a product or institution) counts for source criterion 1.
+  (b) Practical domains are grouped by need, at most one domain per need in each practical cell;
+      washer is merged into a household-machines domain. Overlaps with batteries A-D are allowed.
+  (c) New and reworded candidates are listed in candidates_round2.csv; the ordered pool for every
+      cell is pool_round2.csv. Selection = first 10 in pool order that pass source check and rule.
+      Dropped by (b): ita, shorthand, polyphasic, mealdrink; nonexclusive folded into multispouse.
+      Reworded: sunday -> sundayshop (shopping only), lottery -> lottery2 (acceptance),
+      spirituality -> spirituality2 (congregation membership).
+  (d) Fictional domains get a new code known_failed_by_1930 (a 1930 reader could know B had been
+      tried and abandoned); it replaces pre1931 in the secondary analysis. pre1931 is still reported.
+  (e) Raters, prompt, thresholds and analysis plan are unchanged. Upstream HTTP 429 errors are
+      retried with backoff (implementation only; rate.py).
+
+DEVIATION 2 (2026-10-22, after the round-2 rating, before any vignette or interview)
+Reason: telephone was rated ambiguous ([1, 2, 5]); the dissenting rater cited duty to family, which the
+topic "keeping in touch with distant family" invited. With no backup left, practical_real had 9 domains.
+Change, decided by the author: telephone is replaced in the pool at the same position by telephone2
+(topic: arranging business and household matters; A by letter or in person, B by telephone).
+This rewording was made after seeing the rating and is therefore not blind; it is reported as such,
+and the primary analysis is also reported without telephone2. Raters, prompt and thresholds unchanged.
+
+DEVIATION 3 (2026-10-22, before any interview; implementation only)
+The two respondent arms run in parallel, and trials run in blocked order: replicate by replicate, domains
+alternating between the four cells, all five worlds of a (domain, replicate) together in random order.
+Trial identities, vignettes, seeds and the analysis are unchanged. New interviews are judged and the
+analysis is refreshed about every 30 minutes for monitoring; these interim results are not used to stop,
+extend or change the run, which is completed as planned (1200 interviews). Only the complete run is
+confirmatory.
+
+DEVIATION 4 (2026-10-22T23:50Z, after the complete five-world run; exploratory extension)
+The four remaining worlds of batteries A-D (C_explained, C_moral, D_media, D_full) are run on the 40
+battery E domains: 40 x 4 x 3 x 2 = 960 interviews, with respondents, judge, seed and order rule unchanged
+(presentation order of A and B is the same as in the five-world run). The elite explanations and
+institution sentences these worlds need were written after the five-world results were known and approved
+by the author before the run; they are in extension_sentences.csv. Rules: an explanation restates only facts
+favoring B that are already in the domain's new background, and gives no moral reason; an institution
+sentence describes laws, public agencies or business arrangements that make B easy, protected or routine,
+states no customs, opinions or frequencies, and does not repeat the background; real domains are sourced,
+fictional ones invented. The confirmatory analysis remains the five-world analysis above; every contrast
+involving the four new worlds is exploratory. Output: e_rest_r3/; analysis on the merged directory e_all_r3/.

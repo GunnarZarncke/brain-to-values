@@ -1,0 +1,39 @@
+id,verdict,pre1931,failed,known_failed_by_1930,evidence,source_urls
+trousers,PASS,,,,"Gallup 1948: 32% approved slacks in public; Senate floor ban ended 1993; Peltier (4th Cir. 2022) struck down skirts-only rule; no modern poll",https://news.gallup.com/vault/203801/gallup-vault-breaking-gender-barriers-slacks-shorts.aspx ; https://en.wikipedia.org/wiki/Peltier_v._Charter_Day_School
+sundayshop,PASS-STRUCTURAL,,,,"Over forty states with comprehensive Sunday regulation (McGowan v. Maryland 1961); 72% grocery-shop on Sunday (Parade/Mori Oct 2009); 18 states keep some Sunday laws",https://www.law.cornell.edu/supremecourt/text/366/420 ; https://supplysidesj.com/business-resources/americans-grocery-shop-on-sundays
+spirituality2,PASS,,,,"Gallup church/synagogue membership 73% (1937), ~70% to 1999, 47% (2020), 45% (2023): non-members 27% to 55%",https://news.gallup.com/poll/341963/church-membership-falls-below-majority-first-time.aspx
+lottery2,PASS-STRUCTURAL,,,,"State lotteries illegal in 1930; gambling morally acceptable 67% (2016), 71% peak (2020/22), 57% (2026); decline 14 pts, less than half of change from structural baseline",https://news.gallup.com/poll/713405/fewer-adults-say-gamble.aspx ; https://en.wikipedia.org/wiki/Irish_Hospitals%27_Sweepstake
+cremation,PASS,,,,"CANA: 2.56% of US deaths cremated (1934-38), 3.21% (1939-43), 3.56% (1960), 61.8% (2024); Catholic ban until 1963",https://www.cremationassociation.org/historyofcremation.html ; https://shoeleathermagazine.com/2015/assets/files/Cremation-Association-of-North-America-Stats-dragged-1.pdf
+climate,PASS,,,,"1940 Census: central heat 42.0%, coal 55.1% of heating; AC 12.4% (1960); RECS 2020: central heat 80.8%, AC 88.7%",https://www.census.gov/data/tables/time-series/dec/coh-fuels.html ; https://www.eia.gov/consumption/residential/data/2020/hc/pdf/HC%207.1.pdf
+machines,PASS,,,,"Electric washer ~24% of all homes (1930, derived from chart); dryer 17.1% (1960); RECS 2020: washer 84.2%, dryer 82.8%, dishwasher 72.7%",https://centaur.reading.ac.uk/83706/1/Washing%20machine%20article%20FINAL.pdf ; https://www.eia.gov/consumption/residential/data/2020/hc/pdf/HC%203.1.pdf
+telephone,PASS,,,,"Households with telephone 40.9% (1930), 36.9% (1940); ~99% of adults have a phone (NHIS 2024); call frequency not measured in 1930",https://www2.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970/hist_stats_colonial-1970p2-chR.pdf ; https://www.cdc.gov/nchs/data/nhis/earlyrelease/wireless202506.pdf
+insurance,PASS,,,,"Insured <2% (1930), 9.3% (1940, HSUS); uninsured 8.0% (2023)",https://eh.net/encyclopedia/health-insurance-in-the-united-states/ ; https://www.census.gov/library/stories/2024/09/health-insurance-coverage.html
+homeown,PASS,,,,"Homeownership 47.8% (1930), 43.6% (1940), 65.6% (2024); 2004-2016 dip 6.3 pts",https://www2.census.gov/programs-surveys/decennial/tables/time-series/coh-owner/owner-tab.txt
+supplements,PASS-STRUCTURAL,,,,"Vitamin product output $27M (1937); One-A-Day 1940; NHANES 32.9% (1971-74), 57.6% (2017-18), 60.2% (2021-23)",https://www.cdc.gov/nchs/products/databriefs/db399.htm
+water,PASS-STRUCTURAL,,,,"Bottled water niche in 1930 (1.6 gal/capita even in 1976); WQA 2021: 32% home treatment + 18% bottled; author decision to include",https://aspe.org/pipeline/water-quality-association-releases-national-opinion-survey/
+bank,PASS-STRUCTURAL,,,,"Deposit insurance from 1934 (B structurally unavailable in 1930); 95.8% of households banked (FDIC 2023); 52.7M savings depositors 1929 (unverified) cuts against; author decision to include",https://fdic.gov/household-survey/2023-fdic-national-survey-unbanked-and-underbanked-households-executive-summary
+fixedperiod,PASS,1,0,0,"Trollope The Fixed Period 1882 (compulsory law at 67-68); no real US group",https://www.gutenberg.org/ebooks/27067
+uniformdress,PASS,1,1,1,"More Utopia (all wear the same clothes); Shakers relaxed uniform dress by 1910-20; Quaker plain dress dropped late 19th-early 20th c",https://www.gutenberg.org/ebooks/2130 ; https://shakermuseum.us/?p=4867
+plainspeech,PASS,1,1,1,"Quaker plain speech from 1650s, faded by early 20th c; titles still common now",https://en.wikipedia.org/wiki/Testimony_of_simplicity
+hospitality,PASS,1,0,0,"Rule of Benedict ch.53; More Utopia; Morris News from Nowhere 1890; colonial lodging custom (weakest)",https://www.gutenberg.org/ebooks/3261
+earthhouse,PASS,1,1,1,"1970s earth-sheltered housing (~50 houses 1976, 1,500-3,000 by 1980); Plains dugouts replaced by frame houses",https://www.cca.qc.ca/en/articles/issues/19/the-planet-is-the-client/73221/using-the-earth-for-shelter
+hydropathy,PASS,1,1,1,"Priessnitz water cure; Claridge 1842; Water-Cure Journal 1845; declined after the 1850s",https://heirs.lib.uiowa.edu/record.php?id=1826
+segway,PASS,0,1,0,"Segway 2001; ~140,000 units sold; production ended 2020",https://en.wikipedia.org/wiki/Segway
+woolsystem,PASS,1,1,0,"Jaeger Sanitary Woollen System, London 1884, New York 1886; firm turned to fashion 1920s-30s",https://en.wikipedia.org/wiki/Jaeger_(clothing)
+steelhouse,PASS,1,1,1,"Lustron ~2,500 houses 1948-50; Scottish steel houses 1925-28 (weak known-failed)",https://en.wikipedia.org/wiki/Lustron_house
+paperclothes,PASS,1,1,1,"Scott Paper Caper 1966-68; 1920 US paper suits faded",https://www.thehenryford.org/collections/explore/articles/pulp-fashion-paper-dresses-of-the-1960s
+esperanto,PASS,1,0,0,"still active in 1930 (Volapuk forerunner had failed)",https://en.wikipedia.org/wiki/Esperanto
+dvorak,PASS,1,1,0,"layout 1932; did not exist in 1930",https://en.wikipedia.org/wiki/Dvorak_keyboard_layout
+fletcher,PASS,1,1,1,"craze recalled in past tense by 1928 Time",https://worldwidewords.org/ww-fle1.html
+sleepporch,PASS,1,1,0,"still in use in 1930; decline 1930s-40s",https://hennepinhistory.org/?p=7009
+calendar,PASS,1,1,0,"not abandoned by 1930 (Kodak adopted 1928)",https://en.wikipedia.org/wiki/International_Fixed_Calendar
+timebank,PASS,1,1,1,"Warren's Time Store closed 1830; Owen's exchanges failed 1834",https://en.wikipedia.org/wiki/Cincinnati_Time_Store
+celibate,PASS,1,1,1,"Shakers peaked c.1840-60 and were visibly dwindling well before 1930 (author coding from round-1 evidence)",https://en.wikipedia.org/wiki/Shakers
+multispouse,PASS,1,1,1,"Oneida dropped complex marriage 1879 (author coding)",https://en.wikipedia.org/wiki/Oneida_Community
+bequest,PASS,1,0,0,"Carnegie 1889 advocacy; no group trial (author coding)",https://carnegie.org/publication/the-gospel-of-wealth/
+nonviolence,PASS,1,1,1,"Hopedale Community (non-resistance) failed in the 1850s (author coding)",https://en.wikipedia.org/wiki/Hopedale_Community
+confession,PASS,1,1,1,"Oneida mutual criticism; community dissolved 1881 (author coding)",https://en.wikipedia.org/wiki/Oneida_Community
+nothanks,PASS,0,0,0,"Walden Two 1948; fiction only (author coding)",https://en.wikipedia.org/wiki/Walden_Two
+adoptclub,PASS,0,0,0,"Huxley Island 1962; fiction only (author coding)",https://www.bookrags.com/studyguide-island-huxley/
+nopossess,PASS,1,1,1,"communal-property communities such as Brook Farm (closed 1847) had failed; Amana still communal in 1930 (author coding)",https://en.wikipedia.org/wiki/Brook_Farm
+telephone2,PASS,,,,"Households with telephone 40.9% (1930), 36.9% (1940); ~99% of adults have a phone (NHIS 2024); same evidence as telephone, business use not measured separately in 1930",https://www2.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970/hist_stats_colonial-1970p2-chR.pdf ; https://www.cdc.gov/nchs/data/nhis/earlyrelease/wireless202506.pdf
